@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 
 class AdminController extends Controller
 {
@@ -18,7 +21,12 @@ class AdminController extends Controller
 
     public function users()
     {
-        return view('admin.users');
+        $users = User::paginate(10);
+        $totalUsers = User::all()->count();
+        return view('admin.users',[
+            'users' => $users,
+            'totalUsers' => $totalUsers
+        ]);
     }
 
     public function keys()

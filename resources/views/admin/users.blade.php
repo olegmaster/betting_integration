@@ -14,7 +14,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers "><span>218</span></div>
+                        <div class="widget-numbers "><span>{{$totalUsers}}</span></div>
                     </div>
                 </div>
             </div>
@@ -41,6 +41,7 @@
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
                         <div class="widget-chart p-3">
+                            <h5 class="card-title">Список пользователей</h5><br/>
                             <table class="mb-0 table table-striped">
                                 <thead>
                                 <tr>
@@ -54,52 +55,32 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach($users as $user)
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
+                                    <th scope="row">{{$user->id}}</th>
+                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->sum}}</td>
                                     <td>@mdo</td>
                                     <td>Mark</td>
                                     <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <td>
+                                        <button class="mb-2 mr-2 btn btn-primary"><span class="fa fa-arrow-right"></span>
+                                        </button>
+                                        <button class="mb-2 mr-2 btn btn-info"><span class="pe-7s-look"></span>
+                                        </button>
+                                        <button class="mb-2 mr-2 btn btn-success"><i class="fa fa-power-off"></i>
+                                        </button>
+                                    </td>
 
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                @endforeach
 
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-
-                                </tr>
                                 </tbody>
                             </table>
 
                         </div>
                         <div class="widget-chart p-3">
-                            <nav class="" aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Previous"><span aria-hidden="true">«</span><span class="sr-only">Previous</span></a></li>
-                                    <li class="page-item"><a href="javascript:void(0);" class="page-link">1</a></li>
-                                    <li class="page-item active"><a href="javascript:void(0);" class="page-link">2</a></li>
-                                    <li class="page-item"><a href="javascript:void(0);" class="page-link">3</a></li>
-                                    <li class="page-item"><a href="javascript:void(0);" class="page-link">4</a></li>
-                                    <li class="page-item"><a href="javascript:void(0);" class="page-link">5</a></li>
-                                    <li class="page-item"><a href="javascript:void(0);" class="page-link" aria-label="Next"><span aria-hidden="true">»</span><span class="sr-only">Next</span></a></li>
-                                </ul>
-                            </nav>
+                            {{ $users->links() }}
                         </div>
 
                     </div>
