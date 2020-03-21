@@ -40,7 +40,29 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function getSumAttribute(){
-        return $this->id;
+    public function UserKeys()
+    {
+        return $this->hasMany('App\UserKey');
+    }
+
+
+    public function UserTransactions()
+    {
+        return $this->hasMany('App\UserTransaction');
+    }
+
+
+    public function getSumAttribute()
+    {
+        $sum = 0;
+        $transactions = $this->UserTransactions();
+
+        if(!empty($transactions)){
+            
+            foreach ($transactions as $transaction){
+                $sum += $transaction->sum;
+            }
+        }
+        return $sum;
     }
 }
