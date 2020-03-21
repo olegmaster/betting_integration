@@ -19,8 +19,19 @@ Route::get('/', function () {
 
 Route::get('/admin', 'AdminController@summary');
 
-Route::get('/admin', 'AdminController@summary');
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/users', 'AdminController@users')->name('home');
+
+Route::get('/admin/users', 'AdminController@users');
+
+Route::get('/admin/keys', 'AdminController@keys');
+
+Route::get('/admin/transaction-history', 'AdminController@transactions');
+
+Route::get('/admin/bot', 'AdminController@bot');
+
+Route::get('/admin/help', 'AdminController@help');
+

@@ -58,7 +58,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-dark"><span>46%</span></div>
+                        <div class="widget-numbers"><span>46%</span></div>
                     </div>
                 </div>
             </div>
