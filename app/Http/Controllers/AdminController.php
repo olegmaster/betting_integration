@@ -45,7 +45,7 @@ class AdminController extends Controller
     {
         $transactions = UserTransaction::paginate(10);
         $totalTransactions = UserTransaction::all()->count();
-        return view('admin.keys',[
+        return view('admin.transactions',[
             'transactions' => $transactions,
             'totalTransactions' => $totalTransactions
         ]);
