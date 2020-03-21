@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\UserKey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -31,7 +32,12 @@ class AdminController extends Controller
 
     public function keys()
     {
-        return view('admin.summary');
+        $keys = UserKey::paginate(10);
+        $totalKeys = UserKey::all()->count();
+        return view('admin.keys',[
+            'keys' => $keys,
+            'totalKeys' => $totalKeys
+        ]);
     }
 
     public function transactions()
