@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\UserKey;
+use App\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -42,7 +43,12 @@ class AdminController extends Controller
 
     public function transactions()
     {
-        return view('admin.summary');
+        $transactions = UserTransaction::paginate(10);
+        $totalTransactions = UserTransaction::all()->count();
+        return view('admin.keys',[
+            'transactions' => $transactions,
+            'totalTransactions' => $totalTransactions
+        ]);
     }
 
     public function bot()
