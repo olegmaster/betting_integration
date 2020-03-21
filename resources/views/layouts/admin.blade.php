@@ -166,7 +166,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/settings">
+                            <a href="#">
                                 <i class="pe-7s-tools"></i>
                                 Настройки
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
@@ -182,6 +182,12 @@
                                     <a href="/admin/help">
                                         <i class="metismenu-icon">
                                         </i>Страница "Помощ"
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="/admin/profile">
+                                        <i class="metismenu-icon">
+                                        </i>Профиль
                                     </a>
                                 </li>
 

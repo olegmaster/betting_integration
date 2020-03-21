@@ -35,3 +35,5 @@ Route::get('/admin/bot', 'AdminController@bot');
 
 Route::get('/admin/help', 'AdminController@help');
 
+Route::get('/admin/profile', 'AdminController@profile');
+
