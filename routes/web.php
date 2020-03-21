@@ -31,7 +31,7 @@ Route::get('/admin/keys', 'AdminController@keys');
 
 Route::get('/admin/transaction-history', 'AdminController@transactions');
 
-Route::get('/admin/bot', 'AdminController@bot');
+Route::get('/admin/bot-download', 'AdminController@bot');
 
 Route::get('/admin/help', 'AdminController@help');
 
