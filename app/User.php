@@ -40,13 +40,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function UserKeys()
+    public function keys()
     {
         return $this->hasMany('App\UserKey');
     }
 
 
-    public function UserTransactions()
+    public function transactions()
     {
         return $this->hasMany('App\UserTransaction');
     }
@@ -55,14 +55,23 @@ class User extends Authenticatable
     public function getSumAttribute()
     {
         $sum = 0;
-        $transactions = $this->UserTransactions();
+        $transactions = $this->transactions;
 
-        if(!empty($transactions)){
-            
-            foreach ($transactions as $transaction){
+        if (!empty($transactions)) {
+            foreach ($transactions as $transaction) {
                 $sum += $transaction->sum;
             }
         }
         return $sum;
+    }
+
+    public function getKeysCountAttribute()
+    {
+        return is_countable($this->keys) ? count($this->keys) : 0;
+    }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . " " . $this->surname;
     }
 }

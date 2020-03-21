@@ -58,11 +58,17 @@
                                 @foreach($users as $user)
                                 <tr>
                                     <th scope="row">{{$user->id}}</th>
-                                    <td>{{$user->name}}</td>
+                                    <td>{{$user->full_name}}</td>
+                                    <td>{{$user->email}}</td>
                                     <td>{{$user->sum}}</td>
-                                    <td>@mdo</td>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
+                                    <td>{{$user->keys_count}}</td>
+                                    <td>
+                                        @if($user->account_status == 0)
+                                            <div class="mb-2 mr-2 badge badge-danger">не активен</div>
+                                        @else
+                                            <div class="mb-2 mr-2 badge badge-success">активен</div>
+                                        @endif
+                                    </td>
                                     <td>
                                         <button class="mb-2 mr-2 btn btn-primary"><span class="fa fa-arrow-right"></span>
                                         </button>
