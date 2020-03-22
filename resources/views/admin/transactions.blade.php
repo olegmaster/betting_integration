@@ -48,30 +48,20 @@
                                     <th>#</th>
                                     <th>ФИО</th>
                                     <th>Email</th>
-                                    <th>Потрачено денег, ₽</th>
                                     <th>Ключей</th>
-                                    <th>Статус</th>
-                                    <th></th>
+                                    <th>Сумма, ₽</th>
+                                    <th>Дата создания</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach($transactions as $transaction)
                                     <tr>
                                         <th scope="row">{{$transaction->id}}</th>
-                                        <td>{{$transaction->keys_connt}}</td>
+                                        <td>{{$transaction->user->full_name}}</td>
+                                        <td>{{$transaction->user->email}}</td>
+                                        <td>{{$transaction->keys_count}}</td>
                                         <td>{{$transaction->sum}}</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <button class="mb-2 mr-2 btn btn-primary"><span class="fa fa-arrow-right"></span>
-                                            </button>
-                                            <button class="mb-2 mr-2 btn btn-info"><span class="pe-7s-look"></span>
-                                            </button>
-                                            <button class="mb-2 mr-2 btn btn-success"><i class="fa fa-power-off"></i>
-                                            </button>
-                                        </td>
-
+                                        <td>{{date('H:i d/m/Y', strtotime($transaction->created_at))}}</td>
                                     </tr>
                                 @endforeach
 
