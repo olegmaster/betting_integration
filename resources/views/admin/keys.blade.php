@@ -61,10 +61,16 @@
                                         <th scope="row">{{$key->id}}</th>
                                         <td>{{$key->login}}</td>
                                         <td>{{$key->password}}</td>
-                                        <td>@mdo</td>
-                                        <td>Mark</td>
+                                        <td>{{$key->user->full_name}}</td>
+                                        <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
                                         <td>Otto</td>
-                                        <td>Otto</td>
+                                        <td>
+                                            @if($key->status == 0)
+                                                <div class="mb-2 mr-2 badge badge-danger">не активен</div>
+                                            @else
+                                                <div class="mb-2 mr-2 badge badge-success">активен</div>
+                                            @endif
+                                        </td>
                                         <td>
                                             <button class="mb-2 mr-2 btn btn-primary"><span class="fa fa-arrow-right"></span>
                                             </button>
