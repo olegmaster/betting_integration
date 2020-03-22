@@ -14,7 +14,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>$14M</span></div>
+                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334)}}₽</span></div>
                     </div>
                 </div>
             </div>
