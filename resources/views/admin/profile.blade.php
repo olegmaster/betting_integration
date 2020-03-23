@@ -53,10 +53,11 @@
         <div class="col-md-12 col-lg-6">
             <div class="mb-3 card">
                 <div class="card-body">
-                    <form class="">
+                    <form class="" method="POST" action="/update-admin-avatar" enctype="multipart/form-data">
+                        @csrf
                         <div class="position-relative form-group">
                             <label for="name" class="">Сменить изображение</label>
-                            <input type="file" class="form-control-file border">
+                            <input type="file" name="admin-avatar" class="form-control-file border">
                         </div>
 
                         <button class="mt-1 btn btn-success">Сохранить</button>
@@ -66,7 +67,7 @@
             <div class="mb-3 card">
                 <div class="card-body"><h5 class="card-title">Сменить пароль</h5>
                     <form class="">
-
+                        @csrf
                         <div class="input-group mb-3">
                             <input name="text" id="login" placeholder="Новый пароль" type="password" class="form-control">
                             <div class="input-group-append">

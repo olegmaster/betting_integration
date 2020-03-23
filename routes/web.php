@@ -38,3 +38,5 @@ Route::get('/admin/help', 'AdminController@help');
 Route::get('/admin/profile', 'AdminController@profile');
 
 Route::post('/profile-store-data', 'AdminController@profileStoreData');
+
+Route::post('/update-admin-avatar', 'AdminController@updateAdminAvatar');

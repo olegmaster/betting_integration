@@ -7,7 +7,9 @@ use App\UserKey;
 use App\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 
 
 class AdminController extends Controller
@@ -26,7 +28,7 @@ class AdminController extends Controller
     {
         $users = User::paginate(10);
         $totalUsers = User::all()->count();
-        return view('admin.users',[
+        return view('admin.users', [
             'users' => $users,
             'totalUsers' => $totalUsers
         ]);
@@ -36,7 +38,7 @@ class AdminController extends Controller
     {
         $keys = UserKey::paginate(10);
         $totalKeys = UserKey::all()->count();
-        return view('admin.keys',[
+        return view('admin.keys', [
             'keys' => $keys,
             'totalKeys' => $totalKeys
         ]);
@@ -46,7 +48,7 @@ class AdminController extends Controller
     {
         $transactions = UserTransaction::paginate(10);
         $totalTransactions = UserTransaction::all()->count();
-        return view('admin.transactions',[
+        return view('admin.transactions', [
             'transactions' => $transactions,
             'totalTransactions' => $totalTransactions
         ]);
@@ -73,7 +75,8 @@ class AdminController extends Controller
         ]);
     }
 
-    public function profileStoreData(Request $request){
+    public function profileStoreData(Request $request)
+    {
 
 //        $validatedData = $request->validate([
 //
@@ -84,5 +87,30 @@ class AdminController extends Controller
         Auth::user()->save();
 
         return redirect('admin/profile');
+    }
+
+    public function updateAdminAvatar(Request $request)
+    {
+        $cover = $request->file('admin-avatar');
+
+        if(empty($cover)){
+            return redirect('admin/profile');
+        }
+
+        $extension = $cover->getClientOriginalExtension();
+        $avatarName = Str::random(25) .  '.' .$extension;
+        Storage::disk('public')->put($avatarName, File::get($cover));
+
+        Auth::user()->avatar = $avatarName;
+        Auth::user()->save();
+
+        return redirect('admin/profile');
+    }
+
+    public function updatePassord(Request $request)
+    {
+        $validatedData = $request->validate([
+
+        ]);
     }
 }
