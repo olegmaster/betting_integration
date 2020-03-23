@@ -96,7 +96,7 @@ class AdminController extends Controller
     public function updateAdminAvatar(Request $request)
     {
         $validatedData = $request->validate([
-            'admin-avatar' => 'image'
+            'admin-avatar' => 'image|min:1'
         ]);
 
         $cover = $request->file('admin-avatar');
