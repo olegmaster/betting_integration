@@ -6,6 +6,7 @@ use App\User;
 use App\UserKey;
 use App\UserTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -63,6 +64,25 @@ class AdminController extends Controller
 
     public function profile()
     {
-        return view('admin.summary');
+        $userData['name'] = Auth::user()->name;
+        $userData['surname'] = Auth::user()->surname;
+        $userData['email'] = Auth::user()->email;
+
+        return view('admin.profile', [
+            'userData' => $userData
+        ]);
+    }
+
+    public function profileStoreData(Request $request){
+
+//        $validatedData = $request->validate([
+//
+//        ]);
+        Auth::user()->name = $request['name'];
+        Auth::user()->surname = $request['surname'];
+        Auth::user()->email = $request['email'];
+        Auth::user()->save();
+
+        return redirect('admin/profile');
     }
 }
