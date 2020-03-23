@@ -7,6 +7,7 @@ use App\UserKey;
 use App\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
@@ -78,9 +79,12 @@ class AdminController extends Controller
     public function profileStoreData(Request $request)
     {
 
-//        $validatedData = $request->validate([
-//
-//        ]);
+        $validatedData = $request->validate([
+            'name' => 'min:3',
+            'surname' => 'min:3',
+            'email' => 'min:6'
+        ]);
+
         Auth::user()->name = $request['name'];
         Auth::user()->surname = $request['surname'];
         Auth::user()->email = $request['email'];
@@ -91,6 +95,10 @@ class AdminController extends Controller
 
     public function updateAdminAvatar(Request $request)
     {
+        $validatedData = $request->validate([
+            'admin-avatar' => 'image'
+        ]);
+
         $cover = $request->file('admin-avatar');
 
         if(empty($cover)){
@@ -107,10 +115,16 @@ class AdminController extends Controller
         return redirect('admin/profile');
     }
 
-    public function updatePassord(Request $request)
+    public function updatePassword(Request $request)
     {
         $validatedData = $request->validate([
-
+            'password' => 'required|min:6',
+            'repeat-password' => 'required|min:6|same:password',
         ]);
+
+        Auth::user()->password = Hash::make($request['password']);
+        Auth::user()->save();
+
+        return redirect('admin/profile');
     }
 }

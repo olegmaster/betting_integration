@@ -37,14 +37,29 @@
                             <label for="name" class="">Имя</label>
                             <input name="name" id="name" placeholder="Имя" type="text" class="form-control" value="{{$userData['name']}}">
                         </div>
+                        @if ($errors->first('name'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('name') }}
+                            </div>
+                        @endif
                         <div class="position-relative form-group">
                             <label for="surname" class="">Фамилия</label>
                             <input name="surname" id="surname" placeholder="Фамилия" type="text" class="form-control" value="{{$userData['surname']}}">
                         </div>
+                        @if ($errors->first('surname'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('surname') }}
+                            </div>
+                        @endif
                         <div class="position-relative form-group">
                             <label for="email" class="">Email (login)</label>
                             <input name="email" id="email" placeholder="Email (login)" type="text" class="form-control" value="{{$userData['email']}}">
                         </div>
+                        @if ($errors->first('email'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('email') }}
+                            </div>
+                        @endif
                         <button class="mt-1 btn btn-success">Сохранить</button>
                     </form>
                 </div>
@@ -59,6 +74,11 @@
                             <label for="name" class="">Сменить изображение</label>
                             <input type="file" name="admin-avatar" class="form-control-file border">
                         </div>
+                        @if ($errors->first('admin-avatar'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('admin-avatar') }}
+                            </div>
+                        @endif
 
                         <button class="mt-1 btn btn-success">Сохранить</button>
                     </form>
@@ -66,20 +86,30 @@
             </div>
             <div class="mb-3 card">
                 <div class="card-body"><h5 class="card-title">Сменить пароль</h5>
-                    <form class="">
+                    <form class="" method="POST" action="/update-admin-password">
                         @csrf
                         <div class="input-group mb-3">
-                            <input name="text" id="login" placeholder="Новый пароль" type="password" class="form-control">
+                            <input name="password" id="login" placeholder="Новый пароль" type="password" class="form-control">
                             <div class="input-group-append">
                                 <span class="fa fa-eye input-group-text"></span>
                             </div>
                         </div>
+                        @if ($errors->first('password'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('password') }}
+                        </div>
+                        @endif
                         <div class="input-group mb-3">
-                            <input name="text" id="login" placeholder="Повторите пароль" type="password" class="form-control">
+                            <input name="repeat-password" id="login" placeholder="Повторите пароль" type="password" class="form-control">
                             <div class="input-group-append">
                                 <span class="fa fa-eye input-group-text"></span>
                             </div>
                         </div>
+                        @if ($errors->first('repeat-password'))
+                        <div class="alert alert-danger">
+                            {{ $errors->first('repeat-password') }}
+                        </div>
+                        @endif
 
                         <button class="mt-1 btn btn-success">Сохранить</button>
                     </form>

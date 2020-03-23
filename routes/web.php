@@ -40,3 +40,5 @@ Route::get('/admin/profile', 'AdminController@profile');
 Route::post('/profile-store-data', 'AdminController@profileStoreData');
 
 Route::post('/update-admin-avatar', 'AdminController@updateAdminAvatar');
+
+Route::post('/update-admin-password', 'AdminController@updatePassword');
