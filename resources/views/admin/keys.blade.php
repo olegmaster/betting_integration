@@ -63,7 +63,7 @@
                                         <td>{{$key->password}}</td>
                                         <td>{{$key->user->full_name}}</td>
                                         <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
-                                        <td>Otto</td>
+                                        <td>{{$key->key_validity_time}}</td>
                                         <td>
                                             @if($key->status == 0)
                                                 <div class="mb-2 mr-2 badge badge-danger">не активен</div>
