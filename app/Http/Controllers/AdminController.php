@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Session;
 
 
 class AdminController extends Controller
@@ -88,7 +89,10 @@ class AdminController extends Controller
         Auth::user()->name = $request['name'];
         Auth::user()->surname = $request['surname'];
         Auth::user()->email = $request['email'];
-        Auth::user()->save();
+
+        if(Auth::user()->save()){
+            Session::flash('saved', 'Изменения сохранены');
+        }
 
         return redirect('admin/profile');
     }
@@ -110,7 +114,10 @@ class AdminController extends Controller
         Storage::disk('public')->put($avatarName, File::get($cover));
 
         Auth::user()->avatar = $avatarName;
-        Auth::user()->save();
+
+        if(Auth::user()->save()){
+            Session::flash('admin_image_saved', 'Изменения сохранены');
+        }
 
         return redirect('admin/profile');
     }
@@ -123,7 +130,9 @@ class AdminController extends Controller
         ]);
 
         Auth::user()->password = Hash::make($request['password']);
-        Auth::user()->save();
+        if(Auth::user()->save()){
+            Session::flash('password_saved', 'Изменения сохранены');
+        }
 
         return redirect('admin/profile');
     }
