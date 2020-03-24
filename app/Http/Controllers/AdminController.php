@@ -66,7 +66,7 @@ class AdminController extends Controller
     {
         $helpModel = Help::where('id', 1)->first();
         return view('admin.help', [
-            'helpText' => html_entity_decode($helpModel->text)
+            'helpText' => html_entity_decode($helpModel->text ?? "")
         ]);
     }
 
