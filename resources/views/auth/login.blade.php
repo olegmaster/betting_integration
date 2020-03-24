@@ -42,7 +42,7 @@
                             <span class="d-block">Welcome back,</span>
                             <span>Please sign in to your account.</span>
                         </h4>
-                        <h6 class="mt-3">No account? <a href="pages-register.html" class="text-primary">Sign up now</a>
+                        <h6 class="mt-3">No account? <a href="{{ route('register') }}" class="text-primary">Sign up now</a>
                         </h6>
                         <div class="divider row"></div>
                         <div>
