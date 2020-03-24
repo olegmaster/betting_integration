@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\UserKey;
+use App\Help;
 use App\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,40 @@ class AdminController extends Controller
 
     public function help()
     {
-        return view('admin.summary');
+        $helpModel = Help::where('id', 1)->first();
+        return view('admin.help', [
+            'helpText' => html_entity_decode($helpModel->text)
+        ]);
+    }
+
+    public function helpStore(Request $request)
+    {
+        $request->validate([
+            'help-text' => 'min:3',
+        ]);
+
+        $helpModel = Help::where('id', 1)->first();
+
+        if (!$helpModel) {
+            $helpModel = new Help();
+        }
+
+       $cleaned = rtrim(substr($request['help-text'], 1), '"');
+       // echo rtrim(substr($request['help-text'], 1), '"');die;
+
+        $helpModel->text = htmlentities($cleaned);
+
+        //echo trim($helpModel->text);die;
+//echo $helpModel->text;
+
+
+        //echo html_entity_decode($helpModel->text);die;
+
+        if ($helpModel->save()) {
+            Session::flash('help_text_saved', 'Изменения сохранены');
+        }
+
+        return redirect('admin/help');
     }
 
     public function profile()
@@ -79,7 +113,6 @@ class AdminController extends Controller
 
     public function profileStoreData(Request $request)
     {
-
         $validatedData = $request->validate([
             'name' => 'min:3',
             'surname' => 'min:3',
@@ -90,7 +123,7 @@ class AdminController extends Controller
         Auth::user()->surname = $request['surname'];
         Auth::user()->email = $request['email'];
 
-        if(Auth::user()->save()){
+        if (Auth::user()->save()) {
             Session::flash('saved', 'Изменения сохранены');
         }
 
@@ -105,17 +138,17 @@ class AdminController extends Controller
 
         $cover = $request->file('admin-avatar');
 
-        if(empty($cover)){
+        if (empty($cover)) {
             return redirect('admin/profile');
         }
 
         $extension = $cover->getClientOriginalExtension();
-        $avatarName = Str::random(25) .  '.' .$extension;
+        $avatarName = Str::random(25) . '.' . $extension;
         Storage::disk('public')->put($avatarName, File::get($cover));
 
         Auth::user()->avatar = $avatarName;
 
-        if(Auth::user()->save()){
+        if (Auth::user()->save()) {
             Session::flash('admin_image_saved', 'Изменения сохранены');
         }
 
@@ -130,7 +163,7 @@ class AdminController extends Controller
         ]);
 
         Auth::user()->password = Hash::make($request['password']);
-        if(Auth::user()->save()){
+        if (Auth::user()->save()) {
             Session::flash('password_saved', 'Изменения сохранены');
         }
 
