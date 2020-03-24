@@ -83,6 +83,8 @@ class AdminController extends Controller
         }
 
        $cleaned = rtrim(substr($request['help-text'], 1), '"');
+       $cleaned = str_replace('\"', '', $cleaned);
+
        // echo rtrim(substr($request['help-text'], 1), '"');die;
 
         $helpModel->text = htmlentities($cleaned);
