@@ -44,3 +44,9 @@ Route::post('/update-admin-avatar', 'AdminController@updateAdminAvatar');
 Route::post('/update-admin-password', 'AdminController@updatePassword');
 
 Route::post('/admin-help-store', 'AdminController@helpStore');
+
+Route::get('/admin/user-card/{id}', 'AdminController@userCard');
+
+Route::post('/admin/update-user-profile/{id}', 'AdminController@updateUserProfile');
+
+Route::post('/admin/update-user-password/{id}', 'AdminController@updateUserPassword');

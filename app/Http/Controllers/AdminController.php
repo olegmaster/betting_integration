@@ -82,12 +82,12 @@ class AdminController extends Controller
             $helpModel = new Help();
         }
 
-       $cleaned = rtrim(substr($request['help-text'], 1), '"');
+        $cleaned = rtrim(substr($request['help-text'], 1), '"');
 
-       // for adding images
-       $cleaned = str_replace('\"', '', $cleaned);
+        // for adding images
+        $cleaned = str_replace('\"', '', $cleaned);
 
-       // echo rtrim(substr($request['help-text'], 1), '"');die;
+        // echo rtrim(substr($request['help-text'], 1), '"');die;
 
         $helpModel->text = htmlentities($cleaned);
 
@@ -172,5 +172,62 @@ class AdminController extends Controller
         }
 
         return redirect('admin/profile');
+    }
+
+
+    public function userCard($id)
+    {
+        $user = User::find($id);
+        //print_r($user->keys()->toSql());die;
+        $keys = $user->keys()->paginate(10);
+        //print_r($keys);die;
+        $transactions = $user->transactions()->paginate(10);
+        return view('admin.user_card',
+            [
+                'user' => $user,
+                'keys' => $keys,
+                'transactions' => $transactions
+            ]
+        );
+    }
+
+    public function updateUserProfile(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'min:3',
+            'surname' => 'min:3',
+            'email' => 'min:6'
+        ]);
+
+        $user = User::find($request['id']);
+
+        $user->name = $request['name'];
+        $user->surname = $request['surname'];
+        $user->email = $request['email'];
+
+        if ($user->save()) {
+            Session::flash('user_profile_updated', 'Изменения сохранены');
+        }
+
+        return redirect()->action('AdminController@userCard', [
+            'id' => $request['id']
+        ]);
+    }
+
+    public function updateUserPassword(Request $request)
+    {
+        $validatedData = $request->validate([
+            'password' => 'required|min:6',
+            'repeat-password' => 'required|min:6|same:password',
+        ]);
+
+        $user = User::find($request['id']);
+
+        $user->password = Hash::make($request['password']);
+        if ($user->save()) {
+            Session::flash('user_password_updated', 'Изменения сохранены');
+        }
+
+        return redirect()->action('AdminController@userCard', $user['id']);
     }
 }
