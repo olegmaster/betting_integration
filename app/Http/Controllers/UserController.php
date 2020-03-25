@@ -15,4 +15,29 @@ class UserController extends Controller
             'totalKeys' => 10
         ]);
     }
+
+    public function buyKey()
+    {
+        return view('user.buy_key');
+    }
+
+    public function downloadBot()
+    {
+        return view('user.download_bot');
+    }
+
+    public function setup()
+    {
+        return view('user.setup');
+    }
+
+    public function help()
+    {
+        return view('user.help');
+    }
+
+    public function profile()
+    {
+        return view('user.profile');
+    }
 }

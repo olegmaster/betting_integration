@@ -182,8 +182,12 @@
                                 Помощь
                             </a>
                         </li>
-
-
+                        <li>
+                            <a href="/cabinet/profile">
+                                <i class="pe-7s-users"></i>
+                                Профиль
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>

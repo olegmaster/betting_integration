@@ -58,3 +58,13 @@ Route::get('/admin/login-as/{id}', 'AdminController@loginAs');
 # User Cabinet routes
 
 Route::get('/cabinet/keys', 'UserController@keys');
+
+Route::get('/cabinet/buy-key', 'UserController@buyKey');
+
+Route::get('/cabinet/download-bot', 'UserController@downloadBot');
+
+Route::get('/cabinet/setup', 'UserController@setup');
+
+Route::get('/cabinet/help', 'UserController@help');
+
+Route::get('/cabinet/profile', 'UserController@profile');
