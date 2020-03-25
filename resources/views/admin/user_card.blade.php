@@ -34,6 +34,34 @@ use Illuminate\Support\Facades\Session;
     </div>
 
     <div class="row">
+        <div class="col-md-6 col-xl-3">
+            <div class="card mb-3 widget-content bg-premium-dark">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Транзакций пользователя</div>
+
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334, $user['id'])}}₽</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card mb-3 widget-content bg-night-fade">
+                <div class="widget-content-wrapper text-white">
+                    <div class="widget-content-left">
+                        <div class="widget-heading">Всего ключей</div>
+
+                    </div>
+                    <div class="widget-content-right">
+                        <div class="widget-numbers text-white"><span>{{$user->keys()->count()}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="mb-3 card">
 
