@@ -153,57 +153,36 @@
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
                         <li>
-                            <a href="/admin">
-                                <i class="pe-7s-photo"></i>
-                                Сводка
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/users">
-                                <i class="pe-7s-users"></i>
-                                Пользователи
-                            </a>
-                        </li>
-                        <li>
-                            <a href="/admin/keys">
+                            <a href="/cabinet/keys">
                                 <i class="pe-7s-key"></i>
-                                Ключи
+                                Мои ключи
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/transaction-history">
+                            <a href="/cabinet/buy-key">
                                 <i class="pe-7s-cash"></i>
-                                История транзакций
+                                Купить ключ
                             </a>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="pe-7s-tools"></i>
-                                Настройки
-                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            <a href="/cabinet/download-bot">
+                                <i class="pe-7s-download"></i>
+                                Скачать бота
                             </a>
-                            <ul>
-                                <li>
-                                    <a href="/admin/bot-download">
-                                        <i class="metismenu-icon"></i>
-                                        Загрузить бота
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/admin/help">
-                                        <i class="metismenu-icon">
-                                        </i>Страница "Помощ"
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="/admin/profile">
-                                        <i class="metismenu-icon">
-                                        </i>Профиль
-                                    </a>
-                                </li>
-
-                            </ul>
                         </li>
+                        <li>
+                            <a href="/cabinet/setup">
+                                <i class="pe-7s-config"></i>
+                                 Настройки
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/cabinet/help">
+                                <i class="pe-7s-help1"></i>
+                                Помощь
+                            </a>
+                        </li>
+
 
                     </ul>
                 </div>
