@@ -70,8 +70,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <button class="mb-2 mr-2 btn btn-primary"><span class="fa fa-arrow-right"></span>
-                                        </button>
+                                        <a class="mb-2 mr-2 btn btn-primary" href="{{url('/admin/login-as', ['id' => $user->id])}}"><span class="fa fa-arrow-right"></span>
+                                        </a>
                                         <a class="mb-2 mr-2 btn btn-info" role="button" href="{{url('/admin/user-card', ['id' => $user->id])}}"><span class="pe-7s-look"></span>
                                         </a>
                                         <button class="mb-2 mr-2 btn btn-success"><i class="fa fa-power-off"></i>

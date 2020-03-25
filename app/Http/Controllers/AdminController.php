@@ -230,4 +230,13 @@ class AdminController extends Controller
 
         return redirect()->action('AdminController@userCard', $user['id']);
     }
+
+    public function loginAs($id)
+    {
+        $user = User::find($id);
+        //print_r($user);die;
+        Auth::logout();
+        Auth::login($user);
+        return redirect('/cabinet/keys');
+    }
 }

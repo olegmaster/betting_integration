@@ -23,6 +23,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+# Admin Panel routes
+
 Route::get('/admin/users', 'AdminController@users')->name('home');
 
 Route::get('/admin/users', 'AdminController@users');
@@ -50,3 +52,9 @@ Route::get('/admin/user-card/{id}', 'AdminController@userCard');
 Route::post('/admin/update-user-profile/{id}', 'AdminController@updateUserProfile');
 
 Route::post('/admin/update-user-password/{id}', 'AdminController@updateUserPassword');
+
+Route::get('/admin/login-as/{id}', 'AdminController@loginAs');
+
+# User Cabinet routes
+
+Route::get('/cabinet/keys', 'UserController@keys');
