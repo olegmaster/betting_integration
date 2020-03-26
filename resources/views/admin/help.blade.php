@@ -11,7 +11,7 @@
         <div class="col-md-12 col-lg-12">
             <div class="mb-3 card">
                 <div class="card-body"><h5 class="card-title">редактирование страницы "помощ"</h5>
-                    <form class="" method="POST" action="/admin-help-store" enctype="multipart/form-data">
+                    <form class="editor-form" method="POST" action="/admin-help-store" enctype="multipart/form-data">
                         @csrf
                         @if(Session::has('help_text_saved'))
                             <p class="alert alert-success">{{ Session::get('help_text_saved') }}</p>
@@ -49,7 +49,7 @@
             theme: 'snow'
         });
 
-        var form = document.querySelector('form');
+        var form = document.querySelector('.editor-form');
         form.onsubmit = function() {
             // Populate hidden form on submit
             var about = document.querySelector('input[name=help-text]');

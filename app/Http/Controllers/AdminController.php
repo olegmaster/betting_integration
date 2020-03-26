@@ -73,7 +73,7 @@ class AdminController extends Controller
     public function helpStore(Request $request)
     {
         $request->validate([
-            'help-text' => 'min:3',
+            'help-text' => 'required',
         ]);
 
         $helpModel = Help::where('id', 1)->first();
