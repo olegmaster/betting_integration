@@ -12,7 +12,7 @@
                     <i class="fa fa-user-circle ">
                     </i>
                 </div>
-                <div>
+                <div>{{\Illuminate\Support\Facades\Auth::user()->full_name}}
                     <div class="page-title-subheading">Информация о пользователе
                     </div>
                 </div>

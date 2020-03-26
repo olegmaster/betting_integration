@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Help;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -38,7 +39,11 @@ class UserController extends Controller
 
     public function help()
     {
-        return view('user.help');
+        $helpModel = Help::where('id', 1)->first();
+
+        return view('user.help', [
+            'helpText' => html_entity_decode($helpModel->text ?? "")
+        ]);
     }
 
     public function profile()
