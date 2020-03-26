@@ -65,6 +65,8 @@ Route::get('/cabinet/download-bot', 'UserController@downloadBot');
 
 Route::get('/cabinet/setup', 'UserController@setup');
 
+Route::post('cabinet/setup-update', 'UserController@setupUpdate');
+
 Route::get('/cabinet/help', 'UserController@help');
 
 Route::get('/cabinet/profile', 'UserController@profile');
