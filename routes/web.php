@@ -68,3 +68,9 @@ Route::get('/cabinet/setup', 'UserController@setup');
 Route::get('/cabinet/help', 'UserController@help');
 
 Route::get('/cabinet/profile', 'UserController@profile');
+
+Route::post('/cabinet/profile-update', 'UserController@profileUpdate');
+
+Route::post('/cabinet/update-user-avatar', 'UserController@updateUserAvatar');
+
+Route::post('/cabinet/update-user-password', 'UserController@updatePassword');
