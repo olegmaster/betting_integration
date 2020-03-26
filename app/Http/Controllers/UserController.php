@@ -16,9 +16,16 @@ class UserController extends Controller
     public function keys()
     {
         $keys = Auth::user()->keys()->paginate(10);
+
+        $keysActiveCount = Auth::user()->keys()->active()->count();
+        $keysTotalCount = Auth::user()->keys()->count();
+        $keysFrozenCount = Auth::user()->keys()->frozen()->count();
+
         return view('user.keys', [
             'keys' => $keys,
-            'totalKeys' => 10
+            'totalKeys' => $keysTotalCount,
+            'activeKeys' => $keysActiveCount,
+            'frozenKeys' => $keysFrozenCount
         ]);
     }
 
