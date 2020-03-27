@@ -21,7 +21,7 @@ class CreateSettingsTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
             $table->string('telegram_id', 100);
-            $table->smallInteger('notify_hours');
+
             $table->timestamps();
         });
     }

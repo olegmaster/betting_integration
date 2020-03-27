@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Help;
+use App\Setting;
+use App\TelegramNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -41,7 +43,56 @@ class UserController extends Controller
 
     public function setup()
     {
-        return view('user.setup');
+        $setting = Setting::where('user_id', Auth::user()->id)->first();
+        $telegram_id = empty($setting) ? '' : $setting->telegram_id;
+
+        $h24 = TelegramNotification::checkHours($setting->id ?? null, 24);
+        $h12 = TelegramNotification::checkHours($setting->id ?? null, 12);
+        $h6 = TelegramNotification::checkHours($setting->id ?? null, 6);
+        $h3 = TelegramNotification::checkHours($setting->id ?? null, 3);
+        $h1 = TelegramNotification::checkHours($setting->id ?? null, 1);
+
+
+        return view('user.setup', [
+            'telegram_id' => $telegram_id,
+            'h24' => $h24,
+            'h12' => $h12,
+            'h6' => $h6,
+            'h3' => $h3,
+            'h1' => $h1,
+        ]);
+    }
+
+    public function setupUpdate(Request $request)
+    {
+        $validatedData = $request->validate([
+            'telegram-id' => 'min:5',
+        ]);
+
+        $setting = Setting::where('user_id', Auth::user()->id)
+            ->first();
+
+        //print_r($setting);die;
+
+        if (!$setting) {
+            $setting = Setting::firstOrCreate([
+                'telegram_id' => $request['telegram-id'],
+                'user_id' => Auth::user()->id
+            ]);
+        } else {
+            $setting->telegram_id = $request['telegram-id'];
+            $setting->save();
+        }
+
+
+        TelegramNotification::updateHours($setting->id, $request['h24'], 24);
+        TelegramNotification::updateHours($setting->id, $request['h12'], 12);
+        TelegramNotification::updateHours($setting->id, $request['h6'], 6);
+        TelegramNotification::updateHours($setting->id, $request['h3'], 3);
+        TelegramNotification::updateHours($setting->id, $request['h1'], 1);
+
+        Session::flash('telegram_id_saved', 'Изменения сохранены');
+        return redirect('/cabinet/setup');
     }
 
     public function help()

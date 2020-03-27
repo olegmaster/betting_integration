@@ -12,7 +12,9 @@
                     </i>
                 </div>
                 <div>Настройки
-                    <div class="page-title-subheading">Чтобы узнать ID для подключения Osminog.bet помощника, Вам необходимо нажать "Начать" в Telegram бот @OsminogAssistant</div>
+                    <div class="page-title-subheading">Чтобы узнать ID для подключения Osminog.bet помощника, Вам
+                        необходимо нажать "Начать" в Telegram бот @OsminogAssistant
+                    </div>
                 </div>
             </div>
             <div class="page-title-actions">
@@ -35,8 +37,68 @@
                                 @endif
                                 <div class="position-relative form-group">
                                     <label for="telegram-id" class="">ID вашего телеграмм аккаунта</label>
-                                    <input name="telegram-id" id="telegram-id" placeholder="ID" type="number" class="form-control"
-                                           value="{{$settings['telegram-id'] ?? ""}}">
+                                    <input name="telegram-id" id="telegram-id" placeholder="ID" type="number"
+                                           class="form-control"
+                                           value="{{$telegram_id ?? ""}}"><br/>
+                                    @if ($errors->first('telegram-id'))
+                                        <div class="alert alert-danger">
+                                            {{ $errors->first('telegram-id') }}
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="form-check">
+                                    <div class="row">
+                                        <p><b>УВЕДОМИТЬ МЕНЯ ОБ ОКОНЧАНИИ ПОДПИСКИ НА КЛЮЧАХ</b></p>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <input name="h24" type="checkbox" class="form-check-input"
+                                                   id="exampleCheck1"
+                                                   @if($h24)
+                                                   checked
+                                                @endif>
+                                            <label class="form-check-label" for="exampleCheck1">за 24 часа</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input name="h12" type="checkbox" class="form-check-input"
+                                                   id="exampleCheck1"
+                                                   @if($h12)
+                                                   checked
+                                                @endif
+                                            >
+                                            <label class="form-check-label" for="exampleCheck1">за 12 часов</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input name="h6" type="checkbox" class="form-check-input"
+                                                   id="exampleCheck1"
+                                                   @if($h6)
+                                                   checked
+                                                @endif>
+                                            <label class="form-check-label" for="exampleCheck1">за 6 часов</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input name="h3" type="checkbox" class="form-check-input"
+                                                   id="exampleCheck1"
+                                                   @if($h3)
+                                                   checked
+                                                @endif
+                                            >
+                                            <label class="form-check-label" for="exampleCheck1">за 3 часа</label>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <input name="h1" type="checkbox" class="form-check-input"
+                                                   id="exampleCheck1"
+                                                   @if($h1)
+                                                   checked
+                                                @endif>
+                                            <label class="form-check-label" for="exampleCheck1">за 1 час</label>
+                                        </div>
+                                        <div class="col-md-2">
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-check">
                                 </div>
                                 <button class="mt-1 btn btn-success">Сохранить</button>
                             </form>
