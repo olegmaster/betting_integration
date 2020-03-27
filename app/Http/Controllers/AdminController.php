@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\service\TelegramBot;
 use App\User;
 use App\UserKey;
 use App\Help;
@@ -24,6 +25,8 @@ class AdminController extends Controller
 
     public function summary()
     {
+//        $tbon = new TelegramBot();
+//        $tbon->sendMessage('796536897', 'fdsfsd');
         return view('admin.summary');
     }
 

@@ -230,4 +230,6 @@ return [
 
     ],
 
+    'telegram_bot_api_key' => '974415979:AAGbcbH3T_Q7yxcZh63KYCGd-9xyyobjTxw'
+
 ];
