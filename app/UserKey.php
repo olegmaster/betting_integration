@@ -18,7 +18,9 @@ class UserKey extends Model
         $to = Carbon::createFromTimestamp($this->end_date);
         $from = Carbon::createFromTimestamp(time());
         $diff = $to->diff($from);
-        return $diff->d . " дн., " . $diff->h . ":" . $diff->i;
+        $hour = ($diff->h) < 10 ? "0" . $diff->h : $diff->h;
+        $minute = ($diff->i) < 10 ? "0" . $diff->i : $diff->i;
+        return $diff->d . " дн., " . $hour . ":" . $minute;
     }
 
     public function scopeActive($query)
