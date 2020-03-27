@@ -4,9 +4,10 @@ namespace App\service;
 
 use App\Setting;
 use App\TelegramNotification;
+use App\User;
 use App\UserKey;
 use App\interfaces\NotificationSender;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class TelegramNotificationSender implements NotificationSender
 {
@@ -16,7 +17,8 @@ class TelegramNotificationSender implements NotificationSender
 
     public function __construct(int $cronSendingIntervalInMinutes)
     {
-        $this->cronSendingInterval = $cronSendingIntervalInMinutes;
+      //  Log::debug('info');
+        $this->cronSendingInterval = $cronSendingIntervalInMinutes * 60;
         $this->telegramBot = new TelegramBot();
     }
 
@@ -27,47 +29,58 @@ class TelegramNotificationSender implements NotificationSender
         if (!is_iterable($keys))
             return false;
 
-        $count = 2;
-
         foreach ($keys as $key) {
-            $count--;
-            if($count < 1){
-                continue;
-            }
 
-            echo Auth::user()->id;
-
-            //$s = Auth::user()->settings->first();
-
-            //var_dump($s->id);die;
-
+            $user = User::find($key->user_id);
+            var_dump($this->keyIsExpiring($key));
             if ($this->keyIsExpiring($key)) {
-                $this->telegramBot->sendMessage(Auth::user()->settings->first()->telegram_id, 'nnsdfd');
+
+                $this->telegramBot->sendMessage($user->settings->first()->telegram_id, 'Внимание, у вас кончается подписка на ключ к боту');
             }
         }
     }
 
     public function keyIsExpiring(UserKey $key): bool
     {
-        return true;
+
         $telegramSettings = Setting::where('user_id', $key->user_id)->first();
 
         if (!$telegramSettings)
             return false;
 
-        $telegramNotifications = TelegramNotification::where('setting_id', $telegramSettings->id)->all();
+        $telegramNotifications = TelegramNotification::where('setting_id', $telegramSettings->id)->get();
 
         if (empty($telegramNotifications) || !is_iterable($telegramNotifications)) {
             return false;
         }
 
         foreach ($telegramNotifications as $telegramNotification) {
-
+            if($this->timeToSend($telegramNotification->notify_hours, $key->end_date)){
+                return true;
+            }
         }
+
+        return false;
     }
 
-    public function timeToSend($notifyHours, $keyExpireTime): bool
+    public function timeToSend($notifyHours, int $keyExpireTime): bool
     {
+        $notifySeconds = $notifyHours * 3600;
+        $diff = $keyExpireTime - time();
+//        echo "notifySeconds " . $notifySeconds . "\n";
+//        echo "diff " . $diff;
+        if ($diff < 0) {
+            return false;
+        }
 
+        if(($notifySeconds - $diff) >= $this->cronSendingInterval){
+            return false;
+        }
+
+        if ($diff <= $notifyHours * 3600 ) {
+            return true;
+        }
+
+        return false;
     }
 }
