@@ -2,6 +2,9 @@
 
 namespace App\service;
 
+use Symfony\Component\ErrorHandler\Error\ClassNotFoundError;
+
+
 class TelegramBot
 {
     public $baseUrl;
@@ -13,7 +16,11 @@ class TelegramBot
 
     public function sendMessage($telegramUserId, $text)
     {
-        $url = $this->baseUrl . '/sendMessage?chat_id=' . $telegramUserId .'&text="'. $text .'"' ;
-        file_get_contents($url);
+        $url = $this->baseUrl . '/sendMessage?chat_id=' . $telegramUserId . '&text="' . $text . '"';
+        try {
+            file_get_contents($url);
+        } catch (\Exception $e) {
+            
+        }
     }
 }

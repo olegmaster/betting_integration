@@ -74,4 +74,9 @@ class User extends Authenticatable
     {
         return $this->name . " " . $this->surname;
     }
+
+    public function settings()
+    {
+        return $this->hasOne('App\Setting');
+    }
 }
