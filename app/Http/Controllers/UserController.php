@@ -15,6 +15,10 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function keys()
     {
         $keys = Auth::user()->keys()->paginate(10);
