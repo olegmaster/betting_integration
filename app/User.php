@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Scopes\ClientScope;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -79,4 +80,17 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Setting');
     }
+
+    public function scopeClient($query)
+    {
+        return $query->where('id','<>', 1);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope(new ClientScope);
+    }
+
 }

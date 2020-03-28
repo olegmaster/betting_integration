@@ -21,7 +21,7 @@ class AdminController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'admin']);
     }
 
     public function summary()
@@ -36,7 +36,7 @@ class AdminController extends Controller
 
     public function users()
     {
-        $users = User::paginate(10);
+        $users = User::client()->paginate(10);
         $totalUsers = User::all()->count();
         return view('admin.users', [
             'users' => $users,

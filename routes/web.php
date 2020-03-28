@@ -55,6 +55,12 @@ Route::post('/admin/update-user-password/{id}', 'AdminController@updateUserPassw
 
 Route::get('/admin/login-as/{id}', 'AdminController@loginAs');
 
+Route::post('/admin/login', 'Auth\AdminLoginController@login');
+
+Route::get('/admin/login', function () {
+    return view('auth.admin-login');
+});
+
 # User Cabinet routes
 
 Route::get('/cabinet/keys', 'UserController@keys');
