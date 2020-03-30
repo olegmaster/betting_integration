@@ -26,12 +26,14 @@ class AdminController extends Controller
 
     public function summary()
     {
-//        $t = new TelegramNotificationSender(15);
-//        $t->send();
-//        die;
-//        $tbon = new TelegramBot();
-//        $tbon->sendMessage('796536897', 'fdsfsd');
-        return view('admin.summary');
+
+        $topUsers = User::topUsers(5);
+
+        return view('admin.summary',
+            [
+                'topUsers' => $topUsers
+            ]
+        );
     }
 
     public function users()

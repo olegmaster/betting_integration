@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Illuminate\Support\Facades\DB;
 
 
 class User extends Authenticatable
@@ -52,6 +53,23 @@ class User extends Authenticatable
         return $this->hasMany('App\UserTransaction');
     }
 
+    /**
+     * get top users by money spend
+     * @param $count
+     * @return $topUsers
+     */
+    public static function topUsers($count)
+    {
+        $topUsers = DB::table('users')
+            ->leftJoin('user_transactions', 'users.id', '=', 'user_transactions.user_id')
+            ->select(DB::raw('users.name as name, users.surname as surname, users.avatar as avatar, users.email, users.phone,  sum(user_transactions.sum) as tsum'))
+            ->groupBy('users.id')
+            ->orderBy('tsum', 'desc')
+            ->limit($count)
+            ->get();
+        return $topUsers;
+    }
+
 
     public function getSumAttribute()
     {
@@ -83,7 +101,7 @@ class User extends Authenticatable
 
     public function scopeClient($query)
     {
-        return $query->where('id','<>', 1);
+        return $query->where('id', '<>', 1);
     }
 
     protected static function boot()
