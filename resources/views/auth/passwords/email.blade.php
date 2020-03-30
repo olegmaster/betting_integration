@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Forgot Password - ArchitectUI HTML Bootstrap 4 Dashboard Template</title>
+    <title>Восстановление пароля - Osminog.bet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-    <meta name="description" content="ArchitectUI HTML Bootstrap 4 Dashboard Template">
+    <meta name="description" content="Восстановление пароля - Osminog.bet">
     <meta name="msapplication-tap-highlight" content="no">
     <!--
     =========================================================
@@ -37,8 +37,8 @@
                     <div class="mx-auto app-login-box col-sm-12 col-md-8 col-lg-6">
                         <div class="app-logo"></div>
                         <h4>
-                            <div>Forgot your Password?</div>
-                            <span>Use the form below to recover it.</span></h4>
+                            <div>Забыли пароль?</div>
+                            <span>Используйте форму ниже для восстановления аккаунта.</span></h4>
                         <div>
                             @if (count($errors) > 0)
                                 <div class="alert alert-danger">
@@ -56,14 +56,14 @@
                                     <div class="col-md-12">
                                         <div class="position-relative form-group">
                                             <label for="exampleEmail" class="">Email</label>
-                                            <input name="email" id="exampleEmail" placeholder="Email here..." type="email" class="form-control" value="{{ old('email') }}">
+                                            <input name="email" id="exampleEmail" placeholder="Email..." type="email" class="form-control" value="{{ old('email') }}">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-4 d-flex align-items-center">
-                                    <h6 class="mb-0"><a href="{{ url('/login') }}" class="text-primary">Sign in existing account</a></h6>
+                                    <h6 class="mb-0"><a href="{{ url('/login') }}" class="text-primary">Войти в аккаунт</a></h6>
                                     <div class="ml-auto">
-                                        <button class="btn btn-primary btn-lg">Recover Password</button>
+                                        <button class="btn btn-primary btn-lg">Восстановить</button>
                                     </div>
                                 </div>
                             </form>

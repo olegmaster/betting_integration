@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Login - ArchitectUI HTML Bootstrap 4 Dashboard Template</title>
+    <title>Вход в аккаунт - Osminog.bet</title>
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no"/>
-    <meta name="description" content="ArchitectUI HTML Bootstrap 4 Dashboard Template">
+    <meta name="description" content="Вход в аккаунт - Osminog.bet">
     <meta name="msapplication-tap-highlight" content="no">
     <!--
     =========================================================
@@ -39,10 +39,10 @@
                     <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
                         <div class="app-logo"></div>
                         <h4 class="mb-0">
-                            <span class="d-block">Welcome back,</span>
-                            <span>Please sign in to your account.</span>
+                            <span class="d-block">Добро пожаловать,</span>
+                            <span>Пожалуйста, войдите в свой аккаунт.</span>
                         </h4>
-                        <h6 class="mt-3">No account? <a href="{{ route('register') }}" class="text-primary">Sign up now</a>
+                        <h6 class="mt-3">Нет аккаунта? <a href="{{ route('register') }}" class="text-primary">Регистрация</a>
                         </h6>
                         <div class="divider row"></div>
                         <div>
@@ -51,8 +51,8 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
-                                            <label for="exampleEmail" class="">Email or phone</label>
-                                            <input name="email" id="exampleEmail" placeholder="Email or phone here..."
+                                            <label for="exampleEmail" class="">Email или телефон</label>
+                                            <input name="email" id="exampleEmail" placeholder="Email или телефон..."
                                                    type="text" class="form-control" value="{{ old('email') }}">
 
                                         </div>
@@ -64,8 +64,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
-                                            <label for="examplePassword" class="">Password</label>
-                                            <input name="password" id="examplePassword" placeholder="Password here..."
+                                            <label for="examplePassword" class="">Пароль</label>
+                                            <input name="password" id="examplePassword" placeholder="Пароль..."
                                                    type="password" class="form-control">
                                             @error('password')
                                                 <span class="" role="alert">
@@ -77,13 +77,13 @@
                                 </div>
                                 <div class="position-relative form-check">
                                     <input name="remember" id="exampleCheck" type="checkbox" class="form-check-input" {{ old('remember') ? 'checked' : '' }}>
-                                    <label for="exampleCheck" class="form-check-label">Keep me logged in</label>
+                                    <label for="exampleCheck" class="form-check-label">Запомнить меня</label>
                                 </div>
                                 <div class="divider row"></div>
                                 <div class="d-flex align-items-center">
                                     <div class="ml-auto"><a href="{{ route('password.request') }}"
-                                                            class="btn-lg btn btn-link">Recover Password</a>
-                                        <button class="btn btn-primary btn-lg">Login to Dashboard</button>
+                                                            class="btn-lg btn btn-link">Восстановить пароль</a>
+                                        <button class="btn btn-primary btn-lg">Войти</button>
                                     </div>
                                 </div>
                             </form>

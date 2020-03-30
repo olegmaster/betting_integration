@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="en">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>Register - ArchitectUI HTML Bootstrap 4 Dashboard Template</title>
+    <title>Регистрация - Osminog.bet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, shrink-to-fit=no" />
-    <meta name="description" content="ArchitectUI HTML Bootstrap 4 Dashboard Template">
+    <meta name="description" content="Регистрация - Osminog.bet">
     <meta name="msapplication-tap-highlight" content="no">
     <!--
     =========================================================
@@ -32,8 +32,8 @@
                     <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9">
                         <div class="app-logo"></div>
                         <h4>
-                            <div>Welcome,</div>
-                            <span>It only takes a <span class="text-success">few seconds</span> to create your account</span>
+                            <div>Добро пожаловать,</div>
+                            <span>Пожалуйста, создайте свой<span class="text-success">аккаунт</span>.</span>
                         </h4>
                         <div>
                             <form method="POST" action="{{ route('register') }}">
@@ -41,8 +41,8 @@
                                 <div class="form-row">
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
-                                            <label for="exampleFirstName" class=""><span class="text-danger">*</span> First name</label>
-                                            <input name="name" id="exampleFirstName" placeholder="First Name here..." type="text" class="form-control" value="{{ old('name') }}" required>
+                                            <label for="exampleFirstName" class=""><span class="text-danger">*</span> Имя</label>
+                                            <input name="name" id="exampleFirstName" placeholder="Имя..." type="text" class="form-control" value="{{ old('name') }}" required>
                                         </div>
                                         @error('name')
                                         <span class="" role="alert">
@@ -52,8 +52,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
-                                            <label for="exampleLastName" class=""><span class="text-danger">*</span> Last name</label>
-                                            <input name="surname" id="exampleLastName" placeholder="Last Name here..." type="text" class="form-control" value="{{ old('surname') }}" required>
+                                            <label for="exampleLastName" class=""><span class="text-danger">*</span>Фамилия</label>
+                                            <input name="surname" id="exampleLastName" placeholder="Фамилия..." type="text" class="form-control" value="{{ old('surname') }}" required>
                                         </div>
                                         @error('surname')
                                         <span class="" role="alert">
@@ -64,7 +64,7 @@
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
                                             <label for="exampleEmail" class=""><span class="text-danger">*</span> Email</label>
-                                            <input name="email" id="exampleEmail" placeholder="Email here..." type="email" class="form-control" value="{{ old('email') }}" required>
+                                            <input name="email" id="exampleEmail" placeholder="Email..." type="email" class="form-control" value="{{ old('email') }}" required>
                                         </div>
                                         @error('email')
                                         <span class="" role="alert">
@@ -74,8 +74,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
-                                            <label for="examplePhone" class=""><span class="text-danger">*</span> Phone</label>
-                                            <input name="phone" id="examplePhone" placeholder="Phone here..." type="tel" class="form-control" value="{{ old('phone') }}" required>
+                                            <label for="examplePhone" class=""><span class="text-danger">*</span> Телефон</label>
+                                            <input name="phone" id="examplePhone" placeholder="Телефон..." type="tel" class="form-control" value="{{ old('phone') }}" required>
                                         </div>
                                         @error('phone')
                                         <span class="" role="alert">
@@ -85,8 +85,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
-                                            <label for="examplePassword" class=""><span class="text-danger">*</span> Password</label>
-                                            <input name="password" id="examplePassword" placeholder="Password here..." type="password" class="form-control" value="{{ old('password') }}" required>
+                                            <label for="examplePassword" class=""><span class="text-danger">*</span> Пароль</label>
+                                            <input name="password" id="examplePassword" placeholder="Пароль..." type="password" class="form-control" value="{{ old('password') }}" required>
                                         </div>
                                         @error('password')
                                         <span class="" role="alert">
@@ -96,8 +96,8 @@
                                     </div>
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
-                                            <label for="examplePasswordRep" class=""><span class="text-danger">*</span> Repeat Password</label>
-                                            <input name="password_confirmation"  id="password-confirm" placeholder="Repeat Password here..." type="password" class="form-control">
+                                            <label for="examplePasswordRep" class=""><span class="text-danger">*</span> Повторите пароль</label>
+                                            <input name="password_confirmation"  id="password-confirm" placeholder="Повторите пароль..." type="password" class="form-control">
                                         </div>
                                         @error('password_confirmation')
                                         <span class="" role="alert">
@@ -108,7 +108,7 @@
                                     <div class="col-md-6">
                                         <div class="position-relative form-group">
                                             <label for="exampleTelegram" class=""><span class="text-danger">*</span> Telegram</label>
-                                            <input name="telegram" id="exampleTelegram" placeholder="Telegram here..." type="text" class="form-control" value="{{ old('telegram') }}" required>
+                                            <input name="telegram" id="exampleTelegram" placeholder="Telegram..." type="text" class="form-control" value="{{ old('telegram') }}" required>
                                         </div>
                                         @error('telegram')
                                         <span class="" role="alert">
@@ -124,12 +124,12 @@
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                     @enderror
-                                    <label for="exampleCheck" class="form-check-label">Accept our <a href="javascript:void(0);" data-toggle="modal" data-target="#termsAndConditions">Terms and Conditions</a>.</label>
+                                    <label for="exampleCheck" class="form-check-label">Я принимаю Ваши <a href="javascript:void(0);" data-toggle="modal" data-target="#termsAndConditions">Условия использования</a>.</label>
                                 </div>
                                 <div class="mt-4 d-flex align-items-center">
-                                    <h5 class="mb-0">Already have an account? <a href="{{ route('login') }}" class="text-primary">Sign in</a></h5>
+                                    <h5 class="mb-0">Уже есть аккаунт? <a href="{{ route('login') }}" class="text-primary">Войти</a></h5>
                                     <div class="ml-auto">
-                                        <button class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg">Create Account</button>
+                                        <button class="btn-wide btn-pill btn-shadow btn-hover-shine btn btn-primary btn-lg">Создать аккаунт</button>
                                     </div>
                                 </div>
                             </form>
@@ -151,7 +151,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="termsAndConditionsTitle">Terms and Conditions</h5>
+                <h5 class="modal-title" id="termsAndConditionsTitle">Условия использования</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
