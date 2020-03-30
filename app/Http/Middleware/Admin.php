@@ -16,6 +16,9 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
+        if(empty(Auth::user())){
+            abort(403);
+        }
         if(Auth::user()->id != 1) {
             Auth::logout(Auth::user());
             abort(403);
