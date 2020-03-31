@@ -23,10 +23,11 @@
     -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
 </head>
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
-    <div class="app-header header-shadow bg-midnight-bloom header-text-light">
+    <div class="app-header header-shadow bg-royal header-text-light">
         <div class="app-header__logo">
             <div class="logo-src"></div>
             <div class="header__pane ml-auto">
@@ -112,7 +113,7 @@
         </div>
     </div>
     <div class="app-main">
-        <div class="app-sidebar sidebar-shadow bg-midnight-bloom sidebar-text-light">
+        <div class="app-sidebar sidebar-shadow bg-royal sidebar-text-light">
             <div class="app-header__logo">
                 <div class="logo-src"></div>
                 <div class="header__pane ml-auto">
@@ -215,5 +216,6 @@
     </div>
 </div>
 <script type="text/javascript" src="/assets/scripts/main.js"></script>
+
 </body>
 </html>

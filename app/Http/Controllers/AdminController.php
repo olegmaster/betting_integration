@@ -24,14 +24,36 @@ class AdminController extends Controller
         $this->middleware(['auth', 'admin']);
     }
 
-    public function summary()
+    public function summary(Request $request)
     {
 
+        $totalUsers = User::client()->count();
+        $totalKeys = UserKey::all()->count();
         $topUsers = User::topUsers(5);
+
+        // calculate $sumInPeriod
+        $dateFrom = $request['from_date'] ?? '';
+        $dateTo = $request['to_date'] ?? '';
+        $dateFromUnixTime = 0;
+        $dateToUnixTime = 1945346334;
+
+        if ($dateFrom) {
+            $dateFromUnixTime = strtotime($dateFrom);
+        }
+
+        if ($dateTo) {
+            $dateToUnixTime = strtotime($dateTo);
+        }
+
+        $sumInPeriod = UserTransaction::getSumInPeriod($dateFromUnixTime, $dateToUnixTime);
+
 
         return view('admin.summary',
             [
-                'topUsers' => $topUsers
+                'topUsers' => $topUsers,
+                'totalUsers' => $totalUsers,
+                'totalKeys' => $totalKeys,
+                'sumInPeriod' => $sumInPeriod
             ]
         );
     }
@@ -39,7 +61,7 @@ class AdminController extends Controller
     public function users()
     {
         $users = User::client()->paginate(10);
-        $totalUsers = User::all()->count();
+        $totalUsers = User::client()->count();
         return view('admin.users', [
             'users' => $users,
             'totalUsers' => $totalUsers

@@ -106,5 +106,6 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="quill" level="application" />
+    <orderEntry type="library" name="jquery-1.12.4" level="application" />
   </component>
 </module>
