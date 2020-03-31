@@ -34,18 +34,8 @@ class AdminController extends Controller
         // calculate $sumInPeriod
         $dateFrom = $request['from_date'] ?? '';
         $dateTo = $request['to_date'] ?? '';
-        $dateFromUnixTime = 0;
-        $dateToUnixTime = 1945346334;
 
-        if ($dateFrom) {
-            $dateFromUnixTime = strtotime($dateFrom);
-        }
-
-        if ($dateTo) {
-            $dateToUnixTime = strtotime($dateTo);
-        }
-
-        $sumInPeriod = UserTransaction::getSumInPeriod($dateFromUnixTime, $dateToUnixTime);
+        $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
 
 
         return view('admin.summary',
@@ -78,13 +68,20 @@ class AdminController extends Controller
         ]);
     }
 
-    public function transactions()
+    public function transactions(Request $request)
     {
         $transactions = UserTransaction::paginate(10);
         $totalTransactions = UserTransaction::all()->count();
+        // calculate $sumInPeriod
+        $dateFrom = $request['from_date'] ?? '';
+        $dateTo = $request['to_date'] ?? '';
+
+        $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
+
         return view('admin.transactions', [
             'transactions' => $transactions,
-            'totalTransactions' => $totalTransactions
+            'totalTransactions' => $totalTransactions,
+            'sumInPeriod' => $sumInPeriod
         ]);
     }
 
@@ -268,5 +265,35 @@ class AdminController extends Controller
         Auth::logout();
         Auth::login($user);
         return redirect('/cabinet/keys');
+    }
+
+    public function changeUserStatus($id)
+    {
+        $user = User::find($id);
+        if ($user->account_status == 0) {
+            $user->account_status = 1;
+        } elseif ($user->account_status == 1) {
+            $user->account_status = 0;
+        }
+
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    private function calculateSumPeriod($from, $to)
+    {
+        $dateFromUnixTime = 0;
+        $dateToUnixTime = 1945346334;
+
+        if ($from) {
+            $dateFromUnixTime = strtotime($from);
+        }
+
+        if ($to) {
+            $dateToUnixTime = strtotime($to);
+        }
+
+        return UserTransaction::getSumInPeriod($dateFromUnixTime, $dateToUnixTime);
     }
 }

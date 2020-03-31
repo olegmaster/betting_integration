@@ -19,19 +19,7 @@
                 </div>
             </div>
         </div>
-        <div class="d-xl-none d-lg-block col-md-6 col-xl-4">
-            <div class="card mb-3 widget-content bg-premium-dark">
-                <div class="widget-content-wrapper text-white">
-                    <div class="widget-content-left">
-                        <div class="widget-heading">Products Sold</div>
-                        <div class="widget-subheading">Revenue streams</div>
-                    </div>
-                    <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>$14M</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
+
     </div>
     <div class="row">
         <div class="col-md-12 col-lg-12">
@@ -56,29 +44,42 @@
                                 </thead>
                                 <tbody>
                                 @foreach($users as $user)
-                                <tr>
-                                    <th scope="row">{{$user->id}}</th>
-                                    <td>{{$user->full_name}}</td>
-                                    <td>{{$user->email}}</td>
-                                    <td>{{$user->sum}}</td>
-                                    <td>{{$user->keys_count}}</td>
-                                    <td>
-                                        @if($user->account_status == 0)
-                                            <div class="mb-2 mr-2 badge badge-danger">не активен</div>
-                                        @else
-                                            <div class="mb-2 mr-2 badge badge-success">активен</div>
-                                        @endif
-                                    </td>
-                                    <td>
-                                        <a class="mb-2 mr-2 btn btn-primary" href="{{url('/admin/login-as', ['id' => $user->id])}}"><span class="fa fa-arrow-right"></span>
-                                        </a>
-                                        <a class="mb-2 mr-2 btn btn-info" role="button" href="{{url('/admin/user-card', ['id' => $user->id])}}"><span class="pe-7s-look"></span>
-                                        </a>
-                                        <button class="mb-2 mr-2 btn btn-success"><i class="fa fa-power-off"></i>
-                                        </button>
-                                    </td>
+                                    <tr>
+                                        <th scope="row">{{$user->id}}</th>
+                                        <td>{{$user->full_name}}</td>
+                                        <td>{{$user->email}}</td>
+                                        <td>{{$user->sum}}</td>
+                                        <td>{{$user->keys_count}}</td>
+                                        <td>
+                                            @if($user->account_status == 0)
+                                                <div class="mb-2 mr-2 badge badge-danger">не активен</div>
+                                            @else
+                                                <div class="mb-2 mr-2 badge badge-success">активен</div>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a class="mb-2 mr-2 btn btn-primary"
+                                               href="{{url('/admin/login-as', ['id' => $user->id])}}"><span
+                                                    class="fa fa-arrow-right"></span>
+                                            </a>
+                                            <a class="mb-2 mr-2 btn btn-info" role="button"
+                                               href="{{url('/admin/user-card', ['id' => $user->id])}}"><span
+                                                    class="pe-7s-look"></span>
+                                            </a>
+                                            <a class="mb-2 mr-2 btn
+                                                @if($user->account_status == 0)
+                                                    btn-danger
+                                                @else
+                                                    btn-success
+                                                @endif
+                                                "
+                                               href="{{url('/admin/change-status', ['id' => $user->id])}}"
+                                               role="button"
+                                            ><i class="fa fa-power-off"></i>
+                                            </a>
+                                        </td>
 
-                                </tr>
+                                    </tr>
                                 @endforeach
 
                                 </tbody>

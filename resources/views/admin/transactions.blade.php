@@ -27,16 +27,31 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>1896</span></div>
+                        <div class="widget-numbers text-white"><span>{{$sumInPeriod}}₽</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="row">
+        <div class="col-md-6">
+
+        </div>
+        <div class="col-md-2 col-sm-6">
+            от: <input type="text" id="datepicker-from">
+
+        </div>
+        <div class="col-md-2 col-sm-6">
+            до: <input type="text" id="datepicker-to">
+        </div>
+        <div class="col-md-2">
+            <button type="button" id="summary-date-filter" class="btn btn-info ">поиск</button>
+        </div>
+    </div>
+    <br/>
+    <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="mb-3 card">
-
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
@@ -78,7 +93,9 @@
 
             </div>
         </div>
-
     </div>
-
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="/js/dp-ru.js"></script>
+    <script src="/js/summary/index.js"></script>
 @endsection

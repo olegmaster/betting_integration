@@ -61,6 +61,8 @@ Route::get('/admin/login', function () {
     return view('auth.admin-login');
 });
 
+Route::get('/admin/change-status/{id}', 'AdminController@changeUserStatus');
+
 # User Cabinet routes
 
 Route::get('/cabinet/keys', 'UserController@keys');
