@@ -67,10 +67,10 @@ use Illuminate\Support\Facades\Session;
 
                 <div class="card-body">
                     <div class="btn-actions-pane-right">
-                        <div class="nav">
-                            <a data-toggle="tab" href="#tab-eg6-0" class="border-0 btn-transition btn btn-outline-primary active show">Профиль</a>
-                            <a data-toggle="tab" href="#tab-eg6-1" class="mr-1 ml-1 border-0 btn-transition btn btn-outline-primary show">Ключи</a>
-                            <a data-toggle="tab" href="#tab-eg6-2" class="border-0 btn-transition btn btn-outline-primary show">Транзакции</a>
+                        <div class="nav nav-tabs" id="rowTab">
+                            <a data-toggle="tab" href="#tab-eg6-0" class="border-0 btn-transition btn btn-outline-primary active show" id="profile">Профиль</a>
+                            <a data-toggle="tab" href="#tab-eg6-1" class="mr-1 ml-1 border-0 btn-transition btn btn-outline-primary show" id="keys">Ключи</a>
+                            <a data-toggle="tab" href="#tab-eg6-2" class="border-0 btn-transition btn btn-outline-primary show" id="transactions">Транзакции</a>
                         </div>
                     </div><br/>
                     <div class="tab-content">
@@ -248,5 +248,8 @@ use Illuminate\Support\Facades\Session;
         </div>
 
     </div>
-
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="/js/tab-state.js"></script>
 @endsection
