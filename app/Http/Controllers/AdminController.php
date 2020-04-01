@@ -87,7 +87,27 @@ class AdminController extends Controller
 
     public function bot()
     {
-        return view('admin.summary');
+        return view('admin.bot');
+    }
+
+    public function botSave(Request $request)
+    {
+        $validatedData = $request->validate([
+            'bot' => 'file|min:1'
+        ]);
+
+        $cover = $request->file('bot');
+
+        if (empty($cover)) {
+            return redirect('admin/bot-download');
+        }
+
+        $botName = 'bot.exe';
+        Storage::disk('bot')->put($botName, File::get($cover));
+
+        Session::flash('bot-saved', 'Изменения сохранены');
+
+        return redirect('admin/bot-download');
     }
 
     public function help()

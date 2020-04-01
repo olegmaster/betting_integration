@@ -35,6 +35,8 @@ Route::get('/admin/transaction-history', 'AdminController@transactions');
 
 Route::get('/admin/bot-download', 'AdminController@bot');
 
+Route::post('/admin/bot-save', 'AdminController@botSave');
+
 Route::get('/admin/help', 'AdminController@help');
 
 Route::get('/admin/profile', 'AdminController@profile');
