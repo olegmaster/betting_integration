@@ -211,6 +211,22 @@ use Illuminate\Support\Facades\Session;
                             </div>
                         </div>
                         <div class="tab-pane show" id="tab-eg6-2" role="tabpanel">
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    от: <input type="text" id="datepicker-from">
+
+                                </div>
+                                <div class="col-md-2 col-sm-6">
+                                    до: <input type="text" id="datepicker-to">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="summary-date-filter" class="btn btn-info ">поиск</button>
+                                </div>
+                            </div>
+                            <br/>
                             <table class="mb-0 table table-striped">
                                 <thead>
                                 <tr>
@@ -241,15 +257,14 @@ use Illuminate\Support\Facades\Session;
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
     </div>
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="/js/tab-state.js"></script>
+    <script src="/js/tab-state.js"></script>
+    <script src="/js/dp-ru.js"></script>
+    <script src="/js/summary/index.js"></script>
 @endsection

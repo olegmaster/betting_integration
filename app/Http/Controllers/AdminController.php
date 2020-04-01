@@ -223,13 +223,27 @@ class AdminController extends Controller
     }
 
 
-    public function userCard($id)
+    public function userCard(Request $request)
     {
+        $id = $request['id'];
         $user = User::find($id);
         //print_r($user->keys()->toSql());die;
         $keys = $user->keys()->paginate(10);
-        //print_r($keys);die;
-        $transactions = $user->transactions()->paginate(10);
+
+        $dateFrom = $request['from_date'] ?? '';
+        $dateTo = $request['to_date'] ?? '';
+
+        $transactions = $user->transactions();
+        if ($dateFrom) {
+            $transactions = $transactions->where('created_at', '>=', date('Y-m-d h:i:s', strtotime($dateFrom)));
+        }
+
+        if ($dateTo) {
+            $transactions = $transactions->where('created_at', '<=', date('Y-m-d h:i:s', strtotime($dateTo)));
+        }
+
+        //print_r($transactions->toSql());die;
+        $transactions = $transactions->paginate(10);
         return view('admin.user_card',
             [
                 'user' => $user,
