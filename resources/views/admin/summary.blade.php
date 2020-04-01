@@ -166,7 +166,7 @@
             data: {
                 labels: [<?php echo $labels;?>],
                 datasets: [{
-                    label: '# график функции',
+                    label: '# график продаж',
                     data: [<?php echo $data; ?>],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
