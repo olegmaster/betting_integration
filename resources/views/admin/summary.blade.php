@@ -18,7 +18,8 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334)}}₽</span></div>
+                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334)}}₽</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -88,7 +89,7 @@
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
                         <div class="widget-chart p-3">
-                            <canvas id="chart-horiz-bar"></canvas>
+                            <canvas id="myChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -148,4 +149,53 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="/js/dp-ru.js"></script>
     <script src="/js/summary/index.js"></script>
+    <script src="/chartjs/js/Chart.js"></script>
+    <link rel="stylesheet" href="/chartjs/css/Chart.css">
+    <?php
+    $labels = '';
+    $data = '';
+    foreach ($sumInDays as $day => $sum) {
+            $labels .= "'" . $day . "',";
+            $data .= $sum . ",";
+    }
+    ?>
+    <script>
+        let ctx = document.getElementById('myChart');
+        let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [<?php echo $labels;?>],
+                datasets: [{
+                    label: '# график функции',
+                    data: [<?php echo $data; ?>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 @endsection

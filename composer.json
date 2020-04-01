@@ -16,6 +16,7 @@
         "laravel/framework": "^7.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^2.0",
+        "qiwi/bill-payments-php-sdk": "^0.1.2",
         "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {
