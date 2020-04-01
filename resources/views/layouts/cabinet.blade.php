@@ -160,7 +160,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/cabinet/download-bot">
+                            <a href="/bot/bot.exe">
                                 <i class="pe-7s-download"></i>
                                 Скачать бота
                             </a>
