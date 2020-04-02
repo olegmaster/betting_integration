@@ -77,7 +77,7 @@ class UserController extends Controller
 
         $totalSum = $keyPrice * $request['count'];
 
-        $billId = rand(100000,999999) . rand(100000,999999) . rand(100000,999999);
+        $billId = rand(100000, 999999) . rand(100000, 999999);
 
         $transaction = new UserTransaction();
         $transaction->user_id = Auth::user()->id;
@@ -91,7 +91,7 @@ class UserController extends Controller
             $publicKey = config('app.qiwi_public_key');
             $params = [
                 'publicKey' => $publicKey,
-                'amount' => 200,
+                'amount' => $totalSum,
                 'billId' => $billId,
                 'successUrl' => url('/cabinet/profile'),
             ];
@@ -104,6 +104,7 @@ class UserController extends Controller
 
         return redirect()->back();
     }
+
 
     public function downloadBot()
     {

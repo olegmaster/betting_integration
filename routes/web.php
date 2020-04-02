@@ -88,3 +88,8 @@ Route::post('/cabinet/profile-update', 'UserController@profileUpdate');
 Route::post('/cabinet/update-user-avatar', 'UserController@updateUserAvatar');
 
 Route::post('/cabinet/update-user-password', 'UserController@updatePassword');
+
+# payment callback
+
+Route::post('/payment-handled', 'PaymentController@confirmPayment');
+
