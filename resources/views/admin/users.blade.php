@@ -59,7 +59,12 @@
                                         </td>
                                         <td>
                                             <a class="mb-2 mr-2 btn btn-primary"
-                                               href="{{url('/admin/login-as', ['id' => $user->id])}}"><span
+                                               @if($user->account_status == 1)
+                                                    href="{{url('/admin/login-as', ['id' => $user->id])}}"
+                                               @else
+                                                   href="#"
+                                               @endif
+                                            ><span
                                                     class="fa fa-arrow-right"></span>
                                             </a>
                                             <a class="mb-2 mr-2 btn btn-info" role="button"

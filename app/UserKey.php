@@ -4,9 +4,12 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class UserKey extends Model
 {
+    const weekSecondsCount = 604800;
+
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -36,5 +39,18 @@ class UserKey extends Model
     public function scopeFrozen($query)
     {
         return $query->where('status', 2);
+    }
+
+    public static function generateKeys($userId, $keysCount)
+    {
+        for ($i = 0; $i < $keysCount; $i++) {
+            $userKey = new UserKey();
+            $userKey->user_id = $userId;
+            $userKey->login = Str::random(9);
+            $userKey->password = Str::random(32);
+            $userKey->status = 1;
+            $userKey->end_date = time() + self::weekSecondsCount;
+            $userKey->save();
+        }
     }
 }
