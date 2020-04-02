@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Help;
 use App\Setting;
 use App\TelegramNotification;
+use App\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -58,6 +59,50 @@ class UserController extends Controller
     public function buyKey()
     {
         return view('user.buy_key');
+    }
+
+    public function buyKeyHandle(Request $request)
+    {
+        $validatedData = $request->validate([
+            'count' => 'required|min:1',
+        ]);
+
+        if ($request['count'] < 10) {
+            $keyPrice = 2600;
+        } else if ($request['count'] > 9 && $request['count'] < 30) {
+            $keyPrice = 2300;
+        } else {
+            $keyPrice = 2000;
+        }
+
+        $totalSum = $keyPrice * $request['count'];
+
+        $billId = rand(100000,999999) . rand(100000,999999) . rand(100000,999999);
+
+        $transaction = new UserTransaction();
+        $transaction->user_id = Auth::user()->id;
+        $transaction->keys_count = $request['count'];
+        $transaction->sum = $totalSum;
+        $transaction->bill_id = $billId;
+
+        $billPayments = new BillPayments(config('app.qiwi_secret_key'));
+
+        if ($transaction->save()) {
+            $publicKey = config('app.qiwi_public_key');
+            $params = [
+                'publicKey' => $publicKey,
+                'amount' => 200,
+                'billId' => $billId,
+                'successUrl' => url('/cabinet/profile'),
+            ];
+
+
+            $link = $billPayments->createPaymentForm($params);
+
+            return redirect($link);
+        }
+
+        return redirect()->back();
     }
 
     public function downloadBot()

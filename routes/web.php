@@ -71,6 +71,8 @@ Route::get('/cabinet/keys', 'UserController@keys');
 
 Route::get('/cabinet/buy-key', 'UserController@buyKey');
 
+Route::post('/cabinet/buy-key-handle', 'UserController@buyKeyHandle');
+
 Route::get('/cabinet/download-bot', 'UserController@downloadBot');
 
 Route::get('/cabinet/setup', 'UserController@setup');

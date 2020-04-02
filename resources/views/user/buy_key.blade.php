@@ -33,19 +33,16 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
                         <div class="widget-chart p-3">
-                            <form class="" method="POST" action="{{url('/cabinet/setup-update')}}">
+                            <form class="" method="POST" action="{{url('/cabinet/buy-key-handle')}}">
                                 @csrf
-                                @if(Session::has('telegram_id_saved'))
-                                    <p class="alert alert-success">{{ Session::get('telegram_id_saved') }}</p>
-                                @endif
                                 <div class="position-relative form-group">
-                                    <label for="telegram-id" class="">Введите количество ключей для покупки</label>
-                                    <input name="telegram-id" id="telegram-id" placeholder="0" type="number"
+                                    <label for="count" class="">Введите количество ключей для покупки</label>
+                                    <input name="count" id="count" placeholder="0" type="number"
                                            class="form-control"
                                            value="{{$telegram_id ?? ""}}"><br/>
-                                    @if ($errors->first('telegram-id'))
+                                    @if ($errors->first('count'))
                                         <div class="alert alert-danger">
-                                            {{ $errors->first('telegram-id') }}
+                                            {{ $errors->first('count') }}
                                         </div>
                                     @endif
                                 </div>
