@@ -111,7 +111,7 @@
                                                 ></span>
                                             </a>
                                             <a class="mb-2 mr-2 btn btn-success"
-                                               href="{{url('/admin/long-key/' . $key->id)}}"
+                                               href="{{url('/long-key/' . $key->id)}}"
                                                role="button">
                                                 <span class="fa fa-calendar-plus"></span>
                                             </a>

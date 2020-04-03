@@ -10,6 +10,9 @@ class UserKey extends Model
 {
     const weekSecondsCount = 604800;
     const maxFreezeUserCount = 3;
+    const priceOne = 2600;
+    const priceTwo = 2300;
+    const priceThree = 2000;
 
     public function user()
     {
@@ -58,6 +61,7 @@ class UserKey extends Model
     public static function freezeA(int $keyId)
     {
         $key = UserKey::find($keyId);
+        $key->freeze_time = time();
         $key->is_frozen = 1;
         $key->save();
     }
@@ -67,6 +71,7 @@ class UserKey extends Model
         $key = UserKey::find($keyId);
         if($key->freeze_times < self::maxFreezeUserCount){
             $key->freeze_times = $key->freeze_times + 1;
+            $key->freeze_time = time();
             $key->is_frozen = 1;
             $key->save();
         }
@@ -75,6 +80,7 @@ class UserKey extends Model
     public static function unFreezeA(int $keyId)
     {
         $key = UserKey::find($keyId);
+        $key->end_date = (time()-$key->freeze_time) + $key->end_date;
         $key->is_frozen = 0;
         $key->save();
     }
@@ -82,6 +88,7 @@ class UserKey extends Model
     public static function unFreeze(int $keyId)
     {
         $key = UserKey::find($keyId);
+        $key->end_date = (time()-$key->freeze_time) + $key->end_date;
         $key->is_frozen = 0;
         $key->save();
     }
@@ -102,7 +109,9 @@ class UserKey extends Model
 
     public static function longKey(int $keyId)
     {
-
+        $key = UserKey::find($keyId);
+        $key->end_date = $key->end_date + self::weekSecondsCount;
+        $key->save();
     }
 
 }

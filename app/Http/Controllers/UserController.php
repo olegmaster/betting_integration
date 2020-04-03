@@ -69,11 +69,11 @@ class UserController extends Controller
         ]);
 
         if ($request['count'] < 10) {
-            $keyPrice = 2600;
+            $keyPrice = UserKey::priceOne;
         } else if ($request['count'] > 9 && $request['count'] < 30) {
-            $keyPrice = 2300;
+            $keyPrice = UserKey::priceTwo;
         } else {
-            $keyPrice = 2000;
+            $keyPrice = UserKey::priceThree;
         }
 
         $totalSum = $keyPrice * $request['count'];
@@ -86,9 +86,10 @@ class UserController extends Controller
         $transaction->sum = $totalSum;
         $transaction->bill_id = $billId;
 
-        $billPayments = new BillPayments(config('app.qiwi_secret_key'));
+
 
         if ($transaction->save()) {
+            $billPayments = new BillPayments(config('app.qiwi_secret_key'));
             $publicKey = config('app.qiwi_public_key');
             $params = [
                 'publicKey' => $publicKey,
@@ -259,7 +260,29 @@ class UserController extends Controller
 
     public function longKey(int $keyId)
     {
-        UserKey::longKey($keyId);
-        return redirect()->back();
+        $billId = rand(100000, 999999) . rand(100000, 999999);
+
+        $transaction = new UserTransaction();
+        $transaction->user_id = Auth::user()->id;
+        $transaction->keys_count = 0;
+        $transaction->sum = UserKey::priceOne;
+        $transaction->bill_id = $billId;
+        $transaction->key_id = $keyId;
+
+        $transaction->save();
+
+        $billPayments = new BillPayments(config('app.qiwi_secret_key'));
+        $publicKey = config('app.qiwi_public_key');
+        $params = [
+            'publicKey' => $publicKey,
+            'amount' => UserKey::priceOne,
+            'billId' => $billId,
+            'successUrl' => url('/cabinet/profile'),
+        ];
+
+        $link = $billPayments->createPaymentForm($params);
+
+        return redirect($link);
+
     }
 }

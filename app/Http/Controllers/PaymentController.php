@@ -24,11 +24,20 @@ class PaymentController extends Controller
                 ->where('status', 0)
                 ->first();
 
+
             if ($transaction) {
-                $transaction->status = 1;
-                if ($transaction->save()) {
-                    UserKey::generateKeys($transaction->user_id, $transaction->keys_count);
+
+                if ($transaction->keys_cont > 0) {
+                    $transaction->status = 1;
+                    if ($transaction->save()) {
+                        UserKey::generateKeys($transaction->user_id, $transaction->keys_count);
+                    }
+                } elseif (!empty($transaction->key_id)) {
+                    $transaction->status = 1;
+                    $transaction->save();
+                    UserKey::longKey($transaction->key_id);
                 }
+
             }
         }
     }
