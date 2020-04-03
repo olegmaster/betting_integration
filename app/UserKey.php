@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 class UserKey extends Model
 {
     const weekSecondsCount = 604800;
+    const maxFreezeUserCount = 3;
 
     public function user()
     {
@@ -38,7 +39,7 @@ class UserKey extends Model
 
     public function scopeFrozen($query)
     {
-        return $query->where('status', 2);
+        return $query->where('is_frozen', 1 );
     }
 
     public static function generateKeys($userId, $keysCount)
@@ -63,7 +64,12 @@ class UserKey extends Model
 
     public static function freeze(int $keyId)
     {
-
+        $key = UserKey::find($keyId);
+        if($key->freeze_times < self::maxFreezeUserCount){
+            $key->freeze_times = $key->freeze_times + 1;
+            $key->is_frozen = 1;
+            $key->save();
+        }
     }
 
     public static function unFreezeA(int $keyId)
@@ -75,7 +81,9 @@ class UserKey extends Model
 
     public static function unFreeze(int $keyId)
     {
-
+        $key = UserKey::find($keyId);
+        $key->is_frozen = 0;
+        $key->save();
     }
 
     public static function activateKey(int $keyId)

@@ -73,7 +73,8 @@
                                                 <div class="mb-2 mr-2 badge badge-info">заморожен</div>
                                             @endif
                                         </td>
-                                        <td><a class="mb-2 mr-2 btn btn-info"
+                                        <td>
+                                            <a class="mb-2 mr-2 btn btn-info"
                                                @if($key->is_frozen == 1)
                                                href="{{url('/admin/unfreeze-key/' . $key->id)}}"
                                                @else

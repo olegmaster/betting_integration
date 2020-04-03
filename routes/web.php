@@ -104,6 +104,12 @@ Route::post('/cabinet/update-user-avatar', 'UserController@updateUserAvatar');
 Route::post('/cabinet/update-user-password', 'UserController@updatePassword');
 
 
+Route::get('/freeze-key/{id}', 'UserController@freezeKey');
+
+Route::get('/unfreeze-key/{id}', 'UserController@unFreezeKey');
+
+Route::get('/long-key/{id}', 'UserController@longKey');
+
 
 # payment callback
 

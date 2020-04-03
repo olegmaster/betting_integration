@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Help;
 use App\Setting;
 use App\TelegramNotification;
+use App\UserKey;
 use App\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -242,5 +243,23 @@ class UserController extends Controller
         }
 
         return redirect('/cabinet/profile');
+    }
+
+    public function freezeKey(int $keyId)
+    {
+        UserKey::freeze($keyId);
+        return redirect()->back();
+    }
+
+    public function unFreezeKey(int $keyId)
+    {
+        UserKey::unFreeze($keyId);
+        return redirect()->back();
+    }
+
+    public function longKey(int $keyId)
+    {
+        UserKey::longKey($keyId);
+        return redirect()->back();
     }
 }
