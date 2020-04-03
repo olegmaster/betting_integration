@@ -53,4 +53,48 @@ class UserKey extends Model
             $userKey->save();
         }
     }
+
+    public static function freezeA(int $keyId)
+    {
+        $key = UserKey::find($keyId);
+        $key->is_frozen = 1;
+        $key->save();
+    }
+
+    public static function freeze(int $keyId)
+    {
+
+    }
+
+    public static function unFreezeA(int $keyId)
+    {
+        $key = UserKey::find($keyId);
+        $key->is_frozen = 0;
+        $key->save();
+    }
+
+    public static function unFreeze(int $keyId)
+    {
+
+    }
+
+    public static function activateKey(int $keyId)
+    {
+        $key = UserKey::find($keyId);
+        $key->status = 1;
+        $key->save();
+    }
+
+    public static function deactivateKey(int $keyId)
+    {
+        $key = UserKey::find($keyId);
+        $key->status = 0;
+        $key->save();
+    }
+
+    public static function longKey(int $keyId)
+    {
+
+    }
+
 }

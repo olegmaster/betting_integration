@@ -365,4 +365,40 @@ class AdminController extends Controller
 
 
     }
+
+    public function freezeKey(int $keyId)
+    {
+        UserKey::freezeA($keyId);
+        return redirect()->back();
+    }
+
+    public function unFreezeKey(int $keyId)
+    {
+        UserKey::unFreezeA($keyId);
+        return redirect()->back();
+    }
+
+    public function deleteKey(int $keyId)
+    {
+        UserKey::destroy($keyId);
+        return redirect()->back();
+    }
+
+    public function activateKey(int $keyId)
+    {
+        UserKey::activateKey($keyId);
+        return redirect()->back();
+    }
+
+    public function deActivateKey(int $keyId)
+    {
+        UserKey::deactivateKey($keyId);
+        return redirect()->back();
+    }
+
+    public function longKey(int $keyId)
+    {
+        UserKey::longKey($keyId);
+        return redirect()->back();
+    }
 }

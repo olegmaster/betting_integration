@@ -65,6 +65,20 @@ Route::get('/admin/login', function () {
 
 Route::get('/admin/change-status/{id}', 'AdminController@changeUserStatus');
 
+
+
+Route::get('/admin/freeze-key/{id}', 'AdminController@freezeKey');
+
+Route::get('/admin/unfreeze-key/{id}', 'AdminController@unFreezeKey');
+
+Route::get('/admin/delete-key/{id}', 'AdminController@deleteKey');
+
+Route::get('/admin/activate-key/{id}', 'AdminController@activateKey');
+
+Route::get('/admin/deactivate-key/{id}', 'AdminController@deActivateKey');
+
+Route::get('/admin/long-key/{id}', 'AdminController@longKey');
+
 # User Cabinet routes
 
 Route::get('/cabinet/keys', 'UserController@keys');
@@ -88,6 +102,8 @@ Route::post('/cabinet/profile-update', 'UserController@profileUpdate');
 Route::post('/cabinet/update-user-avatar', 'UserController@updateUserAvatar');
 
 Route::post('/cabinet/update-user-password', 'UserController@updatePassword');
+
+
 
 # payment callback
 
