@@ -139,15 +139,14 @@
     <script>
         $(document).ready(function () {
             $(".key-edit").click(function (e) {
+
                 e.preventDefault();
-                $('#key-id').val('22')
+                $('#key-id').val(e.target.dataset.id)
                 $('#exampleModal').modal();
             });
         });
     </script>
-    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Basic Modal
-    </button>
+
 
 @endsection
 
@@ -164,6 +163,7 @@
                 </div>
                 <div class="modal-body">
                     <form method="POST" action="/user/edit-key-descr">
+                        @csrf
                         <div class="form-group">
                             <textarea class="form-control" name="description" required></textarea>
                         </div>
