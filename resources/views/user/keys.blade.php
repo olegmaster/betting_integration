@@ -134,5 +134,46 @@
         </div>
 
     </div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".key-edit").click(function (e) {
+                e.preventDefault();
+                $('#key-id').val('22')
+                $('#exampleModal').modal();
+            });
+        });
+    </script>
+    <button type="button" class="btn mr-2 mb-2 btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Basic Modal
+    </button>
 
+@endsection
+
+@section('modal')
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Описание ключа</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="/user/edit-key-descr">
+                        <div class="form-group">
+                            <textarea class="form-control" name="description" required></textarea>
+                        </div>
+
+                        <input type="hidden" name="key_id" id="key-id">
+                        <input class="btn btn-primary" type="submit" value="Обновить"/>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
 @endsection

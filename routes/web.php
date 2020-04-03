@@ -110,6 +110,7 @@ Route::get('/unfreeze-key/{id}', 'UserController@unFreezeKey');
 
 Route::get('/long-key/{id}', 'UserController@longKey');
 
+Route::post('/user/edit-key-descr', 'UserController@editKeyDescription');
 
 # payment callback
 

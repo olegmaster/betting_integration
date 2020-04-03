@@ -87,7 +87,6 @@ class UserController extends Controller
         $transaction->bill_id = $billId;
 
 
-
         if ($transaction->save()) {
             $billPayments = new BillPayments(config('app.qiwi_secret_key'));
             $publicKey = config('app.qiwi_public_key');
@@ -284,5 +283,13 @@ class UserController extends Controller
 
         return redirect($link);
 
+    }
+
+    public function editKeyDescription(Request $request)
+    {
+        $key = UserKey::find($request['key_id']);
+        $key->description = $request['description'];
+        $key->save();
+        return redirect()->back();
     }
 }

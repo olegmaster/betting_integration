@@ -25,6 +25,14 @@ class UserKey extends Model
         $to = Carbon::createFromTimestamp($this->end_date);
         $from = Carbon::createFromTimestamp(time());
         $diff = $to->diff($from);
+        if(($this->end_date -time()) < 0){
+            if($this->status != 0){
+                $this->status = 0;
+                $this->save();
+            }
+
+            return "просрочен";
+        }
         $hour = ($diff->h) < 10 ? "0" . $diff->h : $diff->h;
         $minute = ($diff->i) < 10 ? "0" . $diff->i : $diff->i;
         return $diff->d . " дн., " . $hour . ":" . $minute;
@@ -88,6 +96,7 @@ class UserKey extends Model
     public static function unFreeze(int $keyId)
     {
         $key = UserKey::find($keyId);
+
         $key->end_date = (time()-$key->freeze_time) + $key->end_date;
         $key->is_frozen = 0;
         $key->save();
@@ -110,8 +119,21 @@ class UserKey extends Model
     public static function longKey(int $keyId)
     {
         $key = UserKey::find($keyId);
-        $key->end_date = $key->end_date + self::weekSecondsCount;
-        $key->save();
+        $key->status = 1;
+//        echo $key->end_date;
+//        echo "<br/>";
+        $endDate = $key->end_date;
+        if($endDate < time()){
+            $endDate = time();
+        }
+
+        $key->end_date = $endDate + self::weekSecondsCount;
+//        echo $key->end_date;
+        if(!$key->save()){
+            echo 22;
+           //var_dump($key->getErrors());
+        }
+
     }
 
 }
