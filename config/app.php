@@ -238,7 +238,7 @@ return [
     'bot_db_username' => 'SYSDBA',
     'bot_db_password' => 'masterkey',
 
-    'bot_hash' => 'fnsid4394kfn05034jlnfdi4vmfidhr2'
+    'bot_hash' => '12345678911234567892123456789012'
 
 
 ];

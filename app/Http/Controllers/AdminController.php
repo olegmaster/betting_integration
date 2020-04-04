@@ -380,7 +380,7 @@ class AdminController extends Controller
 
     public function deleteKey(int $keyId)
     {
-        UserKey::destroy($keyId);
+        UserKey::deleteKey($keyId);
         return redirect()->back();
     }
 

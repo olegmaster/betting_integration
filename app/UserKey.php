@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\service\OsminogBot;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -25,8 +26,8 @@ class UserKey extends Model
         $to = Carbon::createFromTimestamp($this->end_date);
         $from = Carbon::createFromTimestamp(time());
         $diff = $to->diff($from);
-        if(($this->end_date -time()) < 0){
-            if($this->status != 0){
+        if (($this->end_date - time()) < 0) {
+            if ($this->status != 0) {
                 $this->status = 0;
                 $this->save();
             }
@@ -50,7 +51,7 @@ class UserKey extends Model
 
     public function scopeFrozen($query)
     {
-        return $query->where('is_frozen', 1 );
+        return $query->where('is_frozen', 1);
     }
 
     public static function generateKeys($userId, $keysCount)
@@ -72,32 +73,39 @@ class UserKey extends Model
         $key->freeze_time = time();
         $key->is_frozen = 1;
         $key->save();
+        $bot = new OsminogBot();
+        $bot->updateKey($key->login, $key->password, 2);
     }
 
     public static function freeze(int $keyId)
     {
         $key = UserKey::find($keyId);
-        if($key->freeze_times < self::maxFreezeUserCount){
+        if ($key->freeze_times < self::maxFreezeUserCount) {
             $key->freeze_times = $key->freeze_times + 1;
             $key->freeze_time = time();
             $key->is_frozen = 1;
             $key->save();
+            $bot = new OsminogBot();
+            $bot->updateKey($key->login, $key->password, 2);
         }
     }
 
     public static function unFreezeA(int $keyId)
     {
-        $key = UserKey::find($keyId);
-        $key->end_date = (time()-$key->freeze_time) + $key->end_date;
-        $key->is_frozen = 0;
-        $key->save();
+        self::unFreeze($keyId);
     }
 
     public static function unFreeze(int $keyId)
     {
         $key = UserKey::find($keyId);
+        $timeDeltaSec = time() - $key->freeze_time;
+        $bot = new OsminogBot();
+        $bot->updateKey($key->login, $key->password, 3);
+        $bot->updateKey($key->login, $key->password, 5, ceil($timeDeltaSec / 60));
 
-        $key->end_date = (time()-$key->freeze_time) + $key->end_date;
+
+
+        $key->end_date = $timeDeltaSec + $key->end_date;
         $key->is_frozen = 0;
         $key->save();
     }
@@ -107,6 +115,8 @@ class UserKey extends Model
         $key = UserKey::find($keyId);
         $key->status = 1;
         $key->save();
+        $bot = new OsminogBot();
+        $bot->updateKey($key->login, $key->password, 1);
     }
 
     public static function deactivateKey(int $keyId)
@@ -114,6 +124,16 @@ class UserKey extends Model
         $key = UserKey::find($keyId);
         $key->status = 0;
         $key->save();
+        $bot = new OsminogBot();
+        $bot->updateKey($key->login, $key->password, 0);
+    }
+
+    public static function deleteKey($keyId)
+    {
+        $key = UserKey::find($keyId);
+        $bot = new OsminogBot();
+        $bot->updateKey($key->login, $key->password, 4);
+        UserKey::destroy($keyId);
     }
 
     public static function longKey(int $keyId)
@@ -122,15 +142,15 @@ class UserKey extends Model
         $key->status = 1;
 
         $endDate = $key->end_date;
-        if($endDate < time()){
+        if ($endDate < time()) {
             $endDate = time();
         }
 
         $key->end_date = $endDate + self::weekSecondsCount;
 
-        if(!$key->save()){
-            echo 22;
-           //var_dump($key->getErrors());
+        if (!$key->save()) {
+            $bot = new OsminogBot();
+            $bot->updateKey($key->login, $key->password, 5, ceil(self::weekSecondsCount / 60));
         }
 
     }

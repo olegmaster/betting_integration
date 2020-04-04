@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Help;
+use App\service\OsminogBot;
 use App\Setting;
 use App\TelegramNotification;
 use App\UserKey;
@@ -26,6 +27,8 @@ class UserController extends Controller
 
     public function keys()
     {
+        $bot = new OsminogBot();
+        print_r($bot->authorize());die;
 
 //  https://firebirdsql.org/file/documentation/reference_manuals/fbdevgd-en/html/fbdevgd30-php-iface.html
 
