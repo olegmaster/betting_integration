@@ -1,20 +1,17 @@
-$(function () {
-    $("#datepicker-from").datepicker(
-        Object.assign({
-                'onClose': function () {
+$(document).on('click', '.applyBtn', function () {
 
-                }
-            },
-            $.datepicker.regional["ru"]
-        )
-    );
-    $("#datepicker-to").datepicker(Object.assign({
-            'onClose': function () {
+    let datetime = $('input[name=daterange-centered]').val();
+    let dtAr = datetime.split(' - ');
 
-            }
-        },
-        $.datepicker.regional["ru"]
-    ));
+    let fromDate = dtAr[0];
+    let toDate = dtAr[1];
+
+    if (fromDate !== '' || toDate !== '') {
+        let url = window.location.href;
+        url = updateURLParameter(url, 'from_date', fromDate);
+        url = updateURLParameter(url, 'to_date', toDate);
+        window.location.href = url;
+    }
 });
 
 $(document).ready(function () {
@@ -22,17 +19,9 @@ $(document).ready(function () {
     $("#datepicker-from").val(getUrlParam('from_date'));
     $("#datepicker-to").val(getUrlParam('to_date'));
 
-    $('#summary-date-filter').click(function () {
+    $('.applyBtn').click(function () {
 
-            let fromDate = $("#datepicker-from").val();
-            let toDate = $("#datepicker-to").val();
 
-            if (fromDate !== '' || toDate !== '') {
-                let url = window.location.href;
-                url = updateURLParameter(url, 'from_date', fromDate);
-                url = updateURLParameter(url, 'to_date', toDate);
-                window.location.href = url;
-            }
 
         }
     );

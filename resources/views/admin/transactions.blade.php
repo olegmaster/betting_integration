@@ -37,15 +37,16 @@
         <div class="col-md-6">
 
         </div>
-        <div class="col-md-2 col-sm-6">
-            от: <input type="text" id="datepicker-from">
 
-        </div>
-        <div class="col-md-2 col-sm-6">
-            до: <input type="text" id="datepicker-to">
-        </div>
-        <div class="col-md-2">
-            <button type="button" id="summary-date-filter" class="btn btn-info ">поиск</button>
+        <div class="col-md-4 col-sm-6">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <i class="fa fa-calendar-alt"></i>
+                    </div>
+                </div>
+                <input type="text" class="form-control" name="daterange-centered"/>
+            </div>
         </div>
     </div>
     <br/>
