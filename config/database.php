@@ -90,6 +90,16 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'firebird' => [
+            'driver'   => 'firebird',
+            'host'     => env('DB_HOST', '176.58.60.146'),
+            'database' => env('DB_DATABASE', '176.58.60.146:C:\Bases\SportBot\storage.fdb'),
+            'username' => env('DB_USERNAME', 'sysdba'),
+            'password' => env('DB_PASSWORD', 'masterkey'),
+            'charset'  => env('DB_CHARSET', 'UTF8'),
+            'role'     => null,
+        ],
+
     ],
 
     /*

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Qiwi\Api\BillPayments;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -25,23 +26,17 @@ class UserController extends Controller
 
     public function keys()
     {
-//          https://github.com/QIWI-API/bill-payments-php-sdk
-//        $SECRET_KEY = 'eyJ2ZXJzaW9uIjoicmVzdF92MyIsImRhdGEiOnsibWVyY2hhbnRfaWQiOjUyNjgxMiwiYXBpX3VzZXJfaWQiOjcxNjI2MTk3LCJzZWNyZXQiOiJmZjBiZmJiM2UxYzc0MjY3YjIyZDIzOGYzMDBkNDhlYjhiNTnONPININONPN090MTg5Z**********************';
-//
-//        $billPayments = new BillPayments($SECRET_KEY);
-//
-//        $publicKey = '2tbp1WQvsgQeziGY9vTLe9vDZNg7tmCymb4Lh6STQokqKrpCC6qrUUKEDZAJ7mvFnzr1yTebUiQaBLDnebLMMxL8nc6FF5zfmGQnypdXCbQJqHEJW5RJmKfj8nvgc';
-//        $params = [
-//            'publicKey' => $publicKey,
-//            'amount' => 200,
-//            'billId' => '893794793973',
-//            'successUrl' => 'http://test.ru/',
-//        ];
-//
-//        $link = $billPayments->createPaymentForm($params);
-//        echo $link;die;
-//
-//        var_dump($billPayments);die;
+
+//  https://firebirdsql.org/file/documentation/reference_manuals/fbdevgd-en/html/fbdevgd30-php-iface.html
+
+//        $dbh = ibase_connect(
+//            config('app.bot_firebird_db'),
+//            config('app.bot_db_username'),
+//            config('app.bot_db_password')
+//        );
+
+
+
 
         $keys = Auth::user()->keys()->paginate(10);
 

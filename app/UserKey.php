@@ -120,15 +120,14 @@ class UserKey extends Model
     {
         $key = UserKey::find($keyId);
         $key->status = 1;
-//        echo $key->end_date;
-//        echo "<br/>";
+
         $endDate = $key->end_date;
         if($endDate < time()){
             $endDate = time();
         }
 
         $key->end_date = $endDate + self::weekSecondsCount;
-//        echo $key->end_date;
+
         if(!$key->save()){
             echo 22;
            //var_dump($key->getErrors());

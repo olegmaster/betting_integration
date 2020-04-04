@@ -234,5 +234,9 @@ return [
     'qiwi_public_key' => '?',
     'qiwi_secret_key' => '?',
 
+    'bot_firebird_db' => '176.58.60.146:C:\Bases\SportBot\storage.fdb',
+    'bot_db_username' => 'SYSDBA',
+    'bot_db_password' => 'masterkey',
+
 
 ];

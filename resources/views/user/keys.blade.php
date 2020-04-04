@@ -139,14 +139,12 @@
     <script>
         $(document).ready(function () {
             $(".key-edit").click(function (e) {
-
                 e.preventDefault();
-                $('#key-id').val(e.target.dataset.id)
+                $('#key-id').val(e.target.dataset.id);
                 $('#exampleModal').modal();
             });
         });
     </script>
-
 
 @endsection
 
