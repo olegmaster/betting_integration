@@ -27,19 +27,6 @@ class UserController extends Controller
 
     public function keys()
     {
-        $bot = new OsminogBot();
-        print_r($bot->authorize());die;
-
-//  https://firebirdsql.org/file/documentation/reference_manuals/fbdevgd-en/html/fbdevgd30-php-iface.html
-
-//        $dbh = ibase_connect(
-//            config('app.bot_firebird_db'),
-//            config('app.bot_db_username'),
-//            config('app.bot_db_password')
-//        );
-
-
-
 
         $keys = Auth::user()->keys()->paginate(10);
 

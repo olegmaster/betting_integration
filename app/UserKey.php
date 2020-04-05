@@ -56,6 +56,10 @@ class UserKey extends Model
 
     public static function generateKeys($userId, $keysCount)
     {
+        if($keysCount == 0)
+            return;
+
+        $bot = new OsminogBot();
         for ($i = 0; $i < $keysCount; $i++) {
             $userKey = new UserKey();
             $userKey->user_id = $userId;
@@ -64,6 +68,7 @@ class UserKey extends Model
             $userKey->status = 1;
             $userKey->end_date = time() + self::weekSecondsCount;
             $userKey->save();
+            $bot->addKey($userKey->login, $userKey->password);
         }
     }
 
