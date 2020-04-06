@@ -79,7 +79,7 @@
                                     <div tabindex="-1" role="menu" aria-hidden="true"
                                          class="dropdown-menu dropdown-menu-right">
                                         <button type="button" tabindex="0" class="dropdown-item">
-                                            <a class="dropdown-item" href="{{url('/admin/profile')}}">
+                                            <a class="dropdown-item" href="{{url('/cabinet/profile')}}">
                                                 {{ __('Профиль') }}
                                             </a>
                                         </button>
