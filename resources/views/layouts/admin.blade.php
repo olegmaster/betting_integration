@@ -151,38 +151,38 @@
                     <ul class="vertical-nav-menu">
                         <li>
                             <a href="/admin">
-                                <i class="pe-7s-graph2"></i>
+                                <i class="pe-7s-graph2  metismenu-icon"></i>
                                 Сводка
                             </a>
                         </li>
                         <li>
                             <a href="/admin/users">
-                                <i class="pe-7s-users"></i>
+                                <i class="pe-7s-users  metismenu-icon"></i>
                                 Пользователи
                             </a>
                         </li>
                         <li>
                             <a href="/admin/keys">
-                                <i class="pe-7s-key"></i>
+                                <i class="pe-7s-key  metismenu-icon"></i>
                                 Ключи
                             </a>
                         </li>
                         <li>
                             <a href="/admin/transaction-history">
-                                <i class="pe-7s-credit"></i>
+                                <i class="pe-7s-credit  metismenu-icon"></i>
                                 История транзакций
                             </a>
                         </li>
                         <li>
                             <a href="#">
-                                <i class="pe-7s-tools"></i>
+                                <i class="pe-7s-tools  metismenu-icon"></i>
                                 Настройки
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
                             <ul>
                                 <li>
                                     <a href="/admin/bot-download">
-                                        <i class="metismenu-icon"></i>
+                                        <i class="metismenu-icon "></i>
                                         Загрузить бота
                                     </a>
                                 </li>

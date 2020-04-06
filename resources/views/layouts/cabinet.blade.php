@@ -149,37 +149,37 @@
                     <ul class="vertical-nav-menu">
                         <li>
                             <a href="/cabinet/keys">
-                                <i class="pe-7s-key"></i>
+                                <i class="pe-7s-key  metismenu-icon"></i>
                                 Мои ключи
                             </a>
                         </li>
                         <li>
                             <a href="/cabinet/buy-key">
-                                <i class="pe-7s-credit"></i>
+                                <i class="pe-7s-credit  metismenu-icon"></i>
                                 Купить ключ
                             </a>
                         </li>
                         <li>
                             <a href="/bot/bot.exe">
-                                <i class="pe-7s-download"></i>
+                                <i class="pe-7s-download  metismenu-icon"></i>
                                 Скачать бота
                             </a>
                         </li>
                         <li>
                             <a href="/cabinet/setup">
-                                <i class="pe-7s-config"></i>
+                                <i class="pe-7s-config  metismenu-icon"></i>
                                  Настройки
                             </a>
                         </li>
                         <li>
                             <a href="/cabinet/help">
-                                <i class="pe-7s-help1"></i>
+                                <i class="pe-7s-help1  metismenu-icon"></i>
                                 Помощь
                             </a>
                         </li>
                         <li>
                             <a href="/cabinet/profile">
-                                <i class="pe-7s-users"></i>
+                                <i class="pe-7s-users  metismenu-icon"></i>
                                 Профиль
                             </a>
                         </li>
