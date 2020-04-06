@@ -151,7 +151,7 @@
                     <ul class="vertical-nav-menu">
                         <li>
                             <a href="/admin">
-                                <i class="pe-7s-photo"></i>
+                                <i class="pe-7s-graph2"></i>
                                 Сводка
                             </a>
                         </li>
@@ -169,7 +169,7 @@
                         </li>
                         <li>
                             <a href="/admin/transaction-history">
-                                <i class="pe-7s-cash"></i>
+                                <i class="pe-7s-credit"></i>
                                 История транзакций
                             </a>
                         </li>

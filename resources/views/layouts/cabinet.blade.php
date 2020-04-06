@@ -155,7 +155,7 @@
                         </li>
                         <li>
                             <a href="/cabinet/buy-key">
-                                <i class="pe-7s-cash"></i>
+                                <i class="pe-7s-credit"></i>
                                 Купить ключ
                             </a>
                         </li>
