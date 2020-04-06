@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $t = new TelegramNotificationSender(60);
             $t->send();
-        })->hourly();
+        })->everyMinute();
     }
 
     /**
