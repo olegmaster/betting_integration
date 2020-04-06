@@ -21,8 +21,9 @@
                             <div id="editor-container">
                                 {!! $helpText !!}
                             </div>
-                            <input type="hidden" name="help-text" >
+
                         </div>
+                        <input type="hidden" name="help-text" >
                         @if ($errors->first('help-text'))
                             <div class="alert   alert-danger">
                                 {{ $errors->first('help-text') }}
