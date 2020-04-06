@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-12 col-lg-12">
             <div class="mb-3 card">
-                <div class="card-body"><h5 class="card-title">редактирование страницы "помощ"</h5>
+                <div class="card-body"><h5 class="card-title">редактирование страницы "помощь"</h5>
                     <form class="editor-form" method="POST" action="/admin-help-store" enctype="multipart/form-data">
                         @csrf
                         @if(Session::has('help_text_saved'))

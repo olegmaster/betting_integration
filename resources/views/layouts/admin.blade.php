@@ -198,7 +198,7 @@
                                 <li>
                                     <a href="/admin/help">
                                         <i class="metismenu-icon">
-                                        </i>Страница "Помощ"
+                                        </i>Страница "помощь"
                                     </a>
                                 </li>
                                 <li>

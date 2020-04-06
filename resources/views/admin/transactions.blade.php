@@ -24,7 +24,6 @@
                 <div class="widget-content-wrapper text-white">
                     <div class="widget-content-left">
                         <div class="widget-heading">Прибыль за период</div>
-
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white"><span>{{number_format($sumInPeriod, 0, " ", " ")}}₽</span></div>
