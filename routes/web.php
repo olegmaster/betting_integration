@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'AdminController@summary');
+Route::get('/admin', 'AdminController@summary')->name('summary');
 
 Auth::routes();
 
@@ -25,19 +25,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 # Admin Panel routes
 
-Route::get('/admin/users', 'AdminController@users')->name('home');
+Route::get('/admin/users', 'AdminController@users')->name('ausers');
 
-Route::get('/admin/users', 'AdminController@users');
 
-Route::get('/admin/keys', 'AdminController@keys');
 
-Route::get('/admin/transaction-history', 'AdminController@transactions');
+Route::get('/admin/keys', 'AdminController@keys')->name('akeys');
+
+Route::get('/admin/transaction-history', 'AdminController@transactions')->name('atrans');
 
 Route::get('/admin/bot-download', 'AdminController@bot');
 
 Route::post('/admin/bot-save', 'AdminController@botSave');
 
-Route::get('/admin/help', 'AdminController@help');
+Route::get('/admin/help', 'AdminController@help')->name('ahelp');
 
 Route::get('/admin/profile', 'AdminController@profile');
 
@@ -81,21 +81,21 @@ Route::get('/admin/long-key/{id}', 'AdminController@longKey');
 
 # User Cabinet routes
 
-Route::get('/cabinet/keys', 'UserController@keys');
+Route::get('/cabinet/keys', 'UserController@keys')->name('ukeys');
 
-Route::get('/cabinet/buy-key', 'UserController@buyKey');
+Route::get('/cabinet/buy-key', 'UserController@buyKey')->name('bkey');
 
 Route::post('/cabinet/buy-key-handle', 'UserController@buyKeyHandle');
 
 Route::get('/cabinet/download-bot', 'UserController@downloadBot');
 
-Route::get('/cabinet/setup', 'UserController@setup');
+Route::get('/cabinet/setup', 'UserController@setup')->name('usetup');
 
 Route::post('cabinet/setup-update', 'UserController@setupUpdate');
 
-Route::get('/cabinet/help', 'UserController@help');
+Route::get('/cabinet/help', 'UserController@help')->name('uhelp');
 
-Route::get('/cabinet/profile', 'UserController@profile');
+Route::get('/cabinet/profile', 'UserController@profile')->name('uprofile');
 
 Route::post('/cabinet/profile-update', 'UserController@profileUpdate');
 

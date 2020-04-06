@@ -150,25 +150,34 @@
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
                         <li>
-                            <a href="/admin">
-                                <i class="pe-7s-graph2  metismenu-icon"></i>
+                            <a href="/admin" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'summary')
+                                    class="mm-active"
+                               @endif >
+                                <i class="pe-7s-graph2  metismenu-icon
+                                    "></i>
                                 Сводка
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/users">
+                            <a href="/admin/users" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'ausers')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-users  metismenu-icon"></i>
                                 Пользователи
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/keys">
+                            <a href="/admin/keys" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'akeys')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-key  metismenu-icon"></i>
                                 Ключи
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/transaction-history">
+                            <a href="/admin/transaction-history" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'atrans')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-credit  metismenu-icon"></i>
                                 История транзакций
                             </a>

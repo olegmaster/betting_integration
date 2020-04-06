@@ -148,13 +148,17 @@
                 <div class="app-sidebar__inner">
                     <ul class="vertical-nav-menu">
                         <li>
-                            <a href="/cabinet/keys">
+                            <a href="/cabinet/keys" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'ukeys')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-key  metismenu-icon"></i>
                                 Мои ключи
                             </a>
                         </li>
                         <li>
-                            <a href="/cabinet/buy-key">
+                            <a href="/cabinet/buy-key" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'bkey')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-credit  metismenu-icon"></i>
                                 Купить ключ
                             </a>
@@ -166,19 +170,25 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/cabinet/setup">
+                            <a href="/cabinet/setup" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'usetup')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-config  metismenu-icon"></i>
                                  Настройки
                             </a>
                         </li>
                         <li>
-                            <a href="/cabinet/help">
+                            <a href="/cabinet/help" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'uhelp')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-help1  metismenu-icon"></i>
                                 Помощь
                             </a>
                         </li>
                         <li>
-                            <a href="/cabinet/profile">
+                            <a href="/cabinet/profile" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'uprofile')
+                            class="mm-active"
+                                @endif>
                                 <i class="pe-7s-users  metismenu-icon"></i>
                                 Профиль
                             </a>
