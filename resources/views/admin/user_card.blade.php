@@ -193,12 +193,45 @@ use Illuminate\Support\Facades\Session;
                                             @endif
                                         </td>
                                         <td>
-                                            <button class="mb-2 mr-2 btn btn-primary"><span class="fa fa-arrow-right"></span>
-                                            </button>
-                                            <button class="mb-2 mr-2 btn btn-info"><span class="pe-7s-look"></span>
-                                            </button>
-                                            <button class="mb-2 mr-2 btn btn-success"><i class="fa fa-power-off"></i>
-                                            </button>
+                                            <a class="mb-2 mr-2 btn btn-info"
+                                               @if($key->is_frozen == 1)
+                                               href="{{url('/admin/unfreeze-key/' . $key->id)}}"
+                                               @else
+                                               href="{{url('/admin/freeze-key/' . $key->id)}}"
+                                               @endif
+                                               role="button">
+                                                <span
+                                                    @if($key->is_frozen == 1)
+                                                    class="fa fa-pause"
+                                                    @else
+                                                    class="fa fa-play"
+                                                    @endif
+                                                ></span>
+                                            </a>
+                                            <a
+                                                @if($key->status == 1)
+                                                class="mb-2 mr-2 btn btn-success"
+                                                @else
+                                                class="mb-2 mr-2 btn btn-danger"
+                                                @endif
+                                                @if($key->status == 0)
+                                                href="{{url('/admin/activate-key/' . $key->id)}}"
+                                                @else
+                                                href="{{url('/admin/deactivate-key/' . $key->id)}}"
+                                                @endif
+                                                role="button">
+                                                <span class="fa fa-power-off"></span>
+                                            </a>
+                                            <a class="mb-2 mr-2 btn btn-danger"
+                                               href="{{url('/admin/delete-key/' . $key->id)}}"
+                                               role="button">
+                                                <span class="fa fa-trash"></span>
+                                            </a>
+                                            <a class="mb-2 mr-2 btn btn-success"
+                                               href="{{url('/admin/long-key/' . $key->id)}}"
+                                               role="button">
+                                                <span class="fa fa-calendar-plus"></span>
+                                            </a>
                                         </td>
 
                                     </tr>

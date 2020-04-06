@@ -48,7 +48,11 @@
                                         <th scope="row">{{$key->id}}</th>
                                         <td>{{$key->login}}</td>
                                         <td>{{$key->password}}</td>
-                                        <td>{{$key->user->full_name}}</td>
+                                        <td>
+                                            <a class="mb-2 mr-2 "
+                                               href="{{url('/admin/user-card', ['id' => $key->user_id])}}">{{$key->user->full_name}}
+                                            </a>
+                                         </td>
                                         <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
                                         <td>{{$key->key_validity_time}}</td>
                                         <td>
