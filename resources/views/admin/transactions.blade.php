@@ -72,7 +72,11 @@
                                 @foreach($transactions as $transaction)
                                     <tr>
                                         <th scope="row">{{$transaction->id}}</th>
-                                        <td>{{$transaction->user->full_name}}</td>
+                                        <td>
+                                            <a class="mb-2 mr-2 "
+                                               href="{{url('/admin/user-card', ['id' => $transaction->user_id])}}">{{$transaction->user->full_name}}
+                                            </a>
+                                            </td>
                                         <td>{{$transaction->user->email}}</td>
                                         <td>{{$transaction->keys_count}}</td>
                                         <td>{{$transaction->sum}}</td>

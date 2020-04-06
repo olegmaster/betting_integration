@@ -46,7 +46,11 @@
                                 @foreach($users as $user)
                                     <tr>
                                         <th scope="row">{{$user->id}}</th>
-                                        <td>{{$user->full_name}}</td>
+                                        <td>
+                                            <a class="mb-2 mr-2 "
+                                               href="{{url('/admin/user-card', ['id' => $user->id])}}">{{$user->full_name}}
+                                            </a>
+                                            </td>
                                         <td>{{$user->email}}</td>
                                         <td>{{$user->sum}}</td>
                                         <td>{{$user->keys_count}}</td>
