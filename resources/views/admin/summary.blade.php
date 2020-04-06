@@ -18,7 +18,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334)}}₽</span>
+                        <div class="widget-numbers text-warning"><span>{{number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334), 0," ", " ")}}₽</span>
                         </div>
                     </div>
                 </div>
@@ -32,7 +32,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>{{$sumInPeriod}}₽</span></div>
+                        <div class="widget-numbers text-white"><span> <?php echo number_format($sumInPeriod, 0," ", " "); ?>₽</span></div>
                     </div>
                 </div>
             </div>
