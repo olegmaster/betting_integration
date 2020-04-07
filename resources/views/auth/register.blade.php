@@ -20,7 +20,7 @@
     =========================================================
     * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
     -->
-    <link href="/main.css" rel="stylesheet">
+    <link href="/landing/main.css" rel="stylesheet">
 </head>
 
 <body>
@@ -33,7 +33,7 @@
                         <div class="app-logo"></div>
                         <h4>
                             <div>Добро пожаловать,</div>
-                            <span>Пожалуйста, создайте свой<span class="text-success">аккаунт</span>.</span>
+                            <span>Пожалуйста, создайте свой <span class="text-success">аккаунт</span>.</span>
                         </h4>
                         <div>
                             <form method="POST" action="{{ route('register') }}">
