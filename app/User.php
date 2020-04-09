@@ -21,7 +21,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'surname', 'phone', 'account_status', 'password',
     ];
 
     /**
@@ -109,6 +109,13 @@ class User extends Authenticatable
         parent::boot();
 
         static::addGlobalScope(new ClientScope);
+    }
+
+    public function getAvatarPngAttribute()
+    {
+        if($this->avatar == 'default.jpg'){
+            return 'default.png';
+        }
     }
 
 }

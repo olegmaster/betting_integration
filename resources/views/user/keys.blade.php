@@ -93,7 +93,7 @@
                                             <a class="mb-2 mr-2 btn btn-primary key-edit"
                                                href="" data-id="{{$key->id}}"
                                                role="button">
-                                                <span class="fa fa-edit"></span>
+                                                <span class="fa fa-edit" data-id="{{$key->id}}"></span>
                                             </a>
                                             <a class="mb-2 mr-2 btn btn-info"
                                                @if($key->is_frozen == 1)
@@ -140,7 +140,9 @@
         $(document).ready(function () {
             $(".key-edit").click(function (e) {
                 e.preventDefault();
-                $('#key-id').val(e.target.dataset.id);
+                let id = e.target.dataset.id;
+                $('#key-id').val(id);
+                console.log(id);
                 $('#exampleModal').modal();
             });
         });

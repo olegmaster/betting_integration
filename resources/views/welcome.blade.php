@@ -32,7 +32,7 @@
                 <div class="col-12">
                     <nav class="navbar navbar-expand-lg navigation-area">
                         <div class="site-logo-block">
-                            <a class="navbar-brand site-logo" href="index.html">
+                            <a class="navbar-brand site-logo" href="/">
                                 <img src="/landing/assets/images/logo/logo_osminog_bet.svg" alt="logo">
                             </a>
                         </div><!--~./ end site logo block ~-->
@@ -54,7 +54,7 @@
 
     <!--~~~~~ Start Mobile Menu ~~~~~-->
     <div class="mobile-menu">
-        <a class="mobile-logo" href="index.html">
+        <a class="mobile-logo" href="/">
             <img src="/landing/assets/images/logo/logo_osminog_bet.svg" alt="logo">
         </a>
     </div><!--~~./ end mobile menu ~~-->

@@ -165,6 +165,8 @@ class UserController extends Controller
         $userData['name'] = Auth::user()->name;
         $userData['surname'] = Auth::user()->surname;
         $userData['email'] = Auth::user()->email;
+        $userData['phone'] = Auth::user()->phone;
+        $userData['telegram'] = Auth::user()->telegram;
 
         return view('user.profile', [
             'userData' => $userData
@@ -182,6 +184,8 @@ class UserController extends Controller
         Auth::user()->name = $request['name'];
         Auth::user()->surname = $request['surname'];
         Auth::user()->email = $request['email'];
+        Auth::user()->phone = $request['phone'];
+        Auth::user()->telegram = $request['telegram'];
 
         if (Auth::user()->save()) {
             Session::flash('user_profile_saved', 'Изменения сохранены');
@@ -273,7 +277,10 @@ class UserController extends Controller
     public function editKeyDescription(Request $request)
     {
         $key = UserKey::find($request['key_id']);
-        $key->description = $request['description'];
+//        if(empty($key)){
+//            echo $request['key_id'];die;
+//        }
+        $key->description = $request['description'] ?? '';
         $key->save();
         return redirect()->back();
     }

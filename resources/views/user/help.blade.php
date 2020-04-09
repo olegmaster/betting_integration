@@ -7,7 +7,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="fa fa-user-circle ">
+                    <i class="fa fa-info ">
                     </i>
                 </div>
                 <div>{{\Illuminate\Support\Facades\Auth::user()->full_name}}

@@ -53,9 +53,29 @@
                             </div>
                         @endif
                         <div class="position-relative form-group">
+                            <label for="phone" class="">Телефон</label>
+                            <input name="phone" id="phone" placeholder="" type="text" class="form-control"
+                                   value="{{$userData['phone']}}">
+                        </div>
+                        @if ($errors->first('email'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('email') }}
+                            </div>
+                        @endif
+                        <div class="position-relative form-group">
                             <label for="email" class="">Email (login)</label>
                             <input name="email" id="email" placeholder="Email (login)" type="text" class="form-control"
                                    value="{{$userData['email']}}">
+                        </div>
+                        @if ($errors->first('email'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('email') }}
+                            </div>
+                        @endif
+                        <div class="position-relative form-group">
+                            <label for="telegram" class="">Telegram</label>
+                            <input name="telegram" id="telegram" placeholder="" type="text" class="form-control"
+                                   value="{{$userData['telegram']}}">
                         </div>
                         @if ($errors->first('email'))
                             <div class="alert alert-danger">

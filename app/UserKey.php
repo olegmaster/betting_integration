@@ -36,7 +36,8 @@ class UserKey extends Model
         }
         $hour = ($diff->h) < 10 ? "0" . $diff->h : $diff->h;
         $minute = ($diff->i) < 10 ? "0" . $diff->i : $diff->i;
-        return $diff->d . " дн., " . $hour . ":" . $minute;
+        $month = $diff->m > 0 ? $diff->m . " мес. " : "";
+        return $month . $diff->d . " дн., " . $hour . ":" . $minute;
     }
 
     public function scopeActive($query)

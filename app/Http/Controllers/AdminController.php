@@ -32,7 +32,7 @@ class AdminController extends Controller
         $topUsers = User::topUsers(5);
 
         // calculate $sumInPeriod
-        $dateFrom = $request['from_date'] ?? '';
+        $dateFrom = $request['from_date'] ?? date('m/d/Y', time()-UserKey::weekSecondsCount*2);
         $dateTo = $request['to_date'] ?? '';
 
 
