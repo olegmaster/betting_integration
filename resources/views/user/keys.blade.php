@@ -96,6 +96,7 @@
                                                role="button">
                                                 <span class="fa fa-edit" data-id="{{$key->id}}"></span>
                                             </a>
+                                            @if($key->freeze_times < \App\UserKey::maxFreezeUserCount )
                                             <a class="mb-2 mr-2 btn btn-info"
                                                @if($key->is_frozen == 1)
                                                href="{{url('/unfreeze-key/' . $key->id)}}"
@@ -111,6 +112,7 @@
                                                     @endif
                                                 ></span>
                                             </a>
+                                            @endif
                                             <a class="mb-2 mr-2 btn btn-success"
                                                href="{{url('/long-key/' . $key->id)}}"
                                                role="button">
