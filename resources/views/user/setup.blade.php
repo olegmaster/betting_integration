@@ -24,7 +24,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-12 col-lg-9">
+        <div class="col-md-12 col-lg-10 col-xl-9">
             <div class="mb-3 card">
 
                 <div class="tab-content">
@@ -46,55 +46,57 @@
                                         </div>
                                     @endif
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check mb-3">
                                     <div class="row">
-                                        <p><b>УВЕДОМИТЬ МЕНЯ ОБ ОКОНЧАНИИ ПОДПИСКИ НА КЛЮЧАХ</b></p>
+                                    	<div class="col-12">
+                                    		<p><b>УВЕДОМИТЬ МЕНЯ ОБ ОКОНЧАНИИ ПОДПИСКИ НА КЛЮЧАХ</b></p>
+                                    	</div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-2">
-                                            <input name="h24" type="checkbox" class="form-check-input"
-                                                   id="exampleCheck1"
-                                                   @if($h24)
-                                                   checked
-                                                @endif>
-                                            <label class="form-check-label" for="exampleCheck1">за 24 часа</label>
-                                        </div>
-                                        <div class="col-md-2">
-                                            <input name="h12" type="checkbox" class="form-check-input"
-                                                   id="exampleCheck1"
-                                                   @if($h12)
-                                                   checked
-                                                @endif
+                                        <div class="col-6 col-sm-4 col-md-2 text-left">
+                                        	<input name="h24" type="checkbox" class="form-check-input"
+                                               id="exampleCheck1"
+                                               @if($h24)
+                                               checked
+                                               @endif
                                             >
-                                            <label class="form-check-label" for="exampleCheck1">за 12 часов</label>
+                                        	<label class="form-check-label" for="exampleCheck1">за 24 часа</label>
                                         </div>
-                                        <div class="col-md-2">
-                                            <input name="h6" type="checkbox" class="form-check-input"
-                                                   id="exampleCheck1"
-                                                   @if($h6)
-                                                   checked
-                                                @endif>
-                                            <label class="form-check-label" for="exampleCheck1">за 6 часов</label>
+                                        <div class="col-6 col-sm-4 col-md-2 text-left">
+                                    		<input name="h12" type="checkbox" class="form-check-input"
+                                               id="exampleCheck2"
+                                               @if($h12)
+                                               checked
+                                               @endif
+                                        	>
+                                        	<label class="form-check-label" for="exampleCheck2">за 12 часов</label>
                                         </div>
-                                        <div class="col-md-2">
-                                            <input name="h3" type="checkbox" class="form-check-input"
-                                                   id="exampleCheck1"
-                                                   @if($h3)
-                                                   checked
-                                                @endif
+                                        <div class="col-6 col-sm-4 col-md-2 text-left">
+                                    		<input name="h6" type="checkbox" class="form-check-input"
+                                               id="exampleCheck3"
+                                               @if($h6)
+                                               checked
+                                               @endif
                                             >
-                                            <label class="form-check-label" for="exampleCheck1">за 3 часа</label>
+                                        	<label class="form-check-label" for="exampleCheck3">за 6 часов</label>
                                         </div>
-                                        <div class="col-md-2">
-                                            <input name="h1" type="checkbox" class="form-check-input"
-                                                   id="exampleCheck1"
-                                                   @if($h1)
-                                                   checked
-                                                @endif>
-                                            <label class="form-check-label" for="exampleCheck1">за 1 час</label>
+                                        <div class="col-6 col-sm-4 col-md-2 text-left">
+                                    		<input name="h3" type="checkbox" class="form-check-input"
+                                               id="exampleCheck4"
+                                               @if($h3)
+                                               checked
+                                               @endif
+                                            >
+                                        	<label class="form-check-label" for="exampleCheck4">за 3 часа</label>
                                         </div>
-                                        <div class="col-md-2">
-
+                                        <div class="col-6 col-sm-4 col-md-2 text-left">
+                                    		<input name="h1" type="checkbox" class="form-check-input"
+                                               id="exampleCheck5"
+                                               @if($h1)
+                                               checked
+                                               @endif
+                                            >
+                                        	<label class="form-check-label" for="exampleCheck5">за 1 час</label>
                                         </div>
                                     </div>
                                 </div>

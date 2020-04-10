@@ -22,7 +22,7 @@
     </div>
     @if($helpText)
         <div class="row">
-            <div class="col-md-12 col-lg-9">
+            <div class="col-md-12">
                 <div class="mb-3 card">
 
                     <div class="tab-content">

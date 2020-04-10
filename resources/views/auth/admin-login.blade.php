@@ -25,17 +25,17 @@
     <link href="/main.css" rel="stylesheet">
 </head>
 <body>
-<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
+<div class="app-container app-theme-white body-tabs-shadow fixed-sidebar2 fixed-header">
 
     <div class="app-main">
 
         <div class="app-main__outer">
             <div class="app-main__inner">
-                <div class="row">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
+                <div class="container">
+                	<div class="row justify-content-center">
+                    <div class="col-12 col-md-8 col-lg-6">
                         <div class="main-card mb-6 card">
-                            <div class="card-body"><h5 class="card-title">Admin login</h5>
+                            <div class="card-body"><h5 class="card-title">Вход для администраторов</h5>
                                 <div class="row">
                                     <div class="col-md-12">
                                         <form method="POST" action="{{ url('/admin/login') }}">
@@ -44,7 +44,7 @@
                                                 <div class="col-md-12">
                                                     <div class="position-relative form-group">
                                                         <label for="exampleEmail" class="">Email</label>
-                                                        <input name="email" id="exampleEmail" placeholder="Email here..."
+                                                        <input name="email" id="exampleEmail" placeholder="Email..."
                                                                type="text" class="form-control" value="{{ old('email') }}">
                                                     </div>
                                                     @error('email')
@@ -55,8 +55,8 @@
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="position-relative form-group">
-                                                        <label for="examplePassword" class="">Password</label>
-                                                        <input name="password" id="examplePassword" placeholder="Password here..."
+                                                        <label for="examplePassword" class="">Пароль</label>
+                                                        <input name="password" id="examplePassword" placeholder="Пароль..."
                                                                type="password" class="form-control">
                                                         @error('password')
                                                         <span class="" role="alert">
@@ -68,12 +68,12 @@
                                             </div>
                                             <div class="position-relative form-check">
                                                 <input name="remember" id="exampleCheck" type="checkbox" class="form-check-input" {{ old('remember') ? 'checked' : '' }}>
-                                                <label for="exampleCheck" class="form-check-label">Keep me logged in</label>
+                                                <label for="exampleCheck" class="form-check-label">Запомнить меня</label>
                                             </div>
                                             <div class="divider row"></div>
                                             <div class="d-flex align-items-center">
                                                 <div class="ml-auto">
-                                                    <button class="btn btn-primary btn-lg">Login</button>
+                                                    <button class="btn btn-primary btn-lg">Войти</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -83,7 +83,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4"></div>
+                </div>
                 </div>
             </div>
 

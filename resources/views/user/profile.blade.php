@@ -116,11 +116,13 @@
                         @if(Session::has('password_saved'))
                             <p class="alert alert-success">{{ Session::get('password_saved') }}</p>
                         @endif
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 wrapperPassword">
                             <input name="password" id="login" placeholder="Новый пароль" type="password"
                                    class="form-control">
                             <div class="input-group-append">
-                                <span class="fa fa-eye input-group-text"></span>
+                                <button type="button" class="btn btn-light toggleViewPassword">
+                                    <i class="fa fa-eye"></i>
+                                </button>
                             </div>
                         </div>
                         @if ($errors->first('password'))
@@ -128,11 +130,13 @@
                                 {{ $errors->first('password') }}
                             </div>
                         @endif
-                        <div class="input-group mb-3">
+                        <div class="input-group mb-3 wrapperPassword">
                             <input name="repeat-password" id="login" placeholder="Повторите пароль" type="password"
                                    class="form-control">
                             <div class="input-group-append">
-                                <span class="fa fa-eye input-group-text"></span>
+                                <button type="button" class="btn btn-light toggleViewPassword">
+                                    <i class="fa fa-eye"></i>
+                                </button>
                             </div>
                         </div>
                         @if ($errors->first('repeat-password'))

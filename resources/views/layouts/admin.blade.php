@@ -62,8 +62,15 @@
                 </span>
         </div>
         <div class="app-header__content">
-            <div class="app-header-left">
-
+            <div class="app-header-left flex-fill">
+                <div class="header-user-info mx-auto d-block d-lg-none">
+                    <div class="widget-heading" 
+                         style="color: rgba(255,255,255,0.8);
+                                opacity: .8;
+                                font-weight: bold;
+                         ">Админ
+                    </div>
+                </div>
             </div>
             <div class="app-header-right">
                 <div class="header-btn-lg pr-0">
@@ -101,11 +108,10 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="widget-content-left  ml-3 header-user-info">
+                            <div class="widget-content-left ml-3 header-user-info d-lg-block">
                                 <div class="widget-heading">
                                     Админ
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -225,7 +231,12 @@
         <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
     </div>
 </div>
+<script
+  src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+  crossorigin="anonymous"></script>
 <script type="text/javascript" src="/assets/scripts/main.js"></script>
+<script type="text/javascript" src="/assets/scripts/custom.js"></script>
 
 </body>
 </html>

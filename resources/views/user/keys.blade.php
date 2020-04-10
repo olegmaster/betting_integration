@@ -54,8 +54,9 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
-                        <div class="widget-chart p-3">
-                            <h5 class="card-title">Список ключей</h5><br/>
+                        <div class="p-3">
+                            <h5 class="card-title text-center">Список ключей</h5>
+                            <div class="table-responsive">
                             <table class="mb-0 table table-striped">
                                 <thead>
                                 <tr>
@@ -82,18 +83,18 @@
                                         <td>{{$key->key_validity_time}}</td>
                                         <td>
                                             @if($key->status == 0 && $key->is_frozen == 0)
-                                                <div class="mb-2 mr-2 badge badge-danger">не активен</div>
+                                                <div class="badge badge-danger">не активен</div>
                                             @elseif($key->status == 1 && $key->is_frozen == 0)
-                                                <div class="mb-2 mr-2 badge badge-success">активен</div>
+                                                <div class="badge badge-success">активен</div>
                                             @elseif($key->is_frozen == 1)
-                                                <div class="mb-2 mr-2 badge badge-info">заморожен</div>
+                                                <div class="badge badge-info">заморожен</div>
                                             @endif
                                         </td>
-                                        <td>
+                                        <td nowrap>
                                             <a class="mb-2 mr-2 btn btn-primary key-edit"
                                                href="" data-id="{{$key->id}}"
                                                role="button">
-                                                <span class="fa fa-edit" data-id="{{$key->id}}"></span>
+                                                <span class="fa fa-edit"></span>
                                             </a>
                                             <a class="mb-2 mr-2 btn btn-info"
                                                @if($key->is_frozen == 1)
@@ -121,7 +122,7 @@
                                 @endforeach
                                 </tbody>
                             </table>
-
+                            </div>
                         </div>
                         <div class="widget-chart p-3">
                             {{ $keys->links() }}
@@ -140,9 +141,7 @@
         $(document).ready(function () {
             $(".key-edit").click(function (e) {
                 e.preventDefault();
-                let id = e.target.dataset.id;
-                $('#key-id').val(id);
-                console.log(id);
+                $('#key-id').val(e.target.dataset.id);
                 $('#exampleModal').modal();
             });
         });

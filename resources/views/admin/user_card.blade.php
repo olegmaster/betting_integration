@@ -72,7 +72,7 @@ use Illuminate\Support\Facades\Session;
                             <a data-toggle="tab" href="#tab-eg6-1" class="mr-1 ml-1 border-0 btn-transition btn btn-outline-primary show" id="keys">Ключи</a>
                             <a data-toggle="tab" href="#tab-eg6-2" class="border-0 btn-transition btn btn-outline-primary show" id="transactions">Транзакции</a>
                         </div>
-                    </div><br/>
+                    </div>
                     <div class="tab-content">
                         <div class="tab-pane active show" id="tab-eg6-0" role="tabpanel">
                             <div class="row">
@@ -129,11 +129,13 @@ use Illuminate\Support\Facades\Session;
                                                     @if(Session::has('user_password_updated'))
                                                         <p class="alert alert-success">{{ Session::get('user_password_updated') }}</p>
                                                     @endif
-                                                    <div class="input-group mb-3">
+                                                    <div class="input-group mb-3 wrapperPassword">
                                                         <input name="password" id="login" placeholder="Новый пароль" type="password"
                                                                class="form-control">
                                                         <div class="input-group-append">
-                                                            <span class="fa fa-eye input-group-text"></span>
+                                                            <button type="button" class="btn btn-light toggleViewPassword">
+                                                                <i class="fa fa-eye"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     @if ($errors->first('password'))
@@ -141,11 +143,13 @@ use Illuminate\Support\Facades\Session;
                                                             {{ $errors->first('password') }}
                                                         </div>
                                                     @endif
-                                                    <div class="input-group mb-3">
+                                                    <div class="input-group mb-3 wrapperPassword">
                                                         <input name="repeat-password" id="login" placeholder="Повторите пароль" type="password"
                                                                class="form-control">
                                                         <div class="input-group-append">
-                                                            <span class="fa fa-eye input-group-text"></span>
+                                                            <button type="button" class="btn btn-light toggleViewPassword">
+                                                                <i class="fa fa-eye"></i>
+                                                            </button>
                                                         </div>
                                                     </div>
                                                     @if ($errors->first('repeat-password'))
@@ -163,93 +167,91 @@ use Illuminate\Support\Facades\Session;
                             </div>
                         </div>
                         <div class="tab-pane show" id="tab-eg6-1" role="tabpanel">
-                            <table class="mb-0 table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Логин</th>
-                                    <th>Пароль</th>
-                                    <th>Пользователь</th>
-                                    <th>Дата окончания</th>
-                                    <th>Статус актуален еще</th>
-                                    <th>Статус</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($keys as $key)
-                                    <tr>
-                                        <th scope="row">{{$key->id}}</th>
-                                        <td>{{$key->login}}</td>
-                                        <td>{{$key->password}}</td>
-                                        <td>{{$key->user->full_name}}</td>
-                                        <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
-                                        <td>{{$key->key_validity_time}}</td>
-                                        <td>
-                                            @if($key->status == 0)
-                                                <div class="mb-2 mr-2 badge badge-danger">не активен</div>
-                                            @else
-                                                <div class="mb-2 mr-2 badge badge-success">активен</div>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a class="mb-2 mr-2 btn btn-info"
-                                               @if($key->is_frozen == 1)
-                                               href="{{url('/admin/unfreeze-key/' . $key->id)}}"
-                                               @else
-                                               href="{{url('/admin/freeze-key/' . $key->id)}}"
-                                               @endif
-                                               role="button">
-                                                <span
-                                                    @if($key->is_frozen == 1)
-                                                    class="fa fa-pause"
-                                                    @else
-                                                    class="fa fa-play"
-                                                    @endif
-                                                ></span>
-                                            </a>
-                                            <a
-                                                @if($key->status == 1)
-                                                class="mb-2 mr-2 btn btn-success"
-                                                @else
-                                                class="mb-2 mr-2 btn btn-danger"
-                                                @endif
+                            <div class="table-responsive">
+                                <table class="mb-0 table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Логин</th>
+                                            <th>Пароль</th>
+                                            <th>Пользователь</th>
+                                            <th>Дата окончания</th>
+                                            <th>Статус актуален еще</th>
+                                            <th>Статус</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($keys as $key)
+                                        <tr>
+                                            <th scope="row">{{$key->id}}</th>
+                                            <td>{{$key->login}}</td>
+                                            <td>{{$key->password}}</td>
+                                            <td>{{$key->user->full_name}}</td>
+                                            <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
+                                            <td>{{$key->key_validity_time}}</td>
+                                            <td>
                                                 @if($key->status == 0)
-                                                href="{{url('/admin/activate-key/' . $key->id)}}"
+                                                    <div class="badge badge-danger">не активен</div>
                                                 @else
-                                                href="{{url('/admin/deactivate-key/' . $key->id)}}"
+                                                    <div class="badge badge-success">активен</div>
                                                 @endif
-                                                role="button">
-                                                <span class="fa fa-power-off"></span>
-                                            </a>
-                                            <a class="mb-2 mr-2 btn btn-danger"
-                                               href="{{url('/admin/delete-key/' . $key->id)}}"
-                                               role="button">
-                                                <span class="fa fa-trash"></span>
-                                            </a>
-                                            <a class="mb-2 mr-2 btn btn-success"
-                                               href="{{url('/admin/long-key/' . $key->id)}}"
-                                               role="button">
-                                                <span class="fa fa-calendar-plus"></span>
-                                            </a>
-                                        </td>
+                                            </td>
+                                            <td nowrap>
+                                                <a class="mr-2 btn btn-info"
+                                                   @if($key->is_frozen == 1)
+                                                   href="{{url('/admin/unfreeze-key/' . $key->id)}}"
+                                                   @else
+                                                   href="{{url('/admin/freeze-key/' . $key->id)}}"
+                                                   @endif
+                                                   role="button">
+                                                    <span
+                                                        @if($key->is_frozen == 1)
+                                                        class="fa fa-pause"
+                                                        @else
+                                                        class="fa fa-play"
+                                                        @endif
+                                                    ></span>
+                                                </a>
+                                                <a
+                                                    @if($key->status == 1)
+                                                    class="mr-2 btn btn-success"
+                                                    @else
+                                                    class="mr-2 btn btn-danger"
+                                                    @endif
+                                                    @if($key->status == 0)
+                                                    href="{{url('/admin/activate-key/' . $key->id)}}"
+                                                    @else
+                                                    href="{{url('/admin/deactivate-key/' . $key->id)}}"
+                                                    @endif
+                                                    role="button">
+                                                    <span class="fa fa-power-off"></span>
+                                                </a>
+                                                <a class="mr-2 btn btn-danger"
+                                                   href="{{url('/admin/delete-key/' . $key->id)}}"
+                                                   role="button">
+                                                    <span class="fa fa-trash"></span>
+                                                </a>
+                                                <a class="mr-2 btn btn-success"
+                                                   href="{{url('/admin/long-key/' . $key->id)}}"
+                                                   role="button">
+                                                    <span class="fa fa-calendar-plus"></span>
+                                                </a>
+                                            </td>
 
-                                    </tr>
-                                @endforeach
+                                        </tr>
+                                    @endforeach
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="widget-chart p-3">
                                 {{ $keys->links() }}
                             </div>
                         </div>
                         <div class="tab-pane show" id="tab-eg6-2" role="tabpanel">
-                            <div class="row">
-                                <div class="col-md-6">
-
-                                </div>
-
-                                <div class="col-md-4">
+                            <div class="row justify-content-end">
+                                <div class="col-sm-auto">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
                                             <div class="input-group-text">
@@ -257,35 +259,42 @@ use Illuminate\Support\Facades\Session;
                                             </div>
                                         </div>
                                         <input type="text" class="form-control" name="daterange-centered"/>
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-danger">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                             <br/>
-                            <table class="mb-0 table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ФИО</th>
-                                    <th>Email</th>
-                                    <th>Ключей</th>
-                                    <th>Сумма, ₽</th>
-                                    <th>Дата создания</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($transactions as $transaction)
-                                    <tr>
-                                        <th scope="row">{{$transaction->id}}</th>
-                                        <td>{{$transaction->user->full_name}}</td>
-                                        <td>{{$transaction->user->email}}</td>
-                                        <td>{{$transaction->keys_count}}</td>
-                                        <td>{{$transaction->sum}}</td>
-                                        <td>{{date('H:i d/m/Y', strtotime($transaction->created_at))}}</td>
-                                    </tr>
-                                @endforeach
+                            <div class="table-responsive">
+                                <table class="mb-0 table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ФИО</th>
+                                            <th>Email</th>
+                                            <th>Ключей</th>
+                                            <th>Сумма, ₽</th>
+                                            <th>Дата создания</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($transactions as $transaction)
+                                        <tr>
+                                            <th scope="row">{{$transaction->id}}</th>
+                                            <td>{{$transaction->user->full_name}}</td>
+                                            <td>{{$transaction->user->email}}</td>
+                                            <td>{{$transaction->keys_count}}</td>
+                                            <td>{{$transaction->sum}}</td>
+                                            <td>{{date('H:i d/m/Y', strtotime($transaction->created_at))}}</td>
+                                        </tr>
+                                    @endforeach
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                             <div class="widget-chart p-3">
                                 {{ $transactions->links() }}
                             </div>

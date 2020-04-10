@@ -40,7 +40,7 @@
                             <nav class="menu">
                                 <ul id="nav">
                                     <li><a class="active" href="#home">Главная</a></li>
-                                    <li><a href="#tariffs">Тарифы</a></li>
+                                    <!-- <li><a href="#tariffs">Тарифы</a></li> -->
                                     <li><a href="#support">Служба поддержки</a></li>
                                     <li><a class="btn btn-primary btn-gradient" href="{{route('login')}}">Вход</a></li>
                                 </ul>
@@ -76,7 +76,7 @@
                 <div class="col-lg-6">
                     <div class="hero-thumb-area">
                         <figure class="hero-thumb">
-                            <img src="/landing/assets/images/agency/hero.png" alt="img">
+                            <img src="/landing/assets/images/agency/hero.jpg" alt="img">
                         </figure>
                     </div><!--~./ end hero thumb area ~-->
                 </div>
@@ -331,7 +331,7 @@
                     <div class="widget widget-about-us text-right">
                         <div class="widget-content">
                             <div class="footer-logo">
-                                <a href="index.html">
+                                <a href="/">
                                     <img src="/landing/assets/images/logo/logo_osminog_bet.svg" alt="logo">
                                 </a>
                             </div>
