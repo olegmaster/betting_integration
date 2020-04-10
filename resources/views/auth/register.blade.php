@@ -118,13 +118,15 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 position-relative form-check">
-                                    <input name="confirm" id="exampleCheck" type="checkbox" class="form-check-input">
+                                    <div>
+                                        <input name="confirm" id="exampleCheck" type="checkbox" class="form-check-input">
+	                                    <label for="exampleCheck" class="form-check-label">Я принимаю Ваши <a href="javascript:void(0);" data-toggle="modal" data-target="#termsAndConditions">Условия использования</a>.</label>
+                                    </div>
                                     @error('confirm')
                                     <span class="" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                     @enderror
-                                    <label for="exampleCheck" class="form-check-label">Я принимаю Ваши <a href="javascript:void(0);" data-toggle="modal" data-target="#termsAndConditions">Условия использования</a>.</label>
                                 </div>
                                 <div class="mt-4 d-flex align-items-center">
                                     <h5 class="mb-0">Уже есть аккаунт? <a href="{{ route('login') }}" class="text-primary">Войти</a></h5>

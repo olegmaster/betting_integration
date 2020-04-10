@@ -32,12 +32,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-
-        </div>
-
-        <div class="col-md-4 col-sm-6">
+    <div class="row justify-content-end">
+        <div class="col-sm-auto">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -45,6 +41,11 @@
                     </div>
                 </div>
                 <input type="text" class="form-control" name="daterange-centered"/>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -55,38 +56,37 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
-                        <div class="widget-chart p-3">
-                            <h5 class="card-title">Список транзакций</h5><br/>
-                            <table class="mb-0 table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ФИО</th>
-                                    <th>Email</th>
-                                    <th>Ключей</th>
-                                    <th>Сумма, ₽</th>
-                                    <th>Дата создания</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($transactions as $transaction)
-                                    <tr>
-                                        <th scope="row">{{$transaction->id}}</th>
-                                        <td>
-                                            <a class="mb-2 mr-2 "
-                                               href="{{url('/admin/user-card', ['id' => $transaction->user_id])}}">{{$transaction->user->full_name}}
-                                            </a>
-                                            </td>
-                                        <td>{{$transaction->user->email}}</td>
-                                        <td>{{$transaction->keys_count}}</td>
-                                        <td>{{$transaction->sum}}</td>
-                                        <td>{{date('H:i d/m/Y', strtotime($transaction->created_at))}}</td>
-                                    </tr>
-                                @endforeach
+                        <div class="p-3">
+                            <h5 class="card-title text-center">Список транзакций</h5>
+                            <div class="table-responsive">
+                                <table class="mb-0 table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ФИО</th>
+                                            <th>Email</th>
+                                            <th>Ключей</th>
+                                            <th>Сумма, ₽</th>
+                                            <th>Дата создания</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($transactions as $transaction)
+                                        <tr>
+                                            <th scope="row">{{$transaction->id}}</th>
+                                            <td>
+                                                <a href="{{url('/admin/user-card', ['id' => $transaction->user_id])}}">{{$transaction->user->full_name}}</a>
+                                                </td>
+                                            <td>{{$transaction->user->email}}</td>
+                                            <td>{{$transaction->keys_count}}</td>
+                                            <td>{{$transaction->sum}}</td>
+                                            <td>{{date('H:i d/m/Y', strtotime($transaction->created_at))}}</td>
+                                        </tr>
+                                    @endforeach
 
-                                </tbody>
-                            </table>
-
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="widget-chart p-3">
                             {{ $transactions->links() }}

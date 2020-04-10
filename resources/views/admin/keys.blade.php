@@ -27,91 +27,90 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
-                        <div class="widget-chart p-3">
-                            <h5 class="card-title">Список ключей</h5><br/>
-                            <table class="mb-0 table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Логин</th>
-                                    <th>Пароль</th>
-                                    <th>Пользователь</th>
-                                    <th>Дата окончания</th>
-                                    <th>Статус актуален еще</th>
-                                    <th>Статус</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($keys as $key)
-                                    <tr>
-                                        <th scope="row">{{$key->id}}</th>
-                                        <td>{{$key->login}}</td>
-                                        <td>{{$key->password}}</td>
-                                        <td>
-                                            <a class="mb-2 mr-2 "
-                                               href="{{url('/admin/user-card', ['id' => $key->user_id])}}">{{$key->user->full_name}}
-                                            </a>
-                                         </td>
-                                        <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
-                                        <td>{{$key->key_validity_time}}</td>
-                                        <td>
-                                            @if($key->status == 0 && $key->is_frozen == 0)
-                                                <div class="mb-2 mr-2 badge badge-danger">не активен</div>
-                                            @elseif($key->status == 1 && $key->is_frozen == 0)
-                                                <div class="mb-2 mr-2 badge badge-success">активен</div>
-                                            @elseif($key->is_frozen == 1)
-                                                <div class="mb-2 mr-2 badge badge-info">заморожен</div>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a class="mb-2 mr-2 btn btn-info"
-                                               @if($key->is_frozen == 1)
-                                               href="{{url('/admin/unfreeze-key/' . $key->id)}}"
-                                               @else
-                                               href="{{url('/admin/freeze-key/' . $key->id)}}"
-                                               @endif
-                                               role="button">
-                                                <span
-                                                    @if($key->is_frozen == 1)
-                                                    class="fa fa-pause"
-                                                    @else
-                                                    class="fa fa-play"
-                                                    @endif
-                                                ></span>
-                                            </a>
-                                            <a
-                                                @if($key->status == 1)
-                                                class="mb-2 mr-2 btn btn-success"
-                                                @else
-                                                class="mb-2 mr-2 btn btn-danger"
+                        <div class="p-3">
+                            <h5 class="card-title text-center">Список ключей</h5>
+                            <div class="table-responsive">
+                                <table class="mb-0 table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Логин</th>
+                                            <th>Пароль</th>
+                                            <th>Пользователь</th>
+                                            <th>Дата окончания</th>
+                                            <th>Статус актуален еще</th>
+                                            <th>Статус</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($keys as $key)
+                                        <tr>
+                                            <th scope="row">{{$key->id}}</th>
+                                            <td>{{$key->login}}</td>
+                                            <td>{{$key->password}}</td>
+                                            <td>
+                                                <a href="{{url('/admin/user-card', ['id' => $key->user_id])}}">{{$key->user->full_name}}</a>
+                                             </td>
+                                            <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
+                                            <td>{{$key->key_validity_time}}</td>
+                                            <td>
+                                                @if($key->status == 0 && $key->is_frozen == 0)
+                                                    <div class="badge badge-danger">не активен</div>
+                                                @elseif($key->status == 1 && $key->is_frozen == 0)
+                                                    <div class="badge badge-success">активен</div>
+                                                @elseif($key->is_frozen == 1)
+                                                    <div class="badge badge-info">заморожен</div>
                                                 @endif
-                                               @if($key->status == 0)
-                                               href="{{url('/admin/activate-key/' . $key->id)}}"
-                                               @else
-                                               href="{{url('/admin/deactivate-key/' . $key->id)}}"
-                                               @endif
-                                               role="button">
-                                                <span class="fa fa-power-off"></span>
-                                            </a>
-                                            <a class="mb-2 mr-2 btn btn-danger"
-                                               href="{{url('/admin/delete-key/' . $key->id)}}"
-                                               role="button">
-                                                <span class="fa fa-trash"></span>
-                                            </a>
-                                            <a class="mb-2 mr-2 btn btn-success"
-                                               href="{{url('/admin/long-key/' . $key->id)}}"
-                                               role="button">
-                                                <span class="fa fa-calendar-plus"></span>
-                                            </a>
-                                        </td>
+                                            </td>
+                                            <td nowrap>
+                                                <a class="mr-2 btn btn-info"
+                                                   @if($key->is_frozen == 1)
+                                                   href="{{url('/admin/unfreeze-key/' . $key->id)}}"
+                                                   @else
+                                                   href="{{url('/admin/freeze-key/' . $key->id)}}"
+                                                   @endif
+                                                   role="button">
+                                                    <span
+                                                        @if($key->is_frozen == 1)
+                                                        class="fa fa-pause"
+                                                        @else
+                                                        class="fa fa-play"
+                                                        @endif
+                                                    ></span>
+                                                </a>
+                                                <a
+                                                    @if($key->status == 1)
+                                                    class="mr-2 btn btn-success"
+                                                    @else
+                                                    class="mr-2 btn btn-danger"
+                                                    @endif
+                                                   @if($key->status == 0)
+                                                   href="{{url('/admin/activate-key/' . $key->id)}}"
+                                                   @else
+                                                   href="{{url('/admin/deactivate-key/' . $key->id)}}"
+                                                   @endif
+                                                   role="button">
+                                                    <span class="fa fa-power-off"></span>
+                                                </a>
+                                                <a class="mr-2 btn btn-danger"
+                                                   href="{{url('/admin/delete-key/' . $key->id)}}"
+                                                   role="button">
+                                                    <span class="fa fa-trash"></span>
+                                                </a>
+                                                <a class="mr-2 btn btn-success"
+                                                   href="{{url('/admin/long-key/' . $key->id)}}"
+                                                   role="button">
+                                                    <span class="fa fa-calendar-plus"></span>
+                                                </a>
+                                            </td>
 
-                                    </tr>
-                                @endforeach
+                                        </tr>
+                                    @endforeach
 
-                                </tbody>
-                            </table>
-
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="widget-chart p-3">
                             {{ $keys->links() }}

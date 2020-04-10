@@ -28,72 +28,72 @@
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
-                        <div class="widget-chart p-3">
-                            <h5 class="card-title">Список пользователей</h5><br/>
-                            <table class="mb-0 table table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>ФИО</th>
-                                    <th>Email</th>
-                                    <th>Потрачено денег, ₽</th>
-                                    <th>Ключей</th>
-                                    <th>Статус</th>
-                                    <th></th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($users as $user)
-                                    <tr>
-                                        <th scope="row">{{$user->id}}</th>
-                                        <td>
-                                            <a class="mb-2 mr-2 "
-                                               href="{{url('/admin/user-card', ['id' => $user->id])}}">{{$user->full_name}}
-                                            </a>
+                        <div class="p-3">
+                            <h5 class="card-title text-center">Список пользователей</h5>
+                            <div class="table-responsive">
+                                <table class="mb-0 table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>ФИО</th>
+                                            <th>Email</th>
+                                            <th>Потрачено денег, ₽</th>
+                                            <th>Ключей</th>
+                                            <th>Статус</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <th scope="row">{{$user->id}}</th>
+                                            <td>
+                                                <a href="{{url('/admin/user-card', ['id' => $user->id])}}">{{$user->full_name}}</a>
                                             </td>
-                                        <td>{{$user->email}}</td>
-                                        <td>{{$user->sum}}</td>
-                                        <td>{{$user->keys_count}}</td>
-                                        <td>
-                                            @if($user->account_status == 0)
-                                                <div class="mb-2 mr-2 badge badge-danger">не активен</div>
-                                            @else
-                                                <div class="mb-2 mr-2 badge badge-success">активен</div>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            <a class="mb-2 mr-2 btn btn-primary"
-                                               @if($user->account_status == 1)
-                                                    href="{{url('/admin/login-as', ['id' => $user->id])}}"
-                                               @else
-                                                   href="#"
-                                               @endif
-                                            ><span
-                                                    class="fa fa-arrow-right"></span>
-                                            </a>
-                                            <a class="mb-2 mr-2 btn btn-info" role="button"
-                                               href="{{url('/admin/user-card', ['id' => $user->id])}}"><span
-                                                    class="pe-7s-look"></span>
-                                            </a>
-                                            <a class="mb-2 mr-2 btn
+                                            <td>{{$user->email}}</td>
+                                            <td>{{$user->sum}}</td>
+                                            <td>{{$user->keys_count}}</td>
+                                            <td>
                                                 @if($user->account_status == 0)
-                                                    btn-danger
+                                                    <div class="badge badge-danger">не активен</div>
                                                 @else
-                                                    btn-success
+                                                    <div class="badge badge-success">активен</div>
                                                 @endif
-                                                "
-                                               href="{{url('/admin/change-status', ['id' => $user->id])}}"
-                                               role="button"
-                                            ><i class="fa fa-power-off"></i>
-                                            </a>
-                                        </td>
+                                            </td>
+                                            <td nowrap>
+                                                <a class="mr-2 btn btn-primary"
+                                                   @if($user->account_status == 1)
+                                                        href="{{url('/admin/login-as', ['id' => $user->id])}}"
+                                                   @else
+                                                        href="#"
+                                                   @endif
+                                                >
+                                                	<i class="fa fa-arrow-right"></i>
+                                                </a>
+                                                <a class="mr-2 btn btn-info" role="button"
+                                                   href="{{url('/admin/user-card', ['id' => $user->id])}}"
+                                                >
+                                                	<i class="fa fa-eye"></i>
+                                                </a>
+                                                <a class="mr-2 btn
+                                                    @if($user->account_status == 0)
+                                                        btn-danger
+                                                    @else
+                                                        btn-success
+                                                    @endif
+                                                    "
+                                                   href="{{url('/admin/change-status', ['id' => $user->id])}}"
+                                                   role="button"
+                                                >
+                                                	<i class="fa fa-power-off"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
 
-                                    </tr>
-                                @endforeach
-
-                                </tbody>
-                            </table>
-
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                         <div class="widget-chart p-3">
                             {{ $users->links() }}

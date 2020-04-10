@@ -65,12 +65,8 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-
-        </div>
-
-        <div class="col-md-4 col-sm-6">
+    <div class="row justify-content-end">
+        <div class="col-sm-auto">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -78,20 +74,30 @@
                     </div>
                 </div>
                 <input type="text" class="form-control" name="daterange-centered"/>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-danger">
+                        <i class="fa fa-times"></i>
+                    </button>
+                </div>
             </div>
         </div>
-
     </div>
     <br/>
     <div class="row">
         <div class="col-md-12 col-lg-6">
             <div class="mb-3 card">
+                <div class=" card-header">
+                    <i class="header-icon lnr-chart-bars icon-gradient bg-ripe-malin"></i>
+                    <div class="card-header-title">График продаж</div>
+                </div>
 
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
                         <div class="widget-chart p-3">
-                            <canvas id="myChart"></canvas>
+                            <div class="chart-container" style="height: 300px;">
+                                <canvas id="myChart"></canvas>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -101,16 +107,14 @@
         <div class="col-md-12 col-lg-6">
             <div class="mb-3 card">
                 <div class=" card-header">
-                    <div class="card-header-title">
-                        <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"> </i>
-                        ТОП ПОЛЬЗОВАТЕЛИ
-                    </div>
+                    <i class="header-icon lnr-rocket icon-gradient bg-tempting-azure"></i>
+                    <div class="card-header-title">Топ пользователи</div>
                 </div>
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="tab-eg-55">
 
-                        <div class="widget-chart p-3">
-                            <div class="scroll-area-sm">
+                        <div class="p-3">
+                            <div class="scroll-area-md">
                                 <div class="scrollbar-container">
                                     <ul class="rm-list-borders rm-list-borders-scroll list-group list-group-flush">
                                         @foreach($topUsers as $topUser)
@@ -119,19 +123,16 @@
                                                     <div class="widget-content-wrapper">
                                                         <div class="widget-content-left mr-3">
                                                             <img width="42" class="rounded-circle"
-                                                                 src="/uploads/{{$topUser->avatar}}" alt="">
-
+                                                                 src="/uploads/{{$topUser->avatar}}" alt="img">
                                                         </div>
                                                         <div class="widget-content-left">
-                                                            <div
-                                                                class="widget-heading">{{$topUser->name}} {{$topUser->surname}}</div>
+                                                            <div class="widget-heading">{{$topUser->name}} {{$topUser->surname}}</div>
                                                             <div class="widget-subheading">{{$topUser->email}}</div>
                                                         </div>
                                                         <div class="widget-content-right">
                                                             <div class="font-size-xlg text-muted">
                                                                 <small class="opacity-5 pr-1">₽</small>
                                                                 <span>{{$topUser->tsum}}</span>
-
                                                             </div>
                                                         </div>
                                                     </div>
@@ -190,6 +191,7 @@
                 }]
             },
             options: {
+                maintainAspectRatio: false,
                 scales: {
                     yAxes: [{
                         ticks: {
