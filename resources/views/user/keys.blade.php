@@ -94,7 +94,7 @@
                                             <a class="mb-2 mr-2 btn btn-primary key-edit"
                                                href="" data-id="{{$key->id}}"
                                                role="button">
-                                                <span class="fa fa-edit"></span>
+                                                <span class="fa fa-edit" data-id="{{$key->id}}"></span>
                                             </a>
                                             <a class="mb-2 mr-2 btn btn-info"
                                                @if($key->is_frozen == 1)
@@ -135,8 +135,12 @@
         </div>
 
     </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+
+
+@endsection
+
+@section('local-script')
     <script>
         $(document).ready(function () {
             $(".key-edit").click(function (e) {
@@ -146,7 +150,6 @@
             });
         });
     </script>
-
 @endsection
 
 @section('modal')

@@ -64,7 +64,7 @@
         <div class="app-header__content">
             <div class="app-header-left flex-fill">
                 <div class="header-user-info mx-auto d-block d-lg-none">
-                    <div class="widget-heading" 
+                    <div class="widget-heading"
                          style="color: rgba(255,255,255,0.8);
                                 opacity: .8;
                                 font-weight: bold;

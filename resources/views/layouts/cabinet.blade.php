@@ -63,7 +63,7 @@
         <div class="app-header__content">
             <div class="app-header-left flex-fill">
                 <div class="header-user-info mx-auto d-block d-lg-none">
-                    <div class="widget-heading" 
+                    <div class="widget-heading"
                          style="color: rgba(255,255,255,0.8);
                                 opacity: .8;
                                 font-weight: bold;
@@ -218,9 +218,11 @@
   src="https://code.jquery.com/jquery-3.4.1.min.js"
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
   crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/assets/scripts/main.js"></script>
 <script type="text/javascript" src="/assets/scripts/custom.js"></script>
 
+@yield('local-script')
 @yield('modal')
 </body>
 </html>
