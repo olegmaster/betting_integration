@@ -10,8 +10,8 @@
                     <i class="fa fa-info ">
                     </i>
                 </div>
-                <div>{{\Illuminate\Support\Facades\Auth::user()->full_name}}
-                    <div class="page-title-subheading">Информация о пользователе
+                <div>Помощь
+                    <div class="page-title-subheading">Информация о системе
                     </div>
                 </div>
             </div>
