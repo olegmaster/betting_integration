@@ -5,6 +5,8 @@ $(document).on('click', '.applyBtn', function () {
 
     let fromDate = dtAr[0];
     let toDate = dtAr[1];
+    localStorage.setItem('fromDate', fromDate);
+    localStorage.setItem('toDate', toDate);
 
     if (fromDate !== '' || toDate !== '') {
         let url = window.location.href;
