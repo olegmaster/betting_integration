@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-md-6 col-xl-3">
             <div class="card mb-3 widget-content bg-premium-dark">
-                <div class="widget-content-wrapper text-white">
+                <div class="widget-content-wrapper text-white flex-wrap">
                     <div class="widget-content-left">
                         <div class="widget-heading">Общая прибыль</div>
 
@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-6 col-xl-3">
             <div class="card mb-3 widget-content bg-night-fade">
-                <div class="widget-content-wrapper text-white">
+                <div class="widget-content-wrapper text-white flex-wrap">
                     <div class="widget-content-left">
                         <div class="widget-heading">Прибыль за период</div>
                     </div>
