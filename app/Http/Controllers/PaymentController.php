@@ -6,6 +6,7 @@ use App\Scopes\PaidTransactionScope;
 use App\UserKey;
 use App\UserTransaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 
 class PaymentController extends Controller
@@ -15,6 +16,8 @@ class PaymentController extends Controller
     {
         $data = $request->json()->all();
 
+        Log::emergency(json_encode($data));
+
         if (isset($data['bill']['status']) && $data['bill']['status']['value'] == "PAID" && isset($data['bill']['billId'])) {
 
             $billId = $data['bill']['billId'];
@@ -23,6 +26,10 @@ class PaymentController extends Controller
                 ->where('bill_id', $billId)
                 ->where('status', 0)
                 ->first();
+
+            if (!$transaction) {
+                return "error";
+            }
 
             $transaction->status = 1;
             $transaction->save();
