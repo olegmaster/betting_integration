@@ -11,9 +11,9 @@ class UserKey extends Model
 {
     const weekSecondsCount = 604800;
     const maxFreezeUserCount = 3;
-    const priceOne = 2600;
-    const priceTwo = 2300;
-    const priceThree = 2000;
+    const priceOne = 1;
+    const priceTwo = 2;
+    const priceThree = 3;
 
     public function user()
     {

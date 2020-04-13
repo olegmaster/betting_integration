@@ -231,8 +231,8 @@ return [
     ],
 
     'telegram_bot_api_key' => '974415979:AAGbcbH3T_Q7yxcZh63KYCGd-9xyyobjTxw',
-    'qiwi_public_key' => '?',
-    'qiwi_secret_key' => '?',
+    'qiwi_public_key' => '48e7qUxn9T7RyYE1MVZswX1FRSbE6iyCj2gCRwwF3Dnh5XrasNTx3BGPiMsyXQFNKQhvukniQG8RTVhYm3iP3eXHQAriZ1vm98XRAFN2LZ45N4qjGfzY3PmFpaB9XPrkT4eYpwSWUKD6Grq5YzjzY6CWyhwKWHZYBJySVhDsZuRsp4f43yCcHnJrshUpX',
+    'qiwi_secret_key' => 'eyJ2ZXJzaW9uIjoiUDJQIiwiZGF0YSI6eyJwYXlpbl9tZXJjaGFudF9zaXRlX3VpZCI6IjBkYjNmOS0wMCIsInVzZXJfaWQiOiI3OTYxMTc4MDEzMiIsInNlY3JldCI6ImNhY2RmODdmZDkwZjc0ZTk3NzA5ZGE1ZTgwNzM5ODdiYjk2OWM4YzE3ZjAwYWM5YjIxMGJkMTdkY2U2YjZmMjIifX0=',
 
     'bot_firebird_db' => '176.58.60.146:C:\Bases\SportBot\storage.fdb',
     'bot_db_username' => 'SYSDBA',
