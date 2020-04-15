@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 class UserKey extends Model
 {
     const weekSecondsCount = 604800;
-    const maxFreezeUserCount = 3;
+    const maxFreezeUserCount = 1;
     const priceOne = 1;
     const priceTwo = 2;
     const priceThree = 3;
@@ -146,6 +146,7 @@ class UserKey extends Model
     {
         $key = UserKey::find($keyId);
         $key->status = 1;
+        $key->freeze_time = 0;
 
         $endDate = $key->end_date;
         if ($endDate < time()) {

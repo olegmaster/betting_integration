@@ -96,7 +96,7 @@
                                                role="button">
                                                 <span class="fa fa-edit" data-id="{{$key->id}}"></span>
                                             </a>
-                                            @if($key->freeze_times < \App\UserKey::maxFreezeUserCount )
+                                            @if($key->freeze_times < \App\UserKey::maxFreezeUserCount && $key->is_frozen === 0 )
                                             <a class="mb-2 mr-2 btn btn-info"
                                                @if($key->is_frozen == 1)
                                                href="{{url('/unfreeze-key/' . $key->id)}}"
@@ -112,6 +112,23 @@
                                                     @endif
                                                 ></span>
                                             </a>
+                                            @endif
+                                            @if($key->is_frozen === 1 )
+                                                <a class="mb-2 mr-2 btn btn-info"
+                                                   @if($key->is_frozen == 1)
+                                                   href="{{url('/unfreeze-key/' . $key->id)}}"
+                                                   @else
+                                                   href="{{url('/freeze-key/' . $key->id)}}"
+                                                   @endif
+                                                   role="button">
+                                                <span
+                                                    @if($key->is_frozen == 1)
+                                                    class="fa fa-pause"
+                                                    @else
+                                                    class="fa fa-play"
+                                                    @endif
+                                                ></span>
+                                                </a>
                                             @endif
                                             <a class="mb-2 mr-2 btn btn-success"
                                                href="{{url('/long-key/' . $key->id)}}"

@@ -28,6 +28,9 @@ class UserController extends Controller
     public function keys()
     {
 
+        if(Auth::user()->id == 1){
+            return redirect('/admin');
+        }
         $keys = Auth::user()->keys()->paginate(10);
 
         $keysActiveCount = Auth::user()->keys()->active()->count();
