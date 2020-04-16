@@ -14,7 +14,8 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334), 0, " ", " ")}}₽</span></div>
+                        <div class="widget-numbers text-warning"><span>{{number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334), 0, " ", " ")}}₽</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -26,7 +27,8 @@
                         <div class="widget-heading">Прибыль за период</div>
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span>{{number_format($sumInPeriod, 0, " ", " ")}}₽</span></div>
+                        <div class="widget-numbers text-white">
+                            <span>{{number_format($sumInPeriod, 0, " ", " ")}}₽</span></div>
                     </div>
                 </div>
             </div>
@@ -61,14 +63,14 @@
                             <div class="table-responsive">
                                 <table class="mb-0 table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>ФИО</th>
-                                            <th>Email</th>
-                                            <th>Ключей</th>
-                                            <th>Сумма, ₽</th>
-                                            <th>Дата создания</th>
-                                        </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ФИО</th>
+                                        <th>Email</th>
+                                        <th>Ключей</th>
+                                        <th>Сумма, ₽</th>
+                                        <th>Дата создания</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($transactions as $transaction)
@@ -76,7 +78,7 @@
                                             <th scope="row">{{$transaction->id}}</th>
                                             <td>
                                                 <a href="{{url('/admin/user-card', ['id' => $transaction->user_id])}}">{{$transaction->user->full_name}}</a>
-                                                </td>
+                                            </td>
                                             <td>{{$transaction->user->email}}</td>
                                             <td>{{$transaction->keys_count}}</td>
                                             <td>{{$transaction->sum}}</td>
@@ -98,8 +100,14 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/js/dp-ru.js"></script>
-    <script src="/js/summary/index.js"></script>
+
+
 @endsection
+@section('local-script')
+    <script src="/js/jquery.cookie.js"></script>
+    <script src="/js/summary/index.js"></script>
+    <script>
+        $('.dfd').daterangepicker();
+    </script>
+@endsection
+

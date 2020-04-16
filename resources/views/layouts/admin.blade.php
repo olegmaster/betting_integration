@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="/main.css" rel="stylesheet">
     <link href="/custom.css" rel="stylesheet">
-    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />
+{{--    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/smoothness/jquery-ui.min.css" />--}}
 </head>
 <body>
 <div class="app-container app-theme-white body-tabs-shadow fixed-sidebar fixed-header">
@@ -229,7 +229,7 @@
             </div>
 
         </div>
-        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>
+{{--        <script src="http://maps.google.com/maps/api/js?sensor=true"></script>--}}
     </div>
 </div>
 <script
@@ -238,6 +238,6 @@
   crossorigin="anonymous"></script>
 <script type="text/javascript" src="/assets/scripts/main.js"></script>
 <script type="text/javascript" src="/assets/scripts/custom.js"></script>
-
+@yield('local-script')
 </body>
 </html>

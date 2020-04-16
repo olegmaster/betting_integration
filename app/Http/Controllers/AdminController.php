@@ -10,6 +10,7 @@ use App\Help;
 use App\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -74,11 +75,23 @@ class AdminController extends Controller
 
     public function transactions(Request $request)
     {
-        $transactions = UserTransaction::paginate(10);
+        $dateFrom = $request['from_date'] ?? date('Y-m-d') . ' 00:00:00';
+        $dateTo = $request['to_date'] ?? date('Y-m-d') . ' 23:59:59';
+
+        $transactions = UserTransaction::whereDate('created_at',  '>=', date('Y-m-d', strtotime($dateFrom)) . ' 00:00:00' )
+            ->whereDate('created_at', '<=', date('Y-m-d', strtotime($dateTo)) . ' 23:59:00')
+            ->paginate(10);
+
+        $transactions->appends([
+            'from_date' => $dateFrom,
+            'to_date' => $dateTo
+            ]);
+
+
+       // $transactions = UserTransaction::paginate(10);
         $totalTransactions = UserTransaction::all()->count();
         // calculate $sumInPeriod
-        $dateFrom = $request['from_date'] ?? '';
-        $dateTo = $request['to_date'] ?? '';
+
 
         $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
 
