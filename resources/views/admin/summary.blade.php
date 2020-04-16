@@ -32,7 +32,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-white"><span> <?php echo number_format($sumInPeriod, 0," ", " "); ?>&nbsp; ₽</span></div>
+                        <div class="widget-numbers text-white"><span> <?php echo number_format($sumInPeriod, 0," ", " "); ?> ₽</span></div>
                     </div>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                                                         <div class="widget-content-right">
                                                             <div class="font-size-xlg text-muted">
                                                                 <small class="opacity-5 pr-1">₽</small>
-                                                                <span>{{$topUser->tsum}}</span>
+                                                                <span>{{number_format($topUser->tsum , 0," ", " ")}}</span>
                                                             </div>
                                                         </div>
                                                     </div>

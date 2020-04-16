@@ -14,7 +14,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334), 0, " ", " ")}}₽</span>
+                        <div class="widget-numbers text-warning"><span>{{number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334), 0, " ", " ")}} ₽</span>
                         </div>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                     </div>
                     <div class="widget-content-right">
                         <div class="widget-numbers text-white">
-                            <span>{{number_format($sumInPeriod, 0, " ", " ")}}₽</span></div>
+                            <span>{{number_format($sumInPeriod, 0, " ", " ")}} ₽</span></div>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                                             </td>
                                             <td>{{$transaction->user->email}}</td>
                                             <td>{{$transaction->keys_count}}</td>
-                                            <td>{{$transaction->sum}}</td>
+                                            <td>{{number_format($transaction->sum, 0," ", " ")}}</td>
                                             <td>{{date('H:i d/m/Y', strtotime($transaction->created_at))}}</td>
                                         </tr>
                                     @endforeach

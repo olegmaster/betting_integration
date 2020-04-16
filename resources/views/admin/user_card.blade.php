@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Session;
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334, $user['id'])}}₽</span>
+                        <div class="widget-numbers text-warning"><span>{{ number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334, $user['id']), 0," ", " ") }} ₽</span>
                         </div>
                     </div>
                 </div>
@@ -325,7 +325,7 @@ use Illuminate\Support\Facades\Session;
                                             <td>{{$transaction->user->full_name}}</td>
                                             <td>{{$transaction->user->email}}</td>
                                             <td>{{$transaction->keys_count}}</td>
-                                            <td>{{$transaction->sum}}</td>
+                                            <td>{{ number_format($transaction->sum, 0," ", " ")}}</td>
                                             <td>{{date('H:i d/m/Y', strtotime($transaction->created_at))}}</td>
                                         </tr>
                                     @endforeach

@@ -51,7 +51,7 @@
                                                 <a href="{{url('/admin/user-card', ['id' => $user->id])}}">{{$user->full_name}}</a>
                                             </td>
                                             <td>{{$user->email}}</td>
-                                            <td>{{$user->sum}}</td>
+                                            <td>{{number_format($user->sum, 0," ", " ")}}</td>
                                             <td>{{$user->keys_count}}</td>
                                             <td>
                                                 @if($user->account_status == 0)
