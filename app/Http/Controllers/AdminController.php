@@ -275,7 +275,9 @@ class AdminController extends Controller
         $validatedData = $request->validate([
             'name' => 'min:3',
             'surname' => 'min:3',
-            'email' => 'min:6'
+            'email' => 'min:6|email',
+            'phone' => 'min:3',
+            'telegram' => 'min:3'
         ]);
 
         $user = User::find($request['id']);
@@ -283,6 +285,8 @@ class AdminController extends Controller
         $user->name = $request['name'];
         $user->surname = $request['surname'];
         $user->email = $request['email'];
+        $user->phone = $request['phone'];
+        $user->telegram = $request['telegram'];
 
         if ($user->save()) {
             Session::flash('user_profile_updated', 'Изменения сохранены');

@@ -42,7 +42,8 @@ use Illuminate\Support\Facades\Session;
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334, $user['id'])}}₽</span></div>
+                        <div class="widget-numbers text-warning"><span>{{\App\UserTransaction::getSumInPeriod(0, 1945346334, $user['id'])}}₽</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -68,9 +69,15 @@ use Illuminate\Support\Facades\Session;
                 <div class="card-body">
                     <div class="btn-actions-pane-right">
                         <div class="nav nav-tabs" id="rowTab">
-                            <a data-toggle="tab" href="#tab-eg6-0" class="border-0 btn-transition btn btn-outline-primary active show" id="profile">Профиль</a>
-                            <a data-toggle="tab" href="#tab-eg6-1" class="mr-1 ml-1 border-0 btn-transition btn btn-outline-primary show" id="keys">Ключи</a>
-                            <a data-toggle="tab" href="#tab-eg6-2" class="border-0 btn-transition btn btn-outline-primary show" id="transactions">Транзакции</a>
+                            <a data-toggle="tab" href="#tab-eg6-0"
+                               class="border-0 btn-transition btn btn-outline-primary active show"
+                               id="profile">Профиль</a>
+                            <a data-toggle="tab" href="#tab-eg6-1"
+                               class="mr-1 ml-1 border-0 btn-transition btn btn-outline-primary show"
+                               id="keys">Ключи</a>
+                            <a data-toggle="tab" href="#tab-eg6-2"
+                               class="border-0 btn-transition btn btn-outline-primary show"
+                               id="transactions">Транзакции</a>
                         </div>
                     </div>
                     <div class="tab-content">
@@ -80,14 +87,16 @@ use Illuminate\Support\Facades\Session;
                                     <div class="col-md-12 col-lg-12">
                                         <div class="main-card mb-3 card">
                                             <div class="card-body"><h5 class="card-title">Персональная информация</h5>
-                                                <form class="" method="POST" action="{{url('/admin/update-user-profile', ['id' => $user['id']])}}">
+                                                <form class="" method="POST"
+                                                      action="{{url('/admin/update-user-profile', ['id' => $user['id']])}}">
                                                     @csrf
                                                     @if(Session::has('user_profile_updated'))
                                                         <p class="alert alert-success">{{ Session::get('user_profile_updated') }}</p>
                                                     @endif
                                                     <div class="position-relative form-group">
                                                         <label for="name" class="">Имя</label>
-                                                        <input name="name" id="name" placeholder="Имя" type="text" class="form-control"
+                                                        <input name="name" id="name" placeholder="Имя" type="text"
+                                                               class="form-control"
                                                                value="{{$user['name']}}">
                                                     </div>
                                                     @if ($errors->first('name'))
@@ -97,7 +106,8 @@ use Illuminate\Support\Facades\Session;
                                                     @endif
                                                     <div class="position-relative form-group">
                                                         <label for="surname" class="">Фамилия</label>
-                                                        <input name="surname" id="surname" placeholder="Фамилия" type="text" class="form-control"
+                                                        <input name="surname" id="surname" placeholder="Фамилия"
+                                                               type="text" class="form-control"
                                                                value="{{$user['surname']}}">
                                                     </div>
                                                     @if ($errors->first('surname'))
@@ -107,7 +117,8 @@ use Illuminate\Support\Facades\Session;
                                                     @endif
                                                     <div class="position-relative form-group">
                                                         <label for="email" class="">Email (login)</label>
-                                                        <input name="email" id="email" placeholder="Email (login)" type="text" class="form-control"
+                                                        <input name="email" id="email" placeholder="Email (login)"
+                                                               type="text" class="form-control"
                                                                value="{{$user['email']}}">
                                                     </div>
                                                     @if ($errors->first('email'))
@@ -115,8 +126,30 @@ use Illuminate\Support\Facades\Session;
                                                             {{ $errors->first('email') }}
                                                         </div>
                                                     @endif
+                                                    <div class="position-relative form-group">
+                                                        <label for="phone" class="">Телефон</label>
+                                                        <input name="phone" id="phone" placeholder="" type="text"
+                                                               class="form-control"
+                                                               value="{{$user['phone']}}">
+                                                    </div>
+                                                    @if ($errors->first('phone'))
+                                                        <div class="alert alert-danger">
+                                                            {{ $errors->first('phone') }}
+                                                        </div>
+                                                    @endif
+                                                    <div class="position-relative form-group">
+                                                        <label for="telegram" class="">Telegram</label>
+                                                        <input name="telegram" id="telegram" placeholder="" type="text" class="form-control"
+                                                               value="{{$user['telegram']}}">
+                                                    </div>
+                                                    @if ($errors->first('telegram'))
+                                                        <div class="alert alert-danger">
+                                                            {{ $errors->first('telegram') }}
+                                                        </div>
+                                                    @endif
                                                     <button class="mt-1 btn btn-success">Сохранить</button>
-                                                </form></div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -124,16 +157,19 @@ use Illuminate\Support\Facades\Session;
                                     <div class="col-md-12 col-lg-12">
                                         <div class="main-card mb-3 card">
                                             <div class="card-body"><h5 class="card-title">Сменить Пароль</h5>
-                                                <form class="" method="POST" action="{{url('/admin/update-user-password', ['id' => $user['id']])}}">
+                                                <form class="" method="POST"
+                                                      action="{{url('/admin/update-user-password', ['id' => $user['id']])}}">
                                                     @csrf
                                                     @if(Session::has('user_password_updated'))
                                                         <p class="alert alert-success">{{ Session::get('user_password_updated') }}</p>
                                                     @endif
                                                     <div class="input-group mb-3 wrapperPassword">
-                                                        <input name="password" id="login" placeholder="Новый пароль" type="password"
+                                                        <input name="password" id="login" placeholder="Новый пароль"
+                                                               type="password"
                                                                class="form-control">
                                                         <div class="input-group-append">
-                                                            <button type="button" class="btn btn-light toggleViewPassword">
+                                                            <button type="button"
+                                                                    class="btn btn-light toggleViewPassword">
                                                                 <i class="fa fa-eye"></i>
                                                             </button>
                                                         </div>
@@ -144,10 +180,12 @@ use Illuminate\Support\Facades\Session;
                                                         </div>
                                                     @endif
                                                     <div class="input-group mb-3 wrapperPassword">
-                                                        <input name="repeat-password" id="login" placeholder="Повторите пароль" type="password"
+                                                        <input name="repeat-password" id="login"
+                                                               placeholder="Повторите пароль" type="password"
                                                                class="form-control">
                                                         <div class="input-group-append">
-                                                            <button type="button" class="btn btn-light toggleViewPassword">
+                                                            <button type="button"
+                                                                    class="btn btn-light toggleViewPassword">
                                                                 <i class="fa fa-eye"></i>
                                                             </button>
                                                         </div>
@@ -170,16 +208,16 @@ use Illuminate\Support\Facades\Session;
                             <div class="table-responsive">
                                 <table class="mb-0 table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>Логин</th>
-                                            <th>Пароль</th>
-                                            <th>Пользователь</th>
-                                            <th>Дата окончания</th>
-                                            <th>Статус актуален еще</th>
-                                            <th>Статус</th>
-                                            <th></th>
-                                        </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Логин</th>
+                                        <th>Пароль</th>
+                                        <th>Пользователь</th>
+                                        <th>Дата окончания</th>
+                                        <th>Статус актуален еще</th>
+                                        <th>Статус</th>
+                                        <th></th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($keys as $key)
@@ -271,14 +309,14 @@ use Illuminate\Support\Facades\Session;
                             <div class="table-responsive">
                                 <table class="mb-0 table table-striped">
                                     <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>ФИО</th>
-                                            <th>Email</th>
-                                            <th>Ключей</th>
-                                            <th>Сумма, ₽</th>
-                                            <th>Дата создания</th>
-                                        </tr>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>ФИО</th>
+                                        <th>Email</th>
+                                        <th>Ключей</th>
+                                        <th>Сумма, ₽</th>
+                                        <th>Дата создания</th>
+                                    </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($transactions as $transaction)
