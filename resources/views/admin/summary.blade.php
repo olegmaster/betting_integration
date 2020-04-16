@@ -148,9 +148,10 @@
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/js/dp-ru.js"></script>
+    <input type="hidden" id="dateFromOld" value="{{$dateFrom}}">
+    <input type="hidden" id="dateToOld" value="{{$dateTo}}">
+@section('local-script')
+
     <script src="/js/summary/index.js"></script>
     <script src="/chartjs/js/Chart.js"></script>
     <link rel="stylesheet" href="/chartjs/css/Chart.css">
@@ -202,4 +203,6 @@
             }
         });
     </script>
+@endsection
+
 @endsection

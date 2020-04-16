@@ -342,10 +342,14 @@ use Illuminate\Support\Facades\Session;
             </div>
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <input type="hidden" id="dateFromOld" value="{{$dateFrom}}">
+    <input type="hidden" id="dateToOld" value="{{$dateTo}}">
+    @endsection
+@section('local-script')
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="/js/tab-state.js"></script>
-    <script src="/js/dp-ru.js"></script>
+
     <script src="/js/summary/index.js"></script>
 @endsection
+
+

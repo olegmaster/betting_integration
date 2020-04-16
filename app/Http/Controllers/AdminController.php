@@ -48,7 +48,9 @@ class AdminController extends Controller
                 'totalUsers' => $totalUsers,
                 'totalKeys' => $totalKeys,
                 'sumInPeriod' => $sumInPeriod,
-                'sumInDays' => $sumInDays
+                'sumInDays' => $sumInDays,
+                'dateFrom' => $dateFrom,
+                'dateTo' => $dateTo
             ]
         );
     }
@@ -87,18 +89,18 @@ class AdminController extends Controller
             'to_date' => $dateTo
             ]);
 
-
        // $transactions = UserTransaction::paginate(10);
         $totalTransactions = UserTransaction::all()->count();
         // calculate $sumInPeriod
-
 
         $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
 
         return view('admin.transactions', [
             'transactions' => $transactions,
             'totalTransactions' => $totalTransactions,
-            'sumInPeriod' => $sumInPeriod
+            'sumInPeriod' => $sumInPeriod,
+            'dateFrom' => $dateFrom,
+            'dateTo' => $dateTo
         ]);
     }
 
@@ -265,7 +267,9 @@ class AdminController extends Controller
             [
                 'user' => $user,
                 'keys' => $keys,
-                'transactions' => $transactions
+                'transactions' => $transactions,
+                'dateFrom' => $dateFrom,
+                'dateTo' => $dateTo
             ]
         );
     }

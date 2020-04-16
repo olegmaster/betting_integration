@@ -10,8 +10,6 @@ $(document).on('click', '.applyBtn', function () {
 
     if (fromDate !== '' || toDate !== '') {
         let url = window.location.href;
-        $.cookie('from_date', fromDate);
-        $.cookie('to_date', toDate);
         url = updateURLParameter(url, 'from_date', fromDate);
         url = updateURLParameter(url, 'to_date', toDate);
         window.location.href = url;

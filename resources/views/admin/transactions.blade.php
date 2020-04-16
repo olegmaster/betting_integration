@@ -93,7 +93,8 @@
                         <div class="widget-chart p-3">
                             {{ $transactions->links() }}
                         </div>
-
+                        <input type="hidden" id="dateFromOld" value="{{$dateFrom}}">
+                        <input type="hidden" id="dateToOld" value="{{$dateTo}}">
                     </div>
                 </div>
 
