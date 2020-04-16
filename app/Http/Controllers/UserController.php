@@ -179,9 +179,11 @@ class UserController extends Controller
     public function profileUpdate(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'min:3',
-            'surname' => 'min:3',
-            'email' => 'min:6'
+            'name' => 'min:3|required',
+            'surname' => 'min:3|required',
+            'email' => 'email|min:6|required',
+            'phone' => 'required',
+            'telegram' => 'required'
         ]);
 
         Auth::user()->name = $request['name'];

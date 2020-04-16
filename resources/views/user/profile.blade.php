@@ -57,9 +57,9 @@
                             <input name="phone" id="phone" placeholder="" type="text" class="form-control"
                                    value="{{$userData['phone']}}">
                         </div>
-                        @if ($errors->first('email'))
+                        @if ($errors->first('phone'))
                             <div class="alert alert-danger">
-                                {{ $errors->first('email') }}
+                                {{ $errors->first('phone') }}
                             </div>
                         @endif
                         <div class="position-relative form-group">
@@ -77,9 +77,9 @@
                             <input name="telegram" id="telegram" placeholder="" type="text" class="form-control"
                                    value="{{$userData['telegram']}}">
                         </div>
-                        @if ($errors->first('email'))
+                        @if ($errors->first('telegram'))
                             <div class="alert alert-danger">
-                                {{ $errors->first('email') }}
+                                {{ $errors->first('telegram') }}
                             </div>
                         @endif
                         <button class="mt-1 btn btn-success">Сохранить</button>
