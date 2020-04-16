@@ -9,7 +9,7 @@
         <div class="page-title-wrapper">
             <div class="page-title-heading">
                 <div class="page-title-icon">
-                    <i class="pe-7s-photo-gallery">
+                    <i class="pe-7s-credit">
                     </i>
                 </div>
                 <div>Купить ключ
