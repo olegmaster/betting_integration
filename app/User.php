@@ -113,9 +113,33 @@ class User extends Authenticatable
 
     public function getAvatarPngAttribute()
     {
-        if($this->avatar == 'default.jpg'){
+        if ($this->avatar == 'default.jpg') {
             return 'default.png';
         }
+    }
+
+    public static function getCurrentDayStart()
+    {
+        $dC2 = date('Y-m-d') . ' 00:00:00';
+        return $dC2;
+    }
+
+    public static function getCurrentDayEnd()
+    {
+        $dC1 = date('Y-m-d') . ' 23:59:00';
+        return $dC1;
+    }
+
+    public static function getCurrentYearStart()
+    {
+        $dA1 = date('Y') . '-01-01 00:00:00';
+        return $dA1;
+    }
+
+    public static function getTwoWeaksBegoreDateStart()
+    {
+        $tW = date('Y-m-d', time() - UserTransaction::daySecondsCount * 14) . ' 00:00:00';
+        return $tW;
     }
 
 }

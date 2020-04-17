@@ -32,9 +32,11 @@ class AdminController extends Controller
         $totalKeys = UserKey::all()->count();
         $topUsers = User::topUsers(5);
 
+
+
         // calculate $sumInPeriod
         $dateFrom = $request['from_date'] ?? date('m/d/Y', time()-UserKey::weekSecondsCount*2);
-        $dateTo = $request['to_date'] ?? '';
+        $dateTo = $request['to_date'] ?? date('m/d/Y');
 
 
         $sumInDays = $this->calculateSumInDays($dateFrom, $dateTo);
@@ -77,8 +79,8 @@ class AdminController extends Controller
 
     public function transactions(Request $request)
     {
-        $dateFrom = $request['from_date'] ?? date('Y-m-d') . ' 00:00:00';
-        $dateTo = $request['to_date'] ?? date('Y-m-d') . ' 23:59:59';
+        $dateFrom = $request['from_date'] ?? date('m/d/Y');
+        $dateTo = $request['to_date'] ?? date('m/d/Y');
 
         $transactions = UserTransaction::whereDate('created_at',  '>=', date('Y-m-d', strtotime($dateFrom)) . ' 00:00:00' )
             ->whereDate('created_at', '<=', date('Y-m-d', strtotime($dateTo)) . ' 23:59:00')
@@ -249,8 +251,9 @@ class AdminController extends Controller
         //print_r($user->keys()->toSql());die;
         $keys = $user->keys()->paginate(10);
 
-        $dateFrom = $request['from_date'] ?? '';
-        $dateTo = $request['to_date'] ?? '';
+        $dateFrom = $request['from_date'] ?? '01/01/' . date('Y');
+        $dateTo = $request['to_date'] ?? date('m/d/Y');
+
 
         $transactions = $user->transactions();
         if ($dateFrom) {
