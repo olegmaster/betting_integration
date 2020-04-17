@@ -124,7 +124,7 @@
                                     </div>
                                     @error('confirm')
                                     <span class="" role="alert">
-                                                    <strong>{{ $message }}</strong>
+                                                    <strong>вы должны принять условия использования</strong>
                                                 </span>
                                     @enderror
                                 </div>
