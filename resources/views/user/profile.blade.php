@@ -49,7 +49,7 @@
                         </div>
                         @if ($errors->first('surname'))
                             <div class="alert alert-danger">
-                                {{ $errors->first('surname') }}
+                                {{ str_replace('surname', 'Фамилия', $errors->first('surname')) }}
                             </div>
                         @endif
                         <div class="position-relative form-group">
@@ -141,7 +141,7 @@
                         </div>
                         @if ($errors->first('repeat-password'))
                             <div class="alert alert-danger">
-                                {{ $errors->first('repeat-password') }}
+                                Поле Пароль и Повторите пароль должны совпадать
                             </div>
                         @endif
 

@@ -42,7 +42,7 @@
                                            value="{{$telegram_id ?? ""}}"><br/>
                                     @if ($errors->first('count'))
                                         <div class="alert alert-danger">
-                                            {{ $errors->first('count') }}
+                                            {{ str_replace('count', 'количество ключей', $errors->first('count')) }}
                                         </div>
                                     @endif
                                 </div>
