@@ -75,7 +75,7 @@
                 </div>
                 <input type="text" class="form-control" name="daterange-centered"/>
                 <div class="input-group-append">
-                    <button type="button" class="btn btn-danger">
+                    <button type="button" class="btn btn-danger reset-button">
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
@@ -150,6 +150,7 @@
     </div>
     <input type="hidden" id="dateFromOld" value="{{$dateFrom}}">
     <input type="hidden" id="dateToOld" value="{{$dateTo}}">
+    <input type="hidden" id="reset" value="1">
 @section('local-script')
 
     <script src="/js/summary/index.js"></script>

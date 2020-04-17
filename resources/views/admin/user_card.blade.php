@@ -298,7 +298,7 @@ use Illuminate\Support\Facades\Session;
                                         </div>
                                         <input type="text" class="form-control" name="daterange-centered"/>
                                         <div class="input-group-append">
-                                            <button type="button" class="btn btn-danger">
+                                            <button type="button" class="btn btn-danger reset-button">
                                                 <i class="fa fa-times"></i>
                                             </button>
                                         </div>

@@ -12,13 +12,18 @@ $(document).on('click', '.applyBtn', function () {
         let url = window.location.href;
         url = updateURLParameter(url, 'from_date', fromDate);
         url = updateURLParameter(url, 'to_date', toDate);
+        url = updateURLParameter(url, 'reset', 0);
         window.location.href = url;
     }
 });
 
 $(document).ready(function () {
 
-
+    $('.reset-button').click(function () {
+        let url = window.location.href;
+        url = updateURLParameter(url, 'reset', 1);
+        window.location.href = url;
+    });
 
     $("#datepicker-from").val(getUrlParam('from_date'));
     $("#datepicker-to").val(getUrlParam('to_date'));

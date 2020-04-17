@@ -27,16 +27,19 @@ class AdminController extends Controller
 
     public function summary(Request $request)
     {
-
         $totalUsers = User::client()->count();
         $totalKeys = UserKey::all()->count();
         $topUsers = User::topUsers(5);
 
-
+        if ($request['reset'] != '0') {
+            unset($request['from_date']);
+            unset($request['to_date']);
+        }
 
         // calculate $sumInPeriod
-        $dateFrom = $request['from_date'] ?? date('m/d/Y', time()-UserKey::weekSecondsCount*2);
+        $dateFrom = $request['from_date'] ?? date('m/d/Y', time() - UserKey::weekSecondsCount * 2);
         $dateTo = $request['to_date'] ?? date('m/d/Y');
+        $reset = '';
 
 
         $sumInDays = $this->calculateSumInDays($dateFrom, $dateTo);
@@ -52,7 +55,8 @@ class AdminController extends Controller
                 'sumInPeriod' => $sumInPeriod,
                 'sumInDays' => $sumInDays,
                 'dateFrom' => $dateFrom,
-                'dateTo' => $dateTo
+                'dateTo' => $dateTo,
+                'reset' => $reset,
             ]
         );
     }
@@ -79,19 +83,24 @@ class AdminController extends Controller
 
     public function transactions(Request $request)
     {
+        if ($request['reset'] != '0') {
+            unset($request['from_date']);
+            unset($request['to_date']);
+        }
+
         $dateFrom = $request['from_date'] ?? date('m/d/Y');
         $dateTo = $request['to_date'] ?? date('m/d/Y');
 
-        $transactions = UserTransaction::whereDate('created_at',  '>=', date('Y-m-d', strtotime($dateFrom)) . ' 00:00:00' )
+        $transactions = UserTransaction::whereDate('created_at', '>=', date('Y-m-d', strtotime($dateFrom)) . ' 00:00:00')
             ->whereDate('created_at', '<=', date('Y-m-d', strtotime($dateTo)) . ' 23:59:00')
             ->paginate(10);
 
         $transactions->appends([
             'from_date' => $dateFrom,
             'to_date' => $dateTo
-            ]);
+        ]);
 
-       // $transactions = UserTransaction::paginate(10);
+        // $transactions = UserTransaction::paginate(10);
         $totalTransactions = UserTransaction::all()->count();
         // calculate $sumInPeriod
 
@@ -246,6 +255,12 @@ class AdminController extends Controller
 
     public function userCard(Request $request)
     {
+
+        if ($request['reset'] != '0') {
+            unset($request['from_date']);
+            unset($request['to_date']);
+        }
+
         $id = $request['id'];
         $user = User::find($id);
         //print_r($user->keys()->toSql());die;
