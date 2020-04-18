@@ -344,14 +344,24 @@ class AdminController extends Controller
         return redirect('/cabinet/keys');
     }
 
-    public function changeUserStatus($id)
+    public function changeUserStatusActivate($id)
     {
         $user = User::find($id);
-        if ($user->account_status == 0) {
-            $user->account_status = 1;
-        } elseif ($user->account_status == 1) {
-            $user->account_status = 0;
-        }
+
+        $user->account_status = 1;
+
+
+        $user->save();
+
+        return redirect()->back();
+    }
+
+    public function changeUserStatusDeactivate($id)
+    {
+        $user = User::find($id);
+
+        $user->account_status = 0;
+
 
         $user->save();
 

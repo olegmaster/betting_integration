@@ -63,7 +63,8 @@ Route::get('/admin/login', function () {
     return view('auth.admin-login');
 });
 
-Route::get('/admin/change-status/{id}', 'AdminController@changeUserStatus');
+Route::get('/admin/change-status-activate/{id}', 'AdminController@changeUserStatusActivate');
+Route::get('/admin/change-status-deactivate/{id}', 'AdminController@changeUserStatusDeactivate');
 
 
 
