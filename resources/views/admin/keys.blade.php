@@ -159,6 +159,7 @@
                                 </table>
                             </div>
                         </div>
+
                         <div class="widget-chart p-3">
                             {{ $keys->links() }}
                         </div>

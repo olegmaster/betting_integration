@@ -91,7 +91,7 @@
                             </div>
                         </div>
                         <div class="widget-chart p-3">
-                            {{ $transactions->links() }}
+                            {!!  str_replace('%2F', '/', $transactions->links()) !!}
                         </div>
                         <input type="hidden" id="dateFromOld" value="{{$dateFrom}}">
                         <input type="hidden" id="dateToOld" value="{{$dateTo}}">

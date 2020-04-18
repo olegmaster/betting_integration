@@ -83,21 +83,28 @@ class AdminController extends Controller
 
     public function transactions(Request $request)
     {
-        if ($request['reset'] != '0') {
+
+        //var_dump($request['reset']);die;
+        if ($request['reset'] === '1') {
             unset($request['from_date']);
             unset($request['to_date']);
+            $request['page'] = 1;
         }
 
         $dateFrom = $request['from_date'] ?? date('m/d/Y');
         $dateTo = $request['to_date'] ?? date('m/d/Y');
 
+       // var_dump($dateFrom);die;
+
         $transactions = UserTransaction::whereDate('created_at', '>=', date('Y-m-d', strtotime($dateFrom)) . ' 00:00:00')
             ->whereDate('created_at', '<=', date('Y-m-d', strtotime($dateTo)) . ' 23:59:00')
             ->paginate(10);
 
+
+        //http://osminogbet.local/admin/transaction-history?from_date=04%2F01%2F2020&to_date=04%2F25%2F2020&page=2
         $transactions->appends([
-            'from_date' => $dateFrom,
-            'to_date' => $dateTo
+            'from_date' => str_replace('%2F', '/', $dateFrom),
+            'to_date' => str_replace('%2F', '/', $dateTo)
         ]);
 
         // $transactions = UserTransaction::paginate(10);
