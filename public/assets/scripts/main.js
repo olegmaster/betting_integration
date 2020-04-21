@@ -7,7 +7,7 @@ if(fromDateEl !== null){
     }
 }
 
-let toDateEl = document.getElementById('toFromOld');
+let toDateEl = document.getElementById('dateToOld');
 if(toDateEl !== null){
     let toDate = toDateEl.value;
     if(toDate !== null){
