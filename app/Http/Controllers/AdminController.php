@@ -392,26 +392,36 @@ class AdminController extends Controller
 
     private function calculateSumInDays($from, $to)
     {
+        //echo $to;
         $result = [];
         $firstTransaction = UserTransaction::find(1);
         if (!$firstTransaction) {
             return [];
         }
         if ($from != '') {
-            $dateFromUnixTime = strtotime($from);
+            $dateFromUnixTime = strtotime($from . ' 00:00:00');
         } else {
             $dateFromUnixTime = UserTransaction::firstDayStart($firstTransaction->created_at);
         }
 
         if ($to != '') {
-            $dateToUnixTime = strtotime($to);
+            $dateToUnixTime = strtotime($to . " 23:59:59");
         } else {
             $dateToUnixTime = time();
         }
+//
+//        echo $dateFromUnixTime;
+//        echo "<br/>";
+//        echo $dateToUnixTime;die;
 
-        for ($i = $dateFromUnixTime - UserTransaction::daySecondsCount; $i < $dateToUnixTime; $i += UserTransaction::daySecondsCount) {
-            //echo $i + UserTransaction::daySecondsCount;die;
-            $sum = $this->calculateSumPeriod(date('Y-m-d h:s:i', $i+ UserTransaction::daySecondsCount), date('Y-m-d h:s:i', $i + UserTransaction::daySecondsCount*2 ));
+        for ($i = $dateFromUnixTime; $i < $dateToUnixTime; $i += UserTransaction::daySecondsCount) {
+            //echo $i;die;
+//            echo date('Y-m-d H:s:i', $i);
+//            echo "<br/>";
+//            echo date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount );
+//
+//            die;
+            $sum = $this->calculateSumPeriod(date('Y-m-d H:s:i', $i), date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount ));
             $day = date('d-m', $i + UserTransaction::daySecondsCount + 4000);
             $result[$day] = $sum;
         }

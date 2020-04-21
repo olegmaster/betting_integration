@@ -17,21 +17,32 @@ class UserTransaction extends Model
     public static function getSumInPeriod($startInUnixTime, $endInUnixTime, $userId = null)
     {
         $sum = 0;
-       // echo date('Y-m-d H:i:s', $startInUnixTime);
+//        echo date('Y-m-d H:i:s', $startInUnixTime);
+//        echo "<br/>";
+//        echo date('Y-m-d H:i:s', $endInUnixTime);
+//        die;
         $transactions = static::where('created_at', '>=', date('Y-m-d H:i:s', $startInUnixTime))
             ->where('created_at', '<=', date('Y-m-d H:i:s', $endInUnixTime));
+
+
 
         if ($userId) {
             $transactions = $transactions->where('user_id', $userId);
         }
 
+       // echo $transactions->toSql();
+
         $transactions = $transactions->get();
+
+        //print_r($transactions);die;
 
         if (is_iterable($transactions)) {
             foreach ($transactions as $transaction) {
                 $sum += $transaction->sum;
             }
+            //echo $transaction->sum;
         }
+        //echo $sum;die;
         return $sum;
     }
 
