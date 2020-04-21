@@ -37,10 +37,9 @@ class AdminController extends Controller
         }
 
         // calculate $sumInPeriod
-        $dateFrom = $request['from_date'] ?? date('m/d/Y', time() - UserKey::weekSecondsCount * 2);
-        $dateTo = $request['to_date'] ?? date('m/d/Y');
+        $dateFrom = $request['from_date'] ?? date('m/d/Y', time() - UserKey::weekSecondsCount * 2) . " 00:00:00";
+        $dateTo = $request['to_date'] ?? date('m/d/Y') . " 23:59:59";
         $reset = '';
-
 
         $sumInDays = $this->calculateSumInDays($dateFrom, $dateTo);
 

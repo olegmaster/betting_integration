@@ -229,10 +229,12 @@ use Illuminate\Support\Facades\Session;
                                             <td>{{date('H:i d/m/Y', $key->end_date)}}</td>
                                             <td>{{$key->key_validity_time}}</td>
                                             <td>
-                                                @if($key->status == 0)
+                                                @if($key->status == 0 && $key->is_frozen == 0)
                                                     <div class="badge badge-danger">не активен</div>
-                                                @else
+                                                @elseif($key->status == 1 && $key->is_frozen == 0)
                                                     <div class="badge badge-success">активен</div>
+                                                @elseif($key->is_frozen == 1)
+                                                    <div class="badge badge-info">заморожен</div>
                                                 @endif
                                             </td>
                                             <td nowrap>
