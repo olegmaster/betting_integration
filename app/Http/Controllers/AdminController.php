@@ -410,7 +410,8 @@ class AdminController extends Controller
         }
 
         for ($i = $dateFromUnixTime - UserTransaction::daySecondsCount; $i < $dateToUnixTime; $i += UserTransaction::daySecondsCount) {
-            $sum = $this->calculateSumPeriod(date('Y-m-d h:s:i', $i), date('Y-m-d h:s:i', $i + UserTransaction::daySecondsCount));
+            //echo $i + UserTransaction::daySecondsCount;die;
+            $sum = $this->calculateSumPeriod(date('Y-m-d h:s:i', $i+ UserTransaction::daySecondsCount), date('Y-m-d h:s:i', $i + UserTransaction::daySecondsCount*2 ));
             $day = date('d-m', $i + UserTransaction::daySecondsCount + 4000);
             $result[$day] = $sum;
         }
