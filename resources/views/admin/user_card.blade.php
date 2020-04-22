@@ -205,10 +205,49 @@ use Illuminate\Support\Facades\Session;
                             </div>
                         </div>
                         <div class="tab-pane show" id="tab-eg6-1" role="tabpanel">
+                            <div class="text-right">
+                                <div class="dropdown d-inline-block">
+                                    <button type="button" aria-haspopup="true" aria-expanded="false"
+                                            data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-primary">
+                                        Выберите действие
+                                    </button>
+                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu"
+                                         x-placement="bottom-start"
+                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 33px, 0px);">
+                                        <button type="button" data-action-type="longer-7" tabindex="0"
+                                                class="dropdown-item mass-action">Продлить (на 7 дней)
+                                        </button>
+                                        <button type="button" data-action-type="freeze-7" tabindex="0"
+                                                class="dropdown-item mass-action">Заморозить (на 7
+                                            дней)
+                                        </button>
+                                        <button type="button" data-action-type="unfreeze" tabindex="0"
+                                                class="dropdown-item mass-action">Разморозить
+                                        </button>
+                                        <button type="button" data-action-type="deactivate" tabindex="0"
+                                                class="dropdown-item mass-action">Деактивировать
+                                        </button>
+                                        <button type="button" data-action-type="activate" tabindex="0"
+                                                class="dropdown-item mass-action">Активировать
+                                        </button>
+                                        <button type="button" data-action-type="delete" tabindex="0"
+                                                class="dropdown-item mass-action">Удалить
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive">
+
                                 <table class="mb-0 table table-striped">
                                     <thead>
                                     <tr>
+                                        <th>
+                                            <div class="custom-checkbox custom-control">
+                                                <input type="checkbox" id="exampleCustomCheckbox"
+                                                       class="custom-control-input main-checkbox">
+                                                <label class="custom-control-label" for="exampleCustomCheckbox"></label>
+                                            </div>
+                                        </th>
                                         <th>#</th>
                                         <th>Логин</th>
                                         <th>Пароль</th>
@@ -222,6 +261,15 @@ use Illuminate\Support\Facades\Session;
                                     <tbody>
                                     @foreach($keys as $key)
                                         <tr>
+                                            <td>
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" id="checkbox-key-{{$key->id}}"
+                                                           data-id="{{$key->id}}"
+                                                           class="custom-control-input single-checkbox">
+                                                    <label class="custom-control-label"
+                                                           for="checkbox-key-{{$key->id}}"></label>
+                                                </div>
+                                            </td>
                                             <th scope="row">{{$key->id}}</th>
                                             <td>{{$key->login}}</td>
                                             <td>{{$key->password}}</td>
