@@ -380,11 +380,11 @@ class AdminController extends Controller
         $dateToUnixTime = 1945346334;
 
         if ($from) {
-            $dateFromUnixTime = strtotime($from);
+            $dateFromUnixTime = strtotime($from . " 00:00:00");
         }
 
         if ($to) {
-            $dateToUnixTime = strtotime($to);
+            $dateToUnixTime = strtotime($to . " 23:59:59");
         }
 
         return UserTransaction::getSumInPeriod($dateFromUnixTime, $dateToUnixTime);
