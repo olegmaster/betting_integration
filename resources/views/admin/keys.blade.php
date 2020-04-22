@@ -31,19 +31,13 @@
                             <h5 class="card-title text-center">Список ключей</h5>
                             <div class="text-right">
                                 <div class="dropdown d-inline-block">
-                                    <button type="button" aria-haspopup="true" aria-expanded="false"
-                                            data-toggle="dropdown" class="mb-2 mr-2 dropdown-toggle btn btn-primary">
-                                        Выберите действие
-                                    </button>
-                                    <div tabindex="-1" role="menu" aria-hidden="true" class="dropdown-menu"
-                                         x-placement="bottom-start"
-                                         style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 33px, 0px);">
+                                    <button class="btn btn-primary dropdown-toggle mb-2 ml-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выберите действие</button>
+                                    <div class="dropdown-menu dropdown-menu-right" tabindex="-1" role="menu" aria-hidden="true">
                                         <button type="button" data-action-type="longer-7" tabindex="0"
                                                 class="dropdown-item mass-action">Продлить (на 7 дней)
                                         </button>
                                         <button type="button" data-action-type="freeze-7" tabindex="0"
-                                                class="dropdown-item mass-action">Заморозить (на 7
-                                            дней)
+                                                class="dropdown-item mass-action">Заморозить (на 7 дней)
                                         </button>
                                         <button type="button" data-action-type="unfreeze" tabindex="0"
                                                 class="dropdown-item mass-action">Разморозить
