@@ -175,7 +175,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/admin/keys" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'akeys')
+                            <a class="mm-collapse" href="/admin/keys" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'akeys')
                             class="mm-active"
                                 @endif>
                                 <i class="pe-7s-key  metismenu-icon"></i>
@@ -191,7 +191,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a  href="#">
                                 <i class="pe-7s-tools  metismenu-icon"></i>
                                 Настройки
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>

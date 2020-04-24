@@ -396,7 +396,7 @@ use Illuminate\Support\Facades\Session;
     <input type="hidden" id="dateToOld" value="{{$dateTo}}">
     @endsection
 @section('local-script')
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
     <script src="/js/tab-state.js"></script>
 
     <script src="/js/summary/index.js"></script>

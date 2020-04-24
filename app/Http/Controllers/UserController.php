@@ -82,7 +82,7 @@ class UserController extends Controller
                 'publicKey' => $publicKey,
                 'amount' => $totalSum,
                 'billId' => $billId,
-                'successUrl' => url('/cabinet/profile'),
+                'successUrl' => url('/cabinet/keys'),
             ];
 
 
@@ -270,7 +270,7 @@ class UserController extends Controller
             'publicKey' => $publicKey,
             'amount' => UserKey::priceOne,
             'billId' => $billId,
-            'successUrl' => url('/cabinet/profile'),
+            'successUrl' => url('/cabinet/keys'),
         ];
 
         $link = $billPayments->createPaymentForm($params);

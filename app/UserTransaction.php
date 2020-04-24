@@ -17,6 +17,10 @@ class UserTransaction extends Model
     public static function getSumInPeriod($startInUnixTime, $endInUnixTime, $userId = null)
     {
         $sum = 0;
+//        echo $startInUnixTime;
+//        echo "<br/>";
+//        echo $endInUnixTime;
+//        echo "<br/>";
 //        echo date('Y-m-d H:i:s', $startInUnixTime);
 //        echo "<br/>";
 //        echo date('Y-m-d H:i:s', $endInUnixTime);

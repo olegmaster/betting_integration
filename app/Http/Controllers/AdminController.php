@@ -37,9 +37,14 @@ class AdminController extends Controller
         }
 
         // calculate $sumInPeriod
-        $dateFrom = $request['from_date'] ?? date('m/d/Y', time() - UserKey::weekSecondsCount * 2) . " 00:00:00";
-        $dateTo = $request['to_date'] ?? date('m/d/Y') . " 23:59:59";
+        $dateFrom = ($request['from_date'] ?? date('Y-m-d', time() - UserKey::weekSecondsCount * 2));
+        $dateTo = ($request['to_date'] ?? date('Y-m-d')) ;
         $reset = '';
+
+//         var_dump($dateFrom);
+//         echo "<br/>";
+//         var_dump($dateTo);
+//         die;
 
         $sumInDays = $this->calculateSumInDays($dateFrom, $dateTo);
 
@@ -90,8 +95,8 @@ class AdminController extends Controller
             $request['page'] = 1;
         }
 
-        $dateFrom = $request['from_date'] ?? date('m/d/Y');
-        $dateTo = $request['to_date'] ?? date('m/d/Y');
+        $dateFrom = $request['from_date'] ?? date('Y-m-d');
+        $dateTo = $request['to_date'] ?? date('Y-m-d');
 
        // var_dump($dateFrom);die;
 
@@ -110,7 +115,11 @@ class AdminController extends Controller
         $totalTransactions = UserTransaction::all()->count();
         // calculate $sumInPeriod
 
-        $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
+//        var_dump($dateFrom);
+//        var_dump($dateTo);
+//        die;
+
+        $sumInPeriod = $this->calculateSumPeriod($dateFrom . ' 00:00:00', $dateTo . ' 23:59:59');
 
         return view('admin.transactions', [
             'transactions' => $transactions,
@@ -272,17 +281,17 @@ class AdminController extends Controller
         //print_r($user->keys()->toSql());die;
         $keys = $user->keys()->paginate(10);
 
-        $dateFrom = $request['from_date'] ?? '01/01/' . date('Y');
-        $dateTo = $request['to_date'] ?? date('m/d/Y');
+        $dateFrom = $request['from_date'] ?? date('Y') . '-01-01';
+        $dateTo = $request['to_date'] ?? date('Y-m-d');
 
 
         $transactions = $user->transactions();
         if ($dateFrom) {
-            $transactions = $transactions->where('created_at', '>=', date('Y-m-d h:i:s', strtotime($dateFrom)));
+            $transactions = $transactions->where('created_at', '>=', date('Y-m-d h:i:s', strtotime($dateFrom . " 00:00:00")));
         }
 
         if ($dateTo) {
-            $transactions = $transactions->where('created_at', '<=', date('Y-m-d h:i:s', strtotime($dateTo)));
+            $transactions = $transactions->where('created_at', '<=', date('Y-m-d h:i:s', strtotime($dateTo . " 23:59:59")));
         }
 
         //print_r($transactions->toSql());die;
@@ -380,12 +389,16 @@ class AdminController extends Controller
         $dateToUnixTime = 1945346334;
 
         if ($from) {
-            $dateFromUnixTime = strtotime($from . " 00:00:00");
+            $dateFromUnixTime = strtotime($from);
         }
 
         if ($to) {
-            $dateToUnixTime = strtotime($to . " 23:59:59");
+            $dateToUnixTime = strtotime($to);
         }
+
+//        var_dump($to);
+//        var_dump($dateFromUnixTime);
+ //       die;
 
         return UserTransaction::getSumInPeriod($dateFromUnixTime, $dateToUnixTime);
     }
