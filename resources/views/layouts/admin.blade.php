@@ -191,12 +191,12 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a  href="#">
                                 <i class="pe-7s-tools  metismenu-icon"></i>
                                 Настройки
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul>
+                            <ul class="mm-collapse">
                                 <li>
                                     <a href="/admin/bot-download">
                                         <i class="metismenu-icon "></i>

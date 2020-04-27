@@ -23,7 +23,13 @@ class UserKey extends Model
 
     public function getKeyValidityTimeAttribute()
     {
-        $to = Carbon::createFromTimestamp($this->end_date);
+        $freezeTime = 0;
+        
+        if($this->is_frozen){
+            $freezeTime = self::weekSecondsCount;
+        }
+
+        $to = Carbon::createFromTimestamp($this->end_date + $freezeTime);
         $from = Carbon::createFromTimestamp(time());
         $diff = $to->diff($from);
         if (($this->end_date - time()) < 0) {
@@ -57,7 +63,7 @@ class UserKey extends Model
 
     public static function generateKeys($userId, $keysCount)
     {
-        if($keysCount == 0)
+        if ($keysCount == 0)
             return;
 
         $bot = new OsminogBot();
@@ -110,7 +116,6 @@ class UserKey extends Model
         $bot->updateKey($key->login, $key->password, 5, ceil($timeDeltaSec / 60));
 
 
-
         $key->end_date = $timeDeltaSec + $key->end_date;
         $key->is_frozen = 0;
         $key->save();
@@ -160,6 +165,19 @@ class UserKey extends Model
             $bot->updateKey($key->login, $key->password, 5, ceil(self::weekSecondsCount / 60));
         }
 
+    }
+
+    public static function getKeysCountInPeriod($startInUnixTime, $endInUnixTime, $userId = null)
+    {
+
+        $keys = static::where('created_at', '>=', date('Y-m-d H:i:s', $startInUnixTime))
+            ->where('created_at', '<=', date('Y-m-d H:i:s', $endInUnixTime));
+
+        if ($userId) {
+            $keys = $keys->where('user_id', $userId);
+        }
+
+        return $keys->count();
     }
 
 }

@@ -205,10 +205,43 @@ use Illuminate\Support\Facades\Session;
                             </div>
                         </div>
                         <div class="tab-pane show" id="tab-eg6-1" role="tabpanel">
+                        	<div class="text-right">
+                                <div class="dropdown d-inline-block">
+                                    <button class="btn btn-primary dropdown-toggle mb-2 ml-2" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Выберите действие</button>
+                                    <div class="dropdown-menu dropdown-menu-right" tabindex="-1" role="menu" aria-hidden="true">
+                                        <button type="button" data-action-type="longer-7" tabindex="0"
+                                                class="dropdown-item mass-action">Продлить (на 7 дней)
+                                        </button>
+                                        <button type="button" data-action-type="freeze-7" tabindex="0"
+                                                class="dropdown-item mass-action">Заморозить (на 7 дней)
+                                        </button>
+                                        <button type="button" data-action-type="unfreeze" tabindex="0"
+                                                class="dropdown-item mass-action">Разморозить
+                                        </button>
+                                        <button type="button" data-action-type="deactivate" tabindex="0"
+                                                class="dropdown-item mass-action">Деактивировать
+                                        </button>
+                                        <button type="button" data-action-type="activate" tabindex="0"
+                                                class="dropdown-item mass-action">Активировать
+                                        </button>
+                                        <button type="button" data-action-type="delete" tabindex="0"
+                                                class="dropdown-item mass-action">Удалить
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="table-responsive">
+
                                 <table class="mb-0 table table-striped">
                                     <thead>
                                     <tr>
+                                        <th>
+                                            <div class="custom-checkbox custom-control">
+                                                <input type="checkbox" id="exampleCustomCheckbox"
+                                                       class="custom-control-input main-checkbox">
+                                                <label class="custom-control-label" for="exampleCustomCheckbox"></label>
+                                            </div>
+                                        </th>
                                         <th>#</th>
                                         <th>Логин</th>
                                         <th>Пароль</th>
@@ -222,6 +255,15 @@ use Illuminate\Support\Facades\Session;
                                     <tbody>
                                     @foreach($keys as $key)
                                         <tr>
+                                            <td>
+                                                <div class="custom-checkbox custom-control">
+                                                    <input type="checkbox" id="checkbox-key-{{$key->id}}"
+                                                           data-id="{{$key->id}}"
+                                                           class="custom-control-input single-checkbox">
+                                                    <label class="custom-control-label"
+                                                           for="checkbox-key-{{$key->id}}"></label>
+                                                </div>
+                                            </td>
                                             <th scope="row">{{$key->id}}</th>
                                             <td>{{$key->login}}</td>
                                             <td>{{$key->password}}</td>
@@ -348,10 +390,83 @@ use Illuminate\Support\Facades\Session;
     <input type="hidden" id="dateToOld" value="{{$dateTo}}">
     @endsection
 @section('local-script')
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="/js/bootstrap.js"></script>
     <script src="/js/tab-state.js"></script>
 
     <script src="/js/summary/index.js"></script>
+
+    <script>
+        $('.main-checkbox').click(function () {
+
+                if ($(this).prop("checked") == true) {
+                    $('.single-checkbox').each(function () {
+                        if ($(this).prop("checked") == false) {
+                            $(this).click();
+                        }
+                    });
+                } else {
+                    $('.single-checkbox').each(function () {
+                        if ($(this).prop("checked") == true) {
+                            $(this).click();
+                        }
+                    });
+                }
+            }
+        );
+
+        $('.mass-action').click(function () {
+            let actionType = $(this).data('actionType');
+            console.log(actionType);
+
+            let requestUrl = '';
+            switch (actionType) {
+                case 'freeze-7':
+                    requestUrl = '/admin/freeze-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'unfreeze':
+                    requestUrl = '/admin/unfreeze-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'longer-7':
+                    requestUrl = '/admin/long-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'deactivate':
+                    requestUrl = '/admin/deactivate-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'activate':
+                    requestUrl = '/admin/activate-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'delete':
+                    requestUrl = '/admin/delete-key/';
+                    massAction(requestUrl);
+                    break;
+                default:
+                    console.log('Sorry, we are out of .');
+            }
+        });
+
+        function massAction(url) {
+            $('.single-checkbox').each(function () {
+                if ($(this).prop("checked") == true) {
+                    let self = $(this);
+                    jQuery.ajax({
+                        url: url + $(this).data('id'),
+                        success: function (result) {
+                            console.log(self.data('id'));
+                        },
+                        async: false
+                    });
+                }
+            });
+            location.reload();
+        }
+
+
+    </script>
 @endsection
 
 

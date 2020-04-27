@@ -18,7 +18,7 @@
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334), 0," ", " ")}} ₽</span>
+                        <div class="widget-numbers text-warning"><span>{{number_format($totalSum, 0," ", " ")}} ₽</span>
                         </div>
                     </div>
                 </div>

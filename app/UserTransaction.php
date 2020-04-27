@@ -14,9 +14,13 @@ class UserTransaction extends Model
         return $this->belongsTo('App\User');
     }
 
-    public static function getSumInPeriod($startInUnixTime, $endInUnixTime, $userId = null)
+    public static function getSumInPeriod($startInUnixTime, $endInUnixTime, $userId = null):int
     {
         $sum = 0;
+//        echo $startInUnixTime;
+//        echo "<br/>";
+//        echo $endInUnixTime;
+//        echo "<br/>";
 //        echo date('Y-m-d H:i:s', $startInUnixTime);
 //        echo "<br/>";
 //        echo date('Y-m-d H:i:s', $endInUnixTime);
@@ -42,7 +46,34 @@ class UserTransaction extends Model
             }
             //echo $transaction->sum;
         }
-        //echo $sum;die;
+        //var_dump($sum );
+        return $sum;
+    }
+
+    public static function calculateSumPeriod($from, $to)
+    {
+        $dateFromUnixTime = 0;
+        $dateToUnixTime = 1945346334;
+
+//        var_dump($to);
+//        var_dump($from);die;
+
+        if ($from) {
+            $dateFromUnixTime = strtotime($from);
+        }
+
+        if ($to) {
+            $dateToUnixTime = strtotime($to);
+        }
+
+//        var_dump($to);
+//        var_dump($dateFromUnixTime);
+        //       die;
+
+        $sum = self::getSumInPeriod($dateFromUnixTime, $dateToUnixTime);
+
+        // var_dump($sum);die;
+
         return $sum;
     }
 
