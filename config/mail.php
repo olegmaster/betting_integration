@@ -37,10 +37,10 @@ return [
         'smtp' => [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'smtp-pulse.com'),
-            'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('oleg.web.pro.master@gmail.com'),
-            'password' => env('7cNXQWZ6bg'),
+            'port' => env('MAIL_PORT', 465),
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'username' => env('MAIL_USERNAME','oleg.web.pro.master@gmail.com'),
+            'password' => env('MAIL_PASSWORD','7cNXQWZ6bg'),
             'timeout' => null,
         ],
 

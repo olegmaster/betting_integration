@@ -24,12 +24,13 @@ class UserKey extends Model
     public function getKeyValidityTimeAttribute()
     {
         $freezeTime = 0;
-        
+
         if($this->is_frozen){
-            $freezeTime = self::weekSecondsCount;
+            $to = Carbon::createFromTimestamp($this->freeze_time + self::weekSecondsCount);
+        } else {
+            $to = Carbon::createFromTimestamp($this->end_date + $freezeTime);
         }
 
-        $to = Carbon::createFromTimestamp($this->end_date + $freezeTime);
         $from = Carbon::createFromTimestamp(time());
         $diff = $to->diff($from);
         if (($this->end_date - time()) < 0) {
