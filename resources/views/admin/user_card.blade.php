@@ -400,6 +400,79 @@ use Illuminate\Support\Facades\Session;
     <script src="/js/tab-state.js"></script>
 
     <script src="/js/summary/index.js"></script>
+
+    <script>
+        $('.main-checkbox').click(function () {
+
+                if ($(this).prop("checked") == true) {
+                    $('.single-checkbox').each(function () {
+                        if ($(this).prop("checked") == false) {
+                            $(this).click();
+                        }
+                    });
+                } else {
+                    $('.single-checkbox').each(function () {
+                        if ($(this).prop("checked") == true) {
+                            $(this).click();
+                        }
+                    });
+                }
+            }
+        );
+
+        $('.mass-action').click(function () {
+            let actionType = $(this).data('actionType');
+            console.log(actionType);
+
+            let requestUrl = '';
+            switch (actionType) {
+                case 'freeze-7':
+                    requestUrl = '/admin/freeze-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'unfreeze':
+                    requestUrl = '/admin/unfreeze-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'longer-7':
+                    requestUrl = '/admin/long-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'deactivate':
+                    requestUrl = '/admin/deactivate-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'activate':
+                    requestUrl = '/admin/activate-key/';
+                    massAction(requestUrl);
+                    break;
+                case 'delete':
+                    requestUrl = '/admin/delete-key/';
+                    massAction(requestUrl);
+                    break;
+                default:
+                    console.log('Sorry, we are out of .');
+            }
+        });
+
+        function massAction(url) {
+            $('.single-checkbox').each(function () {
+                if ($(this).prop("checked") == true) {
+                    let self = $(this);
+                    jQuery.ajax({
+                        url: url + $(this).data('id'),
+                        success: function (result) {
+                            console.log(self.data('id'));
+                        },
+                        async: false
+                    });
+                }
+            });
+            location.reload();
+        }
+
+
+    </script>
 @endsection
 
 

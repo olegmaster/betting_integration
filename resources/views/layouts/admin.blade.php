@@ -175,7 +175,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="mm-collapse" href="/admin/keys" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'akeys')
+                            <a href="/admin/keys" @if(\Illuminate\Support\Facades\Route::current()->getName() == 'akeys')
                             class="mm-active"
                                 @endif>
                                 <i class="pe-7s-key  metismenu-icon"></i>
@@ -196,7 +196,7 @@
                                 Настройки
                                 <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                             </a>
-                            <ul>
+                            <ul class="mm-collapse">
                                 <li>
                                     <a href="/admin/bot-download">
                                         <i class="metismenu-icon "></i>
