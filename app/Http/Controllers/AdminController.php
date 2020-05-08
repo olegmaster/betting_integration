@@ -16,7 +16,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Mail;
 
 
 class AdminController extends Controller
@@ -28,14 +27,6 @@ class AdminController extends Controller
 
     public function summary(Request $request)
     {
-//        $to_name = "oleg.web.pro.master@gmail.com";
-//        $to_email = "oleg.web.pro.master@gmail.com";
-//        $data = array("name" => "Ogbonna Vitalis(sender_name)", "body" => "A test mail");
-//        Mail::send("mail", $data, function ($message) use ($to_name, $to_email) {
-//            $message->to($to_email, $to_name)
-//                ->subject("Laravel Test Mail");
-//            $message->from("oleg.p@avada-media.com", "Test Mail");
-//        });
         $totalUsers = User::client()->count();
         $totalKeys = UserKey::all()->count();
         $topUsers = User::topUsers(5);
@@ -47,7 +38,7 @@ class AdminController extends Controller
 
         // calculate $sumInPeriod
         $dateFrom = ($request['from_date'] ?? date('Y-m-d', time() - UserKey::weekSecondsCount * 2));
-        $dateTo = ($request['to_date'] ?? date('Y-m-d'));
+        $dateTo = ($request['to_date'] ?? date('Y-m-d')) ;
         $reset = '';
 
 //        var_dump($request['to_date']);die;
@@ -59,14 +50,15 @@ class AdminController extends Controller
 
         $sumInDays = $this->calculateSumInDays($dateFrom, $dateTo);
 
-        //  $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
+      //  $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
+
 
 
         $sumInPeriod = UserTransaction::calculateSumPeriod($dateFrom . ' 00:00:00', $dateTo . ' 23:59:59');
         $totalSum = UserTransaction::getSumInPeriod(0, 1945346334);
 
 
-        // var_dump($sumInPeriod);die;
+       // var_dump($sumInPeriod);die;
 
         return view('admin.summary',
             [
@@ -116,7 +108,7 @@ class AdminController extends Controller
         $dateFrom = $request['from_date'] ?? date('Y-m-d');
         $dateTo = $request['to_date'] ?? date('Y-m-d');
 
-        // var_dump($dateFrom);die;
+       // var_dump($dateFrom);die;
 
         $transactions = UserTransaction::whereDate('created_at', '>=', date('Y-m-d', strtotime($dateFrom)) . ' 00:00:00')
             ->whereDate('created_at', '<=', date('Y-m-d', strtotime($dateTo)) . ' 23:59:00')
@@ -316,7 +308,7 @@ class AdminController extends Controller
         //var_dump($transactions->count());die;
 
         //$this->calculateSumPeriod($dateFrom, $dateTo);
-        $sumInPeriod = number_format(UserTransaction::getSumInPeriod(strtotime($dateFrom), strtotime($dateTo), $user['id']), 0, " ", " ");
+        $sumInPeriod = number_format(UserTransaction::getSumInPeriod(strtotime($dateFrom), strtotime($dateTo), $user['id']), 0," ", " ");
         $keysCount = UserKey::getKeysCountInPeriod(strtotime($dateFrom), strtotime($dateTo), $user['id']);
 
         //print_r($transactions->toSql());die;
@@ -442,7 +434,7 @@ class AdminController extends Controller
 //            echo date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount );
 //
 //            die;
-            $sum = UserTransaction::calculateSumPeriod(date('Y-m-d H:s:i', $i), date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount));
+            $sum = UserTransaction::calculateSumPeriod(date('Y-m-d H:s:i', $i), date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount ));
             $day = date('d-m', $i);
             $result[$day] = $sum;
         }
