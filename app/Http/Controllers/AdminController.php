@@ -331,8 +331,8 @@ class AdminController extends Controller
         $validatedData = $request->validate([
             'name' => 'min:3',
             'surname' => 'min:3',
-            'email' => 'min:6|email|unique:users',
-            'phone' => 'min:3|unique:users',
+            'email' => 'min:6|email',
+            'phone' => 'min:3',
             'telegram' => 'min:3'
         ]);
 

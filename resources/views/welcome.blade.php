@@ -33,7 +33,7 @@
                     <nav class="navbar navbar-expand-lg navigation-area">
                         <div class="site-logo-block">
                             <a class="navbar-brand site-logo" href="/">
-                                <img src="/landing/assets/images/logo/logo_osminog_bet.svg" alt="logo">
+                                <img src="/landing/assets/images/logo/logo.png" alt="logo">
                             </a>
                         </div><!--~./ end site logo block ~-->
                         <div class="mainmenu-wrap">
@@ -55,7 +55,7 @@
     <!--~~~~~ Start Mobile Menu ~~~~~-->
     <div class="mobile-menu">
         <a class="mobile-logo" href="/">
-            <img src="/landing/assets/images/logo/logo_osminog_bet.svg" alt="logo">
+            <img src="/landing/assets/images/logo/logo.png" alt="logo">
         </a>
     </div><!--~~./ end mobile menu ~~-->
 </header>
@@ -332,7 +332,7 @@
                         <div class="widget-content">
                             <div class="footer-logo">
                                 <a href="/">
-                                    <img src="/landing/assets/images/logo/logo_osminog_bet.svg" alt="logo">
+                                    <img src="/landing/assets/images/logo/logo.png" alt="logo">
                                 </a>
                             </div>
                             <div class="copyright-text">
