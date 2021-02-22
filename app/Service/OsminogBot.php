@@ -1,6 +1,6 @@
 <?php
 
-namespace App\service;
+namespace App\Service;
 
 
 use Egulias\EmailValidator\Exception\ExpectingCTEXT;

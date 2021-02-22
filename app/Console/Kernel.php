@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-use App\service\TelegramNotificationSender;
+use App\Service\TelegramNotificationSender;
 
 class Kernel extends ConsoleKernel
 {

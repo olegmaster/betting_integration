@@ -1,6 +1,6 @@
 <?php
 
-namespace App\service;
+namespace App\Service;
 
 use App\Setting;
 use App\TelegramNotification;
@@ -17,7 +17,6 @@ class TelegramNotificationSender implements NotificationSender
 
     public function __construct(int $cronSendingIntervalInMinutes)
     {
-      //  Log::debug('info');
         $this->cronSendingInterval = $cronSendingIntervalInMinutes * 60;
         $this->telegramBot = new TelegramBot();
     }
@@ -30,9 +29,7 @@ class TelegramNotificationSender implements NotificationSender
             return false;
 
         foreach ($keys as $key) {
-
             $user = User::find($key->user_id);
-            var_dump($this->keyIsExpiring($key));
             if ($this->keyIsExpiring($key)) {
 
                 $this->telegramBot->sendMessage($user->settings->first()->telegram_id, 'Внимание, у вас кончается подписка на ключ к боту');
@@ -67,8 +64,6 @@ class TelegramNotificationSender implements NotificationSender
     {
         $notifySeconds = $notifyHours * 3600;
         $diff = $keyExpireTime - time();
-//        echo "notifySeconds " . $notifySeconds . "\n";
-//        echo "diff " . $diff;
         if ($diff < 0) {
             return false;
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\service;
+namespace App\Service;
 
 use Symfony\Component\ErrorHandler\Error\ClassNotFoundError;
 
@@ -20,7 +20,7 @@ class TelegramBot
         try {
             file_get_contents($url);
         } catch (\Exception $e) {
-            
+
         }
     }
 }

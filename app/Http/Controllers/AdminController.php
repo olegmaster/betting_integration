@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\service\TelegramBot;
-use App\service\TelegramNotificationSender;
+use App\Service\TelegramBot;
+use App\Service\TelegramNotificationSender;
 use App\User;
 use App\UserKey;
 use App\Help;
