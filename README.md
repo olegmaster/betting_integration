@@ -2,7 +2,7 @@
 
 This project consists of
 - user panel
-- admin panels
+- admin panel
 - integration with service of analysis of bets on games
 - payment integration
 - telegram bot
