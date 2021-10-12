@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Service\OsminogBot;
+use App\Services\OsminogBot;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;

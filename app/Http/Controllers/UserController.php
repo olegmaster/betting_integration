@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Help;
-use App\Service\OsminogBot;
+use App\Services\OsminogBot;
 use App\Setting;
 use App\TelegramNotification;
 use App\Models\UserKey;
