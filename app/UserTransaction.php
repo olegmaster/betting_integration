@@ -17,14 +17,7 @@ class UserTransaction extends Model
     public static function getSumInPeriod($startInUnixTime, $endInUnixTime, $userId = null):int
     {
         $sum = 0;
-//        echo $startInUnixTime;
-//        echo "<br/>";
-//        echo $endInUnixTime;
-//        echo "<br/>";
-//        echo date('Y-m-d H:i:s', $startInUnixTime);
-//        echo "<br/>";
-//        echo date('Y-m-d H:i:s', $endInUnixTime);
-//        die;
+
         $transactions = static::where('created_at', '>=', date('Y-m-d H:i:s', $startInUnixTime))
             ->where('created_at', '<=', date('Y-m-d H:i:s', $endInUnixTime));
 
@@ -34,19 +27,15 @@ class UserTransaction extends Model
             $transactions = $transactions->where('user_id', $userId);
         }
 
-       // echo $transactions->toSql();
-
         $transactions = $transactions->get();
-
-        //print_r($transactions);die;
 
         if (is_iterable($transactions)) {
             foreach ($transactions as $transaction) {
                 $sum += $transaction->sum;
             }
-            //echo $transaction->sum;
+
         }
-        //var_dump($sum );
+
         return $sum;
     }
 
@@ -55,8 +44,6 @@ class UserTransaction extends Model
         $dateFromUnixTime = 0;
         $dateToUnixTime = 1945346334;
 
-//        var_dump($to);
-//        var_dump($from);die;
 
         if ($from) {
             $dateFromUnixTime = strtotime($from);
@@ -66,13 +53,9 @@ class UserTransaction extends Model
             $dateToUnixTime = strtotime($to);
         }
 
-//        var_dump($to);
-//        var_dump($dateFromUnixTime);
-        //       die;
 
         $sum = self::getSumInPeriod($dateFromUnixTime, $dateToUnixTime);
 
-        // var_dump($sum);die;
 
         return $sum;
     }
