@@ -1,3 +1,15 @@
+## About project
+
+This project consists of
+- user panel
+- admin panels
+- integration with service of analysis of bets on games
+- payment integration
+- telegram bot
+
+It took about 2 weeks for development and 1 week for bugfixes to finish the project
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
