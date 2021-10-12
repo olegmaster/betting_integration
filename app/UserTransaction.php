@@ -22,7 +22,6 @@ class UserTransaction extends Model
             ->where('created_at', '<=', date('Y-m-d H:i:s', $endInUnixTime));
 
 
-
         if ($userId) {
             $transactions = $transactions->where('user_id', $userId);
         }
