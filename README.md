@@ -1,4 +1,4 @@
-## About project
+## About the project
 
 This project consists of
 - user panel
