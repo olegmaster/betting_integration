@@ -41,24 +41,10 @@ class AdminController extends Controller
         $dateTo = ($request['to_date'] ?? date('Y-m-d')) ;
         $reset = '';
 
-//        var_dump($request['to_date']);die;
-
-//         var_dump($dateFrom);
-//         echo "<br/>";
-//         var_dump($dateTo);
-//         die;
-
         $sumInDays = $this->calculateSumInDays($dateFrom, $dateTo);
-
-      //  $sumInPeriod = $this->calculateSumPeriod($dateFrom, $dateTo);
-
-
 
         $sumInPeriod = UserTransaction::calculateSumPeriod($dateFrom . ' 00:00:00', $dateTo . ' 23:59:59');
         $totalSum = UserTransaction::getSumInPeriod(0, 1945346334);
-
-
-       // var_dump($sumInPeriod);die;
 
         return view('admin.summary',
             [
@@ -98,7 +84,6 @@ class AdminController extends Controller
     public function transactions(Request $request)
     {
 
-        //var_dump($request['reset']);die;
         if ($request['reset'] === '1') {
             unset($request['from_date']);
             unset($request['to_date']);
@@ -108,26 +93,16 @@ class AdminController extends Controller
         $dateFrom = $request['from_date'] ?? date('Y-m-d');
         $dateTo = $request['to_date'] ?? date('Y-m-d');
 
-       // var_dump($dateFrom);die;
-
         $transactions = UserTransaction::whereDate('created_at', '>=', date('Y-m-d', strtotime($dateFrom)) . ' 00:00:00')
             ->whereDate('created_at', '<=', date('Y-m-d', strtotime($dateTo)) . ' 23:59:00')
             ->paginate(10);
 
-
-        //http://osminogbet.local/admin/transaction-history?from_date=04%2F01%2F2020&to_date=04%2F25%2F2020&page=2
         $transactions->appends([
             'from_date' => str_replace('%2F', '/', $dateFrom),
             'to_date' => str_replace('%2F', '/', $dateTo)
         ]);
 
-        // $transactions = UserTransaction::paginate(10);
         $totalTransactions = UserTransaction::all()->count();
-        // calculate $sumInPeriod
-
-//        var_dump($dateFrom);
-//        var_dump($dateTo);
-//        die;
 
         $sumInPeriod = UserTransaction::calculateSumPeriod($dateFrom . ' 00:00:00', $dateTo . ' 23:59:59');
 
@@ -190,15 +165,8 @@ class AdminController extends Controller
         // for adding images
         $cleaned = str_replace('\"', '', $cleaned);
 
-        // echo rtrim(substr($request['help-text'], 1), '"');die;
-
         $helpModel->text = htmlentities($cleaned);
 
-        //echo trim($helpModel->text);die;
-//echo $helpModel->text;
-
-
-        //echo html_entity_decode($helpModel->text);die;
 
         if ($helpModel->save()) {
             Session::flash('help_text_saved', 'Изменения сохранены');
@@ -288,7 +256,7 @@ class AdminController extends Controller
 
         $id = $request['id'];
         $user = User::find($id);
-        //print_r($user->keys()->toSql());die;
+
         $keys = $user->keys()->paginate(10);
 
         $dateFrom = $request['from_date'] ?? date('Y') . '-01-01';
@@ -296,7 +264,7 @@ class AdminController extends Controller
 
 
         $transactions = UserTransaction::where(['user_id' => $id]);
-        //$transactions = $user->transactions();
+
         if ($dateFrom) {
             $transactions = $transactions->where('created_at', '>=', $dateFrom . " 00:00:00");
         }
@@ -305,13 +273,9 @@ class AdminController extends Controller
             $transactions = $transactions->where('created_at', '<=', $dateTo . " 23:59:59");
         }
 
-        //var_dump($transactions->count());die;
-
-        //$this->calculateSumPeriod($dateFrom, $dateTo);
         $sumInPeriod = number_format(UserTransaction::getSumInPeriod(strtotime($dateFrom), strtotime($dateTo), $user['id']), 0," ", " ");
         $keysCount = UserKey::getKeysCountInPeriod(strtotime($dateFrom), strtotime($dateTo), $user['id']);
 
-        //print_r($transactions->toSql());die;
         $transactions = $transactions->paginate(10);
         return view('admin.user_card',
             [
@@ -405,7 +369,6 @@ class AdminController extends Controller
 
     private function calculateSumInDays($from, $to)
     {
-        //echo $to;
         $result = [];
         $firstTransaction = UserTransaction::find(1);
         if (!$firstTransaction) {
@@ -422,23 +385,12 @@ class AdminController extends Controller
         } else {
             $dateToUnixTime = time();
         }
-//
-//        echo $dateFromUnixTime;
-//        echo "<br/>";
-//        echo $dateToUnixTime;die;
 
         for ($i = $dateFromUnixTime; $i < $dateToUnixTime; $i += UserTransaction::daySecondsCount) {
-            //echo $i;die;
-//            echo date('Y-m-d H:s:i', $i);
-//            echo "<br/>";
-//            echo date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount );
-//
-//            die;
             $sum = UserTransaction::calculateSumPeriod(date('Y-m-d H:s:i', $i), date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount ));
             $day = date('d-m', $i);
             $result[$day] = $sum;
         }
-        //   ddd($result);
 
         return $result;
 
