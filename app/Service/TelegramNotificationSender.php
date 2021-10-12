@@ -4,8 +4,8 @@ namespace App\Service;
 
 use App\Setting;
 use App\TelegramNotification;
-use App\User;
-use App\UserKey;
+use App\Models\User;
+use App\Models\UserKey;
 use App\interfaces\NotificationSender;
 use Illuminate\Support\Facades\Log;
 

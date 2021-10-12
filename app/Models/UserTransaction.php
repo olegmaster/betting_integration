@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Scopes\PaidTransactionScope;
 use Illuminate\Database\Eloquent\Model;
@@ -11,7 +11,7 @@ class UserTransaction extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public static function getSumInPeriod($startInUnixTime, $endInUnixTime, $userId = null):int

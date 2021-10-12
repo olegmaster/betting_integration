@@ -42,7 +42,7 @@ use Illuminate\Support\Facades\Session;
 
                     </div>
                     <div class="widget-content-right">
-                        <div class="widget-numbers text-warning"><span>{{ number_format(\App\UserTransaction::getSumInPeriod(0, 1945346334, $user['id']), 0," ", " ") }} ₽</span>
+                        <div class="widget-numbers text-warning"><span>{{ number_format(\App\Models\UserTransaction::getSumInPeriod(0, 1945346334, $user['id']), 0," ", " ") }} ₽</span>
                         </div>
                     </div>
                 </div>

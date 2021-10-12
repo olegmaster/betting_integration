@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Help;
+use App\Models\Help;
 use App\Service\OsminogBot;
 use App\Setting;
 use App\TelegramNotification;
-use App\UserKey;
-use App\UserTransaction;
+use App\Models\UserKey;
+use App\Models\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;

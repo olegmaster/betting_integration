@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Scopes\ClientScope;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -46,13 +46,13 @@ class User extends Authenticatable
 
     public function keys()
     {
-        return $this->hasMany('App\UserKey');
+        return $this->hasMany('App\Models\UserKey');
     }
 
 
     public function transactions()
     {
-        return $this->hasMany('App\UserTransaction');
+        return $this->hasMany('App\Models\UserTransaction');
     }
 
     /**

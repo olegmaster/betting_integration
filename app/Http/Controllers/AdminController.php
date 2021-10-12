@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Service\TelegramBot;
 use App\Service\TelegramNotificationSender;
-use App\User;
-use App\UserKey;
-use App\Help;
-use App\UserTransaction;
+use App\Models\User;
+use App\Models\UserKey;
+use App\Models\Help;
+use App\Models\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;

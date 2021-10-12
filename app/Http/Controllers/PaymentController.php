@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Scopes\PaidTransactionScope;
-use App\UserKey;
-use App\UserTransaction;
+use App\Models\UserKey;
+use App\Models\UserTransaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
