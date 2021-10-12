@@ -131,8 +131,6 @@ class UserController extends Controller
         $setting = Setting::where('user_id', Auth::user()->id)
             ->first();
 
-        //print_r($setting);die;
-
         if (!$setting) {
             $setting = Setting::firstOrCreate([
                 'telegram_id' => $request['telegram-id'],
@@ -282,9 +280,6 @@ class UserController extends Controller
     public function editKeyDescription(Request $request)
     {
         $key = UserKey::find($request['key_id']);
-//        if(empty($key)){
-//            echo $request['key_id'];die;
-//        }
         $key->description = $request['description'] ?? '';
         $key->save();
         return redirect()->back();
