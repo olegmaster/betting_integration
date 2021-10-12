@@ -15,6 +15,8 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
+    const ADMIN_ID = 15;
+
     /**
      * The attributes that are mass assignable.
      *
