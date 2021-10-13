@@ -27,7 +27,7 @@ class UserController extends Controller
     public function keys()
     {
 
-        if(Auth::user()->id == 1){
+        if (Auth::user()->id == 1) {
             return redirect('/admin');
         }
         $keys = Auth::user()->keys()->paginate(10);
@@ -183,13 +183,7 @@ class UserController extends Controller
             'telegram' => 'required'
         ]);
 
-        Auth::user()->name = $request['name'];
-        Auth::user()->surname = $request['surname'];
-        Auth::user()->email = $request['email'];
-        Auth::user()->phone = $request['phone'];
-        Auth::user()->telegram = $request['telegram'];
-
-        if (Auth::user()->save()) {
+        if (Auth::user()->fill($request->all())->save()) {
             Session::flash('user_profile_saved', 'Изменения сохранены');
         }
 
