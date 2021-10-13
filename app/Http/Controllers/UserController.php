@@ -162,14 +162,14 @@ class UserController extends Controller
 
     public function profile()
     {
-        $userData['name'] = Auth::user()->name;
-        $userData['surname'] = Auth::user()->surname;
-        $userData['email'] = Auth::user()->email;
-        $userData['phone'] = Auth::user()->phone;
-        $userData['telegram'] = Auth::user()->telegram;
-
         return view('user.profile', [
-            'userData' => $userData
+            'userData' => [
+                'name' => Auth::user()->name ?? '',
+                'surname' => Auth::user()->surname ?? '',
+                'email' => Auth::user()->email ?? '',
+                'phone' => Auth::user()->phone ?? '',
+                'telegram' => Auth::user()->telegram ?? ''
+            ]
         ]);
     }
 
