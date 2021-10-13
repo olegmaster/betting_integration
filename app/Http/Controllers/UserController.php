@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Help;
-use App\Services\OsminogBot;
-use App\Setting;
-use App\TelegramNotification;
+use App\Models\Setting;
+use App\Models\TelegramNotification;
 use App\Models\UserKey;
 use App\Models\UserTransaction;
 use Illuminate\Http\Request;
@@ -16,7 +15,7 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Qiwi\Api\BillPayments;
-use Illuminate\Support\Facades\DB;
+
 
 class UserController extends Controller
 {
