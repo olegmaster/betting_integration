@@ -1,6 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin;
+use App\Http\Controllers\Admin\BotController;
+use App\Http\Controllers\Admin\HelpController;
+use App\Http\Controllers\Admin\KeyController;
+use App\Http\Controllers\Admin\ProfileController;
+use App\Http\Controllers\Admin\SummaryController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\UserCardController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\AdminLoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,92 +28,66 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/admin', 'AdminController@summary')->name('summary');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-# Admin Panel routes
 
-Route::get('/admin/users', 'AdminController@users')->name('ausers');
+Route::namespace('Admin')->prefix('admin')->group(function () {
+    Route::get('/', [SummaryController::class, 'summary'])->name('summary');
 
+    Route::get('transaction-history', [TransactionController::class, 'transactions'])->name('atrans');
 
+    Route::get('bot-download', [BotController::class, 'bot']);
+    Route::post('bot-save', [BotController::class, 'botSave']);
 
-Route::get('/admin/keys', 'AdminController@keys')->name('akeys');
+    Route::get('help', [HelpController::class, 'help'])->name('ahelp');
+    Route::post('/admin-help-store', [HelpController::class, 'helpStore']);
 
-Route::get('/admin/transaction-history', 'AdminController@transactions')->name('atrans');
+    Route::get('user-card/{id}', [UserCardController::class, 'userCard']);
 
-Route::get('/admin/bot-download', 'AdminController@bot');
+    Route::post('update-user-profile/{id}', [ProfileController::class, 'updateUserProfile']);
+    Route::get('profile', [ProfileController::class, 'profile']);
 
-Route::post('/admin/bot-save', 'AdminController@botSave');
+    Route::get('login-as/{id}', [AdminController::class, 'loginAs']);
+    Route::post('/update-admin-avatar', [AdminController::class, 'updateAdminAvatar']);
 
-Route::get('/admin/help', 'AdminController@help')->name('ahelp');
+    Route::post('login', [AdminLoginController::class, 'login']);
 
-Route::get('/admin/profile', 'AdminController@profile');
+    Route::get('login', function () {
+        return view('auth.admin-login');
+    });
 
-Route::post('/profile-store-data', 'AdminController@profileStoreData');
+    Route::get('users', [UserController::class, 'users'])->name('ausers');
+    Route::get('change-status-activate/{id}', [UserController::class, 'changeUserStatusActivate']);
+    Route::get('change-status-deactivate/{id}', [UserController::class, 'changeUserStatusDeactivate']);
+    Route::post('update-user-password/{id}', [UserController::class, 'updateUserPassword']);
+    Route::post('/update-admin-password', [UserController::class, 'updatePassword']);
 
-Route::post('/update-admin-avatar', 'AdminController@updateAdminAvatar');
-
-Route::post('/update-admin-password', 'AdminController@updatePassword');
-
-Route::post('/admin-help-store', 'AdminController@helpStore');
-
-Route::get('/admin/user-card/{id}', 'AdminController@userCard');
-
-Route::post('/admin/update-user-profile/{id}', 'AdminController@updateUserProfile');
-
-Route::post('/admin/update-user-password/{id}', 'AdminController@updateUserPassword');
-
-Route::get('/admin/login-as/{id}', 'AdminController@loginAs');
-
-Route::post('/admin/login', 'Auth\AdminLoginController@login');
-
-Route::get('/admin/login', function () {
-    return view('auth.admin-login');
+    Route::get('keys', [KeyController::class, 'keys'])->name('akeys');
+    Route::get('freeze-key/{id}', [KeyController::class, 'freezeKey']);
+    Route::get('unfreeze-key/{id}', [KeyController::class, 'unFreezeKey']);
+    Route::get('delete-key/{id}', [KeyController::class, 'deleteKey']);
+    Route::get('activate-key/{id}', [KeyController::class, 'activateKey']);
+    Route::get('deactivate-key/{id}', [KeyController::class, 'deActivateKey']);
+    Route::get('long-key/{id}', [KeyController::class, 'longKey']);
 });
 
-Route::get('/admin/change-status-activate/{id}', 'AdminController@changeUserStatusActivate');
-Route::get('/admin/change-status-deactivate/{id}', 'AdminController@changeUserStatusDeactivate');
 
-
-
-Route::get('/admin/freeze-key/{id}', 'AdminController@freezeKey');
-
-Route::get('/admin/unfreeze-key/{id}', 'AdminController@unFreezeKey');
-
-Route::get('/admin/delete-key/{id}', 'AdminController@deleteKey');
-
-Route::get('/admin/activate-key/{id}', 'AdminController@activateKey');
-
-Route::get('/admin/deactivate-key/{id}', 'AdminController@deActivateKey');
-
-Route::get('/admin/long-key/{id}', 'AdminController@longKey');
-
-# User Cabinet routes
-
-Route::get('/cabinet/keys', 'UserController@keys')->name('ukeys');
-
-Route::get('/cabinet/buy-key', 'UserController@buyKey')->name('bkey');
-
-Route::post('/cabinet/buy-key-handle', 'UserController@buyKeyHandle');
-
-Route::get('/cabinet/download-bot', 'UserController@downloadBot');
-
-Route::get('/cabinet/setup', 'UserController@setup')->name('usetup');
-
-Route::post('cabinet/setup-update', 'UserController@setupUpdate');
-
-Route::get('/cabinet/help', 'UserController@help')->name('uhelp');
-
-Route::get('/cabinet/profile', 'UserController@profile')->name('uprofile');
-
-Route::post('/cabinet/profile-update', 'UserController@profileUpdate');
-
-Route::post('/cabinet/update-user-avatar', 'UserController@updateUserAvatar');
-
-Route::post('/cabinet/update-user-password', 'UserController@updatePassword');
+Route::namespace('Cabinet')->prefix('cabinet')->group(function () {
+    Route::get('keys', 'UserController@keys')->name('ukeys');
+    Route::get('buy-key', 'UserController@buyKey')->name('bkey');
+    Route::post('buy-key-handle', 'UserController@buyKeyHandle');
+    Route::get('download-bot', 'UserController@downloadBot');
+    Route::get('setup', 'UserController@setup')->name('usetup');
+    Route::post('setup-update', 'UserController@setupUpdate');
+    Route::get('help', 'UserController@help')->name('uhelp');
+    Route::get('profile', 'UserController@profile')->name('uprofile');
+    Route::post('profile-update', 'UserController@profileUpdate');
+    Route::post('update-user-avatar', 'UserController@updateUserAvatar');
+    Route::post('update-user-password', 'UserController@updatePassword');
+});
 
 
 Route::get('/freeze-key/{id}', 'UserController@freezeKey');
