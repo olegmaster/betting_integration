@@ -37,7 +37,7 @@ use Illuminate\Support\Facades\Session;
         <div class="col-md-12 col-lg-6">
             <div class="mb-3 card">
                 <div class="card-body"><h5 class="card-title">Персональная информация</h5>
-                    <form class="" method="POST" action="/profile-store-data">
+                    <form class="" method="POST" action="/admin/profile-store-data">
                         @csrf
                         @if(Session::has('saved'))
                             <p class="alert alert-success">{{ Session::get('saved') }}</p>
@@ -80,7 +80,7 @@ use Illuminate\Support\Facades\Session;
         <div class="col-md-12 col-lg-6">
             <div class="mb-3 card">
                 <div class="card-body">
-                    <form class="" method="POST" action="/update-admin-avatar" enctype="multipart/form-data">
+                    <form class="" method="POST" action="admin/update-admin-avatar" enctype="multipart/form-data">
                         @csrf
                         @if(Session::has('admin_image_saved'))
                             <p class="alert alert-success">{{ Session::get('admin_image_saved') }}</p>
@@ -101,7 +101,7 @@ use Illuminate\Support\Facades\Session;
             </div>
             <div class="mb-3 card">
                 <div class="card-body"><h5 class="card-title">Сменить пароль</h5>
-                    <form class="" method="POST" action="/update-admin-password">
+                    <form class="" method="POST" action="/admin/update-admin-password">
                         @csrf
                         @if(Session::has('password_saved'))
                             <p class="alert alert-success">{{ Session::get('password_saved') }}</p>
