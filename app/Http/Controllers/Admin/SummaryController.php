@@ -6,10 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\UserKey;
 use App\Models\UserTransaction;
+use App\Services\SummaryService;
 use Illuminate\Http\Request;
 
 class SummaryController extends Controller
 {
+    private $summaryService;
+
+    public function __construct(SummaryService $summaryService)
+    {
+        $this->summaryService = $summaryService;
+    }
+
     public function summary(Request $request)
     {
         $totalUsers = User::client()->count();
@@ -23,10 +31,10 @@ class SummaryController extends Controller
 
         // calculate $sumInPeriod
         $dateFrom = ($request['from_date'] ?? date('Y-m-d', time() - UserKey::weekSecondsCount * 2));
-        $dateTo = ($request['to_date'] ?? date('Y-m-d')) ;
+        $dateTo = ($request['to_date'] ?? date('Y-m-d'));
         $reset = '';
 
-        $sumInDays = $this->calculateSumInDays($dateFrom, $dateTo);
+        $sumInDays = $this->summaryService->calculateSumInDays($dateFrom, $dateTo);
 
         $sumInPeriod = UserTransaction::calculateSumPeriod($dateFrom . ' 00:00:00', $dateTo . ' 23:59:59');
         $totalSum = UserTransaction::getSumInPeriod(0, 1945346334);
@@ -46,33 +54,4 @@ class SummaryController extends Controller
         );
     }
 
-    private function calculateSumInDays($from, $to)
-    {
-        $result = [];
-        $firstTransaction = UserTransaction::find(1);
-        if (!$firstTransaction) {
-            return [];
-        }
-        if ($from != '') {
-            $dateFromUnixTime = strtotime($from . ' 00:00:00');
-        } else {
-            $dateFromUnixTime = UserTransaction::firstDayStart($firstTransaction->created_at);
-        }
-
-        if ($to != '') {
-            $dateToUnixTime = strtotime($to . " 23:59:59");
-        } else {
-            $dateToUnixTime = time();
-        }
-
-        for ($i = $dateFromUnixTime; $i < $dateToUnixTime; $i += UserTransaction::daySecondsCount) {
-            $sum = UserTransaction::calculateSumPeriod(date('Y-m-d H:s:i', $i), date('Y-m-d H:s:i', $i + UserTransaction::daySecondsCount ));
-            $day = date('d-m', $i);
-            $result[$day] = $sum;
-        }
-
-        return $result;
-
-
-    }
 }
