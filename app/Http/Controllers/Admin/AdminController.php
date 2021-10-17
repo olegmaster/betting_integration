@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Admin\LoginAsRequest;
+use App\Http\Requests\Admin\Admin\UpdateAdminAvatarRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
@@ -13,20 +14,17 @@ use Illuminate\Support\Str;
 
 class AdminController extends Controller
 {
-    public function loginAs($id)
+    public function loginAs(LoginAsRequest $request)
     {
+        $id = $request->input('id');
         $user = User::find($id);
         Auth::logout();
         Auth::login($user);
         return redirect('/cabinet/keys');
     }
 
-    public function updateAdminAvatar(Request $request)
+    public function updateAdminAvatar(UpdateAdminAvatarRequest $request)
     {
-        $validatedData = $request->validate([
-            'admin-avatar' => 'image|min:1'
-        ]);
-
         $cover = $request->file('admin-avatar');
 
         if (empty($cover)) {

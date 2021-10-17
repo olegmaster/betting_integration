@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Summary\GetSummaryRequest;
 use App\Models\User;
 use App\Models\UserKey;
 use App\Models\UserTransaction;
 use App\Services\SummaryService;
-use Illuminate\Http\Request;
 
 class SummaryController extends Controller
 {
@@ -18,7 +18,7 @@ class SummaryController extends Controller
         $this->summaryService = $summaryService;
     }
 
-    public function summary(Request $request)
+    public function summary(GetSummaryRequest $request)
     {
         $totalUsers = User::client()->count();
         $totalKeys = UserKey::all()->count();

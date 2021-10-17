@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Admin\Bot\BotSaveRequest;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -15,12 +15,8 @@ class BotController extends Controller
         return view('admin.bot');
     }
 
-    public function botSave(Request $request)
+    public function botSave(BotSaveRequest $request)
     {
-        $validatedData = $request->validate([
-            'bot' => 'file|min:1'
-        ]);
-
         $cover = $request->file('bot');
 
         if (empty($cover)) {

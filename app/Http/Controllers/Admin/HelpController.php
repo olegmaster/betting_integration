@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Help\HelpStoreRequest;
 use App\Models\Help;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
 class HelpController extends Controller
@@ -17,11 +17,8 @@ class HelpController extends Controller
         ]);
     }
 
-    public function helpStore(Request $request)
+    public function helpStore(HelpStoreRequest $request)
     {
-        $request->validate([
-            'help-text' => 'required',
-        ]);
 
         $helpModel = Help::where('id', 1)->first();
 

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Profile\ProfileStoreRequest;
+use App\Http\Requests\Admin\Profile\ProfileUpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
@@ -21,13 +22,8 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function profileStoreData(Request $request)
+    public function profileStoreData(ProfileStoreRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'min:3',
-            'surname' => 'min:3',
-            'email' => 'min:6'
-        ]);
 
         Auth::user()->name = $request['name'];
         Auth::user()->surname = $request['surname'];
@@ -40,16 +36,8 @@ class ProfileController extends Controller
         return redirect('admin/profile');
     }
 
-    public function updateUserProfile(Request $request)
+    public function updateUserProfile(ProfileUpdateRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'min:3',
-            'surname' => 'min:3',
-            'email' => 'min:6|email',
-            'phone' => 'min:3',
-            'telegram' => 'min:3'
-        ]);
-
         $user = User::find($request['id']);
 
         $user->name = $request['name'];
