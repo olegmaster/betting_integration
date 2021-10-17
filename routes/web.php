@@ -36,6 +36,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::namespace('Admin')->prefix('admin')->group(function () {
 
+    Route::post('login', [AdminLoginController::class, 'login']);
+
+    Route::get('login', function () {
+        return view('auth.admin-login');
+    });
+
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/', [SummaryController::class, 'summary'])->name('summary');
 
@@ -55,11 +61,7 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('login-as/{id}', [AdminController::class, 'loginAs']);
         Route::post('/update-admin-avatar', [AdminController::class, 'updateAdminAvatar']);
 
-        Route::post('login', [AdminLoginController::class, 'login']);
 
-        Route::get('login', function () {
-            return view('auth.admin-login');
-        });
 
         Route::get('users', [UserController::class, 'users'])->name('ausers');
         Route::get('change-status-activate/{id}', [UserController::class, 'changeUserStatusActivate']);
@@ -75,13 +77,10 @@ Route::namespace('Admin')->prefix('admin')->group(function () {
         Route::get('deactivate-key/{id}', [KeyController::class, 'deActivateKey']);
         Route::get('long-key/{id}', [KeyController::class, 'longKey']);
     });
-
-
 });
 
 
 Route::namespace('Cabinet')->prefix('cabinet')->group(function () {
-
     Route::middleware(['auth', 'active'])->group(function () {
         Route::get('keys', 'UserController@keys')->name('ukeys');
         Route::get('buy-key', 'UserController@buyKey')->name('bkey');
@@ -95,7 +94,6 @@ Route::namespace('Cabinet')->prefix('cabinet')->group(function () {
         Route::post('update-user-avatar', 'UserController@updateUserAvatar');
         Route::post('update-user-password', 'UserController@updatePassword');
     });
-
 });
 
 
