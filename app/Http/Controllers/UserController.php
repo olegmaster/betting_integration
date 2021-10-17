@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\User\BuyKeyHandleRequest;
+use App\Http\Requests\User\EditKeyDescriptionRequest;
+use App\Http\Requests\User\KeyActionRequest;
+use App\Http\Requests\User\ProfileUpdateRequest;
+use App\Http\Requests\User\SetupUpdateRequest;
+use App\Http\Requests\User\UpdatePasswordRequest;
+use App\Http\Requests\User\UpdateUserAvatarRequest;
 use App\Models\Help;
 use App\Models\Setting;
 use App\Models\TelegramNotification;
 use App\Models\UserKey;
 use App\Models\UserTransaction;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -21,7 +27,6 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth', 'active']);
     }
 
     public function keys()
@@ -49,11 +54,8 @@ class UserController extends Controller
         return view('user.buy_key');
     }
 
-    public function buyKeyHandle(Request $request)
+    public function buyKeyHandle(BuyKeyHandleRequest $request)
     {
-        $validatedData = $request->validate([
-            'count' => 'required|min:1',
-        ]);
 
         if ($request['count'] < 10) {
             $keyPrice = UserKey::priceOne;
@@ -121,11 +123,8 @@ class UserController extends Controller
         ]);
     }
 
-    public function setupUpdate(Request $request)
+    public function setupUpdate(SetupUpdateRequest $request)
     {
-        $validatedData = $request->validate([
-            'telegram-id' => 'min:5',
-        ]);
 
         $setting = Setting::where('user_id', Auth::user()->id)
             ->first();
@@ -173,15 +172,9 @@ class UserController extends Controller
         ]);
     }
 
-    public function profileUpdate(Request $request)
+    public function profileUpdate(ProfileUpdateRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'min:3|required',
-            'surname' => 'min:3|required',
-            'email' => 'email|min:6|required',
-            'phone' => 'required',
-            'telegram' => 'required'
-        ]);
+
 
         if (Auth::user()->fill($request->all())->save()) {
             Session::flash('user_profile_saved', 'Изменения сохранены');
@@ -190,11 +183,9 @@ class UserController extends Controller
         return redirect('/cabinet/profile');
     }
 
-    public function updateUserAvatar(Request $request)
+    public function updateUserAvatar(UpdateUserAvatarRequest $request)
     {
-        $validatedData = $request->validate([
-            'user-avatar' => 'image|min:1'
-        ]);
+
 
         $cover = $request->file('user-avatar');
 
@@ -215,12 +206,9 @@ class UserController extends Controller
         return redirect('/cabinet/profile');
     }
 
-    public function updatePassword(Request $request)
+    public function updatePassword(UpdatePasswordRequest $request)
     {
-        $validatedData = $request->validate([
-            'password' => 'required|min:6',
-            'repeat-password' => 'required|min:6|same:password',
-        ]);
+
 
         Auth::user()->password = Hash::make($request['password']);
         if (Auth::user()->save()) {
@@ -230,20 +218,23 @@ class UserController extends Controller
         return redirect('/cabinet/profile');
     }
 
-    public function freezeKey(int $keyId)
+    public function freezeKey(KeyActionRequest $request)
     {
+        $keyId = $request->input('keyId');
         UserKey::freeze($keyId);
         return redirect()->back();
     }
 
-    public function unFreezeKey(int $keyId)
+    public function unFreezeKey(KeyActionRequest $request)
     {
+        $keyId = $request->input('keyId');
         UserKey::unFreeze($keyId);
         return redirect()->back();
     }
 
-    public function longKey(int $keyId)
+    public function longKey(KeyActionRequest $request)
     {
+        $keyId = $request->input('keyId');
         $billId = rand(100000, 999999) . rand(100000, 999999);
 
         $transaction = new UserTransaction();
@@ -270,7 +261,7 @@ class UserController extends Controller
 
     }
 
-    public function editKeyDescription(Request $request)
+    public function editKeyDescription(EditKeyDescriptionRequest $request)
     {
         $key = UserKey::find($request['key_id']);
         $key->description = $request['description'] ?? '';
